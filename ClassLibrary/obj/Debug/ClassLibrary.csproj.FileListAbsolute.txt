@@ -1,1 +1,12 @@
 C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\Microsoft.Solver.Foundation.dll
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\NMath.dll
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\Microsoft.Solver.Foundation.xml
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\bin\Debug\NMath.xml
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\obj\Debug\ClassLibrary.csproj.CopyComplete
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\leokr\source\repos\TransportationProblemUncertainty\ClassLibrary\obj\Debug\ClassLibrary.pdb

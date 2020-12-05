@@ -1,2 +1,8 @@
 .vs/
 packages/
+Wpf/bin/Debug/netcoreapp3.0/x64/
+Wpf/bin/Debug/netcoreapp3.0/x86/
+Wpf/bin/Debug/netcoreapp3.0/x64/nmath_native_x64.dll
+Wpf/bin/Debug/netcoreapp3.0/x86/nmath_native_x86.dll 
+nmath_native_x64.dll
+nmath_native_x86.dll 

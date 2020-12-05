@@ -10,7 +10,7 @@ namespace ClassLibrary
 {
     public class Solver
     {
-        public static DualSimplexSolver SolveSeveral(string[] coeffC, DoubleVector vectorA, DoubleVector vectorB, DoubleVector vectorL)
+        public static DualSimplexSolver SolveSeveral(string[] coeffC, DoubleVector vectorA, DoubleVector vectorB, DoubleVector vectorL, List<double> solutions)
         {
             int rows, columns, xQuantity, yQuantity, fullQuantity;
             rows = vectorA.Length;
@@ -19,7 +19,7 @@ namespace ClassLibrary
             yQuantity = coeffC.Length;
             fullQuantity = xQuantity + yQuantity;
 
-            List<double> solutions = new List<double>();
+            /*List<double> solutions = new List<double>();
             for (int i = 0; i < yQuantity; i++)
             {
                 var solve = SolveOne(new DoubleVector(coeffC[i]), vectorA, vectorB);
@@ -28,6 +28,7 @@ namespace ClassLibrary
                     solutions.Add(RoundBitch(solve.OptimalObjectiveFunctionValue));
                 }
             } // а если solutions.Lenght != coeffC.Lenght, то хз, гг
+            */
 
             var solver = new DualSimplexSolver();
             var solverParams = new DualSimplexSolverParams

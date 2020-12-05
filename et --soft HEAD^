@@ -1,0 +1,57 @@
+[33m66d7e6c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m hi there it's my first commit i like to see everybody so let's dance
+ ClassLibrary/Solver.cs                             |     5 [32m+[m[31m-[m
+ ClassLibrary/bin/Debug/ClassLibrary.dll            |   Bin [31m0[m -> [32m11264[m bytes
+ ClassLibrary/bin/Debug/ClassLibrary.pdb            |   Bin [31m0[m -> [32m30208[m bytes
+ .../bin/Debug/Microsoft.Solver.Foundation.dll      |   Bin [31m0[m -> [32m2606968[m bytes
+ .../bin/Debug/Microsoft.Solver.Foundation.xml      | 45921 [32m++++++++++[m
+ ClassLibrary/bin/Debug/NMath.dll                   |   Bin [31m0[m -> [32m1862144[m bytes
+ ClassLibrary/bin/Debug/NMath.xml                   | 89895 [32m+++++++++++++++++++[m
+ ...TFramework,Version=v4.7.2.AssemblyAttributes.cs |     4 [32m+[m
+ .../obj/Debug/ClassLibrary.csproj.CopyComplete     |     0
+ .../ClassLibrary.csproj.CoreCompileInputs.cache    |     1 [32m+[m
+ .../Debug/ClassLibrary.csproj.FileListAbsolute.txt |    11 [32m+[m
+ .../ClassLibrary.csprojAssemblyReference.cache     |   Bin [31m424[m -> [32m18982[m bytes
+ ClassLibrary/obj/Debug/ClassLibrary.dll            |   Bin [31m0[m -> [32m11264[m bytes
+ ClassLibrary/obj/Debug/ClassLibrary.pdb            |   Bin [31m0[m -> [32m30208[m bytes
+ .../DesignTimeResolveAssemblyReferencesInput.cache |   Bin [31m8509[m -> [32m7121[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/ClassLibrary.dll       |   Bin [31m0[m -> [32m11264[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/ClassLibrary.pdb       |   Bin [31m0[m -> [32m30208[m bytes
+ .../netcoreapp3.0/Microsoft.Solver.Foundation.dll  |   Bin [31m0[m -> [32m2606968[m bytes
+ .../netcoreapp3.0/Microsoft.Solver.Foundation.xml  | 45921 [32m++++++++++[m
+ Wpf/bin/Debug/netcoreapp3.0/NMath.dll              |   Bin [31m0[m -> [32m1862144[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/NMath.xml              | 89895 [32m+++++++++++++++++++[m
+ Wpf/bin/Debug/netcoreapp3.0/Wpf.deps.json          |    37 [32m+[m
+ Wpf/bin/Debug/netcoreapp3.0/Wpf.dll                |   Bin [31m8704[m -> [32m8704[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/Wpf.exe                |   Bin [31m159744[m -> [32m159744[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/Wpf.pdb                |   Bin [31m1944[m -> [32m13356[m bytes
+ .../Debug/netcoreapp3.0/Wpf.runtimeconfig.dev.json |     6 [32m+[m[31m-[m
+ Wpf/bin/Debug/netcoreapp3.0/x64/NMathKernelx64.dll |   Bin [31m0[m -> [32m367616[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/x64/libiomp5md.dll     |   Bin [31m0[m -> [32m1380096[m bytes
+ .../Debug/netcoreapp3.0/x64/nmath_native_x64.dll   |   Bin [31m0[m -> [32m204893696[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/x64/nmath_sf_x64.dll   |   Bin [31m0[m -> [32m131584[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/x86/NMathKernelx86.dll |   Bin [31m0[m -> [32m367104[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/x86/libiomp5md.dll     |   Bin [31m0[m -> [32m1246976[m bytes
+ .../Debug/netcoreapp3.0/x86/nmath_native_x86.dll   |   Bin [31m0[m -> [32m138015744[m bytes
+ Wpf/bin/Debug/netcoreapp3.0/x86/nmath_sf_x86.dll   |   Bin [31m0[m -> [32m108032[m bytes
+ .../.NETCoreApp,Version=v3.0.AssemblyAttributes.cs |     4 [32m+[m
+ Wpf/obj/Debug/netcoreapp3.0/App.g.cs               |    12 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/App.g.i.cs             |    12 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/MainWindow.g.cs        |    12 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/MainWindow.g.i.cs      |    12 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/Wpf.AssemblyInfo.cs    |    10 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/Wpf.assets.cache       |   Bin [31m2039[m -> [32m1765[m bytes
+ .../Wpf.csproj.CoreCompileInputs.cache             |     1 [32m+[m
+ .../netcoreapp3.0/Wpf.csproj.FileListAbsolute.txt  |    36 [32m+[m
+ .../Wpf.csprojAssemblyReference.cache              |   Bin [31m424[m -> [32m157960[m bytes
+ Wpf/obj/Debug/netcoreapp3.0/Wpf.dll                |   Bin [31m8704[m -> [32m8704[m bytes
+ Wpf/obj/Debug/netcoreapp3.0/Wpf.exe                |   Bin [31m159744[m -> [32m159744[m bytes
+ .../Debug/netcoreapp3.0/Wpf.genruntimeconfig.cache |     1 [32m+[m
+ Wpf/obj/Debug/netcoreapp3.0/Wpf.pdb                |   Bin [31m1944[m -> [32m13356[m bytes
+ .../Debug/netcoreapp3.0/Wpf_MarkupCompile.cache    |     6 [32m+[m[31m-[m
+ .../Debug/netcoreapp3.0/Wpf_MarkupCompile.i.cache  |    10 [32m+[m[31m-[m
+ Wpf/obj/Debug/netcoreapp3.0/Wpf_MarkupCompile.lref |     2 [32m+[m[31m-[m
+ Wpf/obj/Wpf.csproj.nuget.dgspec.json               |    52 [32m+[m[31m-[m
+ Wpf/obj/Wpf.csproj.nuget.g.props                   |     9 [32m+[m[31m-[m
+ Wpf/obj/project.assets.json                        |    49 [32m+[m[31m-[m
+ Wpf/obj/project.nuget.cache                        |    36 [32m+[m
+ 55 files changed, 271874 insertions(+), 86 deletions(-)
