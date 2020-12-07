@@ -1,69 +1,157 @@
-﻿using System;
+﻿using CenterSpace.NMath.Analysis;
+using CenterSpace.NMath.Core;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace ClassLibrary
 {
-    public class Experiments
+    public class Experiment
     {
         private Generator generator = new Generator();
-        public List<double> GenerateMatrix(int size, string distr, double lambda)
+        private string distribution;
+        private (double, double) parametersC;
+        private (double, double) parametersAB;
+        private (double, double) parametersL;
+
+        public Experiment(string distr, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
         {
-            List<double> matrix = new List<double>();
-            for (int i = 0; i < size; i++)
-            {
-                for(int j = 0; j < size; j++)
-                {
-                    matrix.Add(generator.GetValue(distr, lambda));
-                }
-            }
-            return matrix;
+            distribution = distr;
+            parametersC = paramC;
+            parametersAB = paramAB;
+            parametersL = paramL;
         }
-        public List<double> GenerateMatrix(int size, string distr, int mean, int dev)
+        private DoubleVector GenerateMatrix(int size)
         {
-            List<double> matrix = new List<double>();
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    matrix.Add(generator.GetValue(distr, mean, dev));
-                }
-            }
-            return matrix;
-        }
-        public void ChangeMatrix(ref List<double> matrix, double percent, string distr)
-        {
-            int size = (int)Math.Round(Math.Sqrt(matrix.Count));
+            string matrix = "";
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    double e = matrix[i * size + j] * (percent / 100);
-                    double factE;
-                    if(distr == "exp")
+                    matrix += $"{generator.GetDoubleValue(distribution, parametersC)} ";
+                }
+            }
+            return new DoubleVector(matrix);
+        }
+        private (DoubleVector, DoubleVector) GenerateAB(int size)
+        {
+            bool success = false;
+            List<double> a, b;
+            do
+            {
+                a = new List<double>();
+                b = new List<double>();
+                for (int i = 0; i < size; i++)
+                {
+                    a.Add(generator.GetIntValue(distribution, parametersAB));
+                    if (i < size - 1)
                     {
-                        factE = generator.GetValue(distr, e);
+                        b.Add(generator.GetIntValue(distribution, parametersAB));
                     }
-                    else
+                }
+                double value = a.Sum() - b.Sum();
+                if (value >= 0)
+                {
+                    success = true;
+                    b.Add(value);
+                }
+            } while (!success);
+            string strA = "";
+            string strB = "";
+            a.ForEach(x => strA += $"{x} ");
+            b.ForEach(x => strB += $"{x} ");
+
+            return (new DoubleVector(strA), new DoubleVector(strB));
+        }
+        private DoubleVector GenerateL(int quantity)
+        {
+            string l = "";
+            for (int i = 0; i < quantity; i++)
+            {
+                for (int j = 0; j < quantity; j++)
+                {
+                    l += $"{Math.Round(generator.GetDoubleValue(distribution, parametersL))} ";
+                }
+            }
+            return new DoubleVector(l);
+        }
+        private void ChangeMatrixs(ref DoubleVector[] cs, double percent)
+        {
+            for (int k = 0; k < cs.Length; k++)
+            {
+                int size = (int)Math.Round(Math.Sqrt(cs[k].Length));
+                for (int i = 0; i < size; i++)
+                {
+                    for (int j = 0; j < size; j++)
                     {
-                        factE = generator.GetValue(distr, 0, e);
+                        double e = cs[k][i * size + j] * (percent / 100);
+                        double factE;
+                        if (distribution == "exp")
+                        {
+                            factE = generator.GetDoubleValue(distribution, (e, -1));
+                        }
+                        else
+                        {
+                            factE = generator.GetDoubleValue(distribution, (0, e));
+                        }
+                        cs[k][i * size + j] += factE;
                     }
-                    matrix[i * size + j] += factE;
                 }
             }
         }
-        public double IWantToDieSorryIWillFixThisNameForSearchMeanPercentMethod(int size, string distr)
+        private double SearchMeanPercent(int size, int matrixQuantity)
         {
+            (DoubleVector a, DoubleVector b) = GenerateAB(size);
+            DoubleVector l = GenerateL(matrixQuantity);
             double average = 0;
             double diff = double.MaxValue;
             int runAmount = 0;
             while (diff > 0.1)
             {
-                diff = runAmount != 0 ? average / runAmount : 0;                
-                average += SomeMagicMethodForExactPercentOfChange(size, distr);
+                diff = runAmount != 0 ? average / runAmount : 0;
+                average += FindPercentOfChange(size, matrixQuantity, a, b, l);
                 runAmount++;
                 diff = average / runAmount - diff;
             }
+            return average / runAmount;
+        }
+        public List<(int, double)> RunExperiment(int startSize, int finishSize, int matrixQuantity)
+        {
+            List<(int, double)> results = new List<(int, double)>();
+            for (int i = startSize; i <= finishSize; i++)
+            {
+                results.Add((i, SearchMeanPercent(i, matrixQuantity)));
+            }
+            return results;
+        }
+        private double FindPercentOfChange(int size, int matrixQuantity, DoubleVector a, DoubleVector b, DoubleVector l)
+        {
+            double percent = 0;
+            DoubleVector[] cs = new DoubleVector[matrixQuantity];
+            List<double> solutions;
+            DoubleVector newX, oldX = new DoubleVector();
+            bool change = false;
+
+            for (int i = 0; i < matrixQuantity; i++)
+            {
+                cs[i] = GenerateMatrix(size);
+            }
+            while (!change)
+            {
+                solutions = Solver.GetSolutions(cs, a, b);
+                DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, solutions);
+                newX = solution.OptimalX;
+                if (newX == oldX)
+                {
+                    percent++;
+                    ChangeMatrixs(ref cs, percent);
+                }
+                else
+                {
+                    change = true;
+                }
+            }
+            return percent;
         }
     }
 }

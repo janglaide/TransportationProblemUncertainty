@@ -7,13 +7,13 @@ namespace ClassLibrary
 {
     public static class Solver
     {
-        public static DualSimplexSolver SolveSeveral(DoubleVector[] Cs, DoubleVector A, DoubleVector B, DoubleVector L, List<double> solutions)
+        public static DualSimplexSolver SolveSeveral(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, List<double> solutions)
         {
             int rows, columns, xQuantity, yQuantity, fullQuantity;
-            rows = A.Length;
-            columns = B.Length;
+            rows = a.Length;
+            columns = b.Length;
             xQuantity = rows * columns;
-            yQuantity = Cs.Length;
+            yQuantity = cs.Length;
             fullQuantity = xQuantity + yQuantity;
 
             DualSimplexSolver solver = new DualSimplexSolver();
@@ -28,13 +28,13 @@ namespace ClassLibrary
             for (int i = 0; i < rows; i++)
             {
                 var coeffA = CreateSuperXRow(rows, columns, i, yQuantity);
-                var constraintA = new LinearConstraint(coeffA, A[i], ConstraintType.EqualTo);
+                var constraintA = new LinearConstraint(coeffA, a[i], ConstraintType.EqualTo);
                 problem.AddConstraint(constraintA);
             }
             for (int j = 0; j < columns; j++)
             {
                 var coeffB = CreateSuperXColumn(rows, columns, j, yQuantity);
-                var constraintB = new LinearConstraint(coeffB, B[j], ConstraintType.EqualTo);
+                var constraintB = new LinearConstraint(coeffB, b[j], ConstraintType.EqualTo);
                 problem.AddConstraint(constraintB);
             }
             for (int i = 0; i < fullQuantity; i++)
@@ -49,17 +49,32 @@ namespace ClassLibrary
             }
             for (int i = 0; i < yQuantity; i++)
             {
-                var constraint = new LinearConstraint(CreateYRow(i, yQuantity, Cs[i], solutions[i]), -L[i], ConstraintType.GreaterThanOrEqualTo);
+                var constraint = new LinearConstraint(CreateYRow(i, yQuantity, cs[i], solutions[i]), -l[i], ConstraintType.GreaterThanOrEqualTo);
                 problem.AddConstraint(constraint);
             }
             solver.Solve(problem, solverParams);
             return solver;
         }
-        public static DualSimplexSolver SolveOne(DoubleVector C, DoubleVector A, DoubleVector B)
+        public static List<double> GetSolutions(DoubleVector[] cs, DoubleVector a, DoubleVector b)
+        {
+            List<double> solutions = new List<double>();
+            for (int i = 0; i < cs.Length; i++)
+            {
+                DoubleVector z = new DoubleVector(cs[i]);
+                var solver = Solver.SolveOne(z, a, b);
+                if (solver.OptimalX.Length != 0)
+                {
+                    solutions.Add(Solver.RoundValue(solver.OptimalObjectiveFunctionValue));
+
+                }
+            }
+            return solutions;
+        }
+        public static DualSimplexSolver SolveOne(DoubleVector c, DoubleVector a, DoubleVector b)
         {
             int rows, columns, xQuantity;
-            rows = A.Length;
-            columns = B.Length;
+            rows = a.Length;
+            columns = b.Length;
             xQuantity = rows * columns;
 
             DualSimplexSolver solver = new DualSimplexSolver();
@@ -68,17 +83,17 @@ namespace ClassLibrary
                 Minimize = true
             };
 
-            var problem = new MixedIntegerLinearProgrammingProblem(C);
+            var problem = new MixedIntegerLinearProgrammingProblem(c);
             for (int i = 0; i < rows; i++)
             {
                 var coeffA = CreateUsualXRow(rows, columns, i);
-                var constraintA = new LinearConstraint(coeffA, A[i], ConstraintType.EqualTo);
+                var constraintA = new LinearConstraint(coeffA, a[i], ConstraintType.EqualTo);
                 problem.AddConstraint(constraintA);
             }
             for (int j = 0; j < columns; j++)
             {
                 var coeffB = CreateUsualXColumn(rows, columns, j);
-                var constraintB = new LinearConstraint(coeffB, B[j], ConstraintType.EqualTo);
+                var constraintB = new LinearConstraint(coeffB, b[j], ConstraintType.EqualTo);
                 problem.AddConstraint(constraintB);
             }
             for (int i = 0; i < xQuantity; i++)
@@ -183,10 +198,10 @@ namespace ClassLibrary
             }
             return new DoubleVector(result);
         }
-        private static DoubleVector CreateYRow(int row, int yQuantity, DoubleVector C, double solution)
+        private static DoubleVector CreateYRow(int row, int yQuantity, DoubleVector c, double solution)
         {
 
-            string strC = C.ToString().Replace(" ", " -");
+            string strC = c.ToString().Replace(" ", " -");
             string result = strC.Substring(0, strC.Length - 2);
             for (int i = 0; i < yQuantity; i++)
             {
@@ -242,12 +257,12 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static List<double> CalculateDeltas(DoubleVector[] Cs, DoubleVector X, List<double> solutions)
+        public static List<double> CalculateDeltas(DoubleVector[] cs, DoubleVector x, List<double> solutions)
         {
             List<double> deltas = new List<double>();
             for (int i = 0; i < solutions.Count; i++)
             {
-                deltas.Add(CountSumProduct(Cs[i], X) - solutions[i]);
+                deltas.Add(CountSumProduct(cs[i], x) - solutions[i]);
             }
             return deltas;
         }
@@ -260,12 +275,12 @@ namespace ClassLibrary
             }
             return new DoubleVector(result);
         }
-        public static bool CheckABConstraints(DoubleVector X, DoubleVector A, DoubleVector B)
+        public static bool CheckABConstraints(DoubleVector x, DoubleVector a, DoubleVector b)
         {
             bool success = true;
-            for (int i = 0; i < A.Length; i++)
+            for (int i = 0; i < a.Length; i++)
             {
-                if (RoundValue(CountSumProduct(X, CreateUsualXRow(A.Length, B.Length, i))) != A[i])
+                if (RoundValue(CountSumProduct(x, CreateUsualXRow(a.Length, b.Length, i))) != a[i])
                 {
                     success = false;
                     break;
@@ -273,9 +288,9 @@ namespace ClassLibrary
             }
             if (success)
             {
-                for (int i = 0; i < B.Length; i++)
+                for (int i = 0; i < b.Length; i++)
                 {
-                    if (RoundValue(CountSumProduct(X, CreateUsualXColumn(A.Length, B.Length, i))) != B[i])
+                    if (RoundValue(CountSumProduct(x, CreateUsualXColumn(a.Length, b.Length, i))) != b[i])
                     {
                         success = false;
                         break;

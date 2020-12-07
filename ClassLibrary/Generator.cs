@@ -5,20 +5,22 @@ namespace ClassLibrary
     public class Generator
     {
         private static Random rand = new Random();
-        public double GetValue(string distr, double lambda)
+        public int GetIntValue(string distr, (double, double) parameters)
         {
-            return Exponential(lambda);
+            return (int)Math.Round(GetDoubleValue(distr, parameters));
         }
-        public double GetValue(string distr, double mean, double dev)
+        public double GetDoubleValue(string distr, (double, double) parameters)
         {
             switch (distr)
             {
+                case "exp":
+                    return Exponential(parameters.Item1);
                 case "norm":
-                    return Normal(mean, dev);
+                    return Normal(parameters.Item1, parameters.Item2);
                 case "unif":
-                    return Uniform(mean - dev, mean + dev);
+                    return Uniform(parameters.Item1 - parameters.Item2, parameters.Item1 + parameters.Item2);
             }
-            return double.MinValue; 
+            return double.MinValue;
         }
         public double Exponential(double lambda)
         {
@@ -36,7 +38,7 @@ namespace ClassLibrary
         }
         public double Uniform(double min, double max)
         {
-            return rand.NextDouble()*(max - min) + min;
+            return rand.NextDouble() * (max - min) + min;
         }
     }
 }
