@@ -1,31 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\Wpf\\Wpf.csproj": {}
+    "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\Wpf\\Wpf.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\ClassLibrary\\ClassLibrary.csproj": {
+    "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\ClassLibrary\\ClassLibrary.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\ClassLibrary\\ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\ClassLibrary\\ClassLibrary.csproj",
         "projectName": "ClassLibrary",
-        "projectPath": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\ClassLibrary\\ClassLibrary.csproj"
+        "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\ClassLibrary\\ClassLibrary.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\Wpf\\Wpf.csproj": {
+    "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\Wpf\\Wpf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\Wpf\\Wpf.csproj",
+        "projectUniqueName": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\Wpf\\Wpf.csproj",
         "projectName": "Wpf",
-        "projectPath": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\Wpf\\Wpf.csproj",
-        "packagesPath": "C:\\Users\\leokr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\Wpf\\obj\\",
+        "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\Wpf\\Wpf.csproj",
+        "packagesPath": "C:\\Users\\Alisa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\Wpf\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\leokr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Alisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
@@ -37,8 +43,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\ClassLibrary\\ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\leokr\\source\\repos\\TransportationProblemUncertainty\\ClassLibrary\\ClassLibrary.csproj"
+              "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\ClassLibrary\\ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\Alisa\\Desktop\\lessons\\7 sem\\models\\курсач\\program\\TransportationProblem\\ClassLibrary\\ClassLibrary.csproj"
               }
             }
           }
@@ -67,24 +73,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.3, 3.0.3]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -93,7 +81,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

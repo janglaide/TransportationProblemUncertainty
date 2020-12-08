@@ -54,3 +54,23 @@ C:\Users\leokr\source\repos\TransportationProblemUncertainty\Wpf\obj\Debug\netco
 C:\Users\leokr\source\repos\TransportationProblemUncertainty\Wpf\obj\Debug\netcoreapp3.0\Wpf.csproj.CoreCompileInputs.cache
 C:\Users\leokr\source\repos\TransportationProblemUncertainty\Wpf\obj\Debug\netcoreapp3.0\Wpf.csproj.CopyComplete
 C:\Users\leokr\source\repos\TransportationProblemUncertainty\Wpf\obj\Debug\netcoreapp3.0\Wpf.genruntimeconfig.cache
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x64\libiomp5md.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x64\NMathKernelx64.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x64\nmath_native_x64.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x64\nmath_sf_x64.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x86\libiomp5md.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x86\NMathKernelx86.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x86\nmath_native_x86.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\x86\nmath_sf_x86.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\ClassLibrary.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\NMath.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\Microsoft.Solver.Foundation.dll
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\ClassLibrary.pdb
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\NMath.xml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\bin\Debug\netcoreapp3.0\Microsoft.Solver.Foundation.xml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\ChartExampleWindow.g.cs
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\ChartExampleWindow.baml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolverInputWindow.g.cs
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolverInputWindow.baml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolverRandomInputWindow.g.cs
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolverRandomInputWindow.baml
