@@ -10,7 +10,7 @@
         <Label Content="Enter quantity of cost matrixes (R):" HorizontalAlignment="Left" Margin="58,75,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="58,135,0,0" VerticalAlignment="Top" Width="373"/>
         <Label Name="ParametersLabel" Content="Delay mean and deviation:" HorizontalAlignment="Left" Margin="58,193,0,0" VerticalAlignment="Top" Width="373"/>
-        <Label Name="ExceptionLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Left" Margin="58,375,0,0" VerticalAlignment="Top" Width="373"/>
+        <Label Name="ExceptionLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Left" Margin="58,355,0,0" VerticalAlignment="Top" Width="373"/>
         <TextBox x:Name="RBox" HorizontalAlignment="Left" Margin="526,79,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
         <TextBox x:Name="DelayMeanBox" HorizontalAlignment="Left" Margin="526,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="82"/>
         <TextBox x:Name="DeviationBox" IsEnabled="False" HorizontalAlignment="Left" Margin="638,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="83"/>
@@ -25,7 +25,7 @@
                 <TextBlock>Uniform</TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,378,0,0" VerticalAlignment="Top" Width="195" Click="RunButton_Click"/>
+        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,358,0,0" VerticalAlignment="Top" Width="195" Click="RunButton_Click"/>
         <Label Content="Enter a size of matrix:" HorizontalAlignment="Left" Margin="58,23,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SizeBox" HorizontalAlignment="Left" Margin="526,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
 

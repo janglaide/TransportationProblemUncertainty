@@ -66,8 +66,22 @@ namespace Wpf
                 }
                 ExceptionLabel.Content = "";
 
-
-
+                Problem problem;
+                switch (item.Name)
+                {
+                    case "exp":
+                        problem = new Problem(N, R, item.Name, delay);
+                        break;
+                    case "norm":
+                        problem = new Problem(N, R, item.Name, delay, deviation);
+                        break;
+                    default:
+                        problem = new Problem(N, R, item.Name, a, b);
+                        break;
+                }
+                var optimalX = problem.Run();
+                var window = new SolutionWindow(optimalX);
+                window.Show();
             }
             catch (Exception ex)
             {

@@ -10,6 +10,9 @@
     <Compile Update="ChartExampleWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SolutionWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SolverInputWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SolutionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SolverInputWindow.xaml">

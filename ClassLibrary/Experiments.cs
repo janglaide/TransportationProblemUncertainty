@@ -21,7 +21,7 @@ namespace ClassLibrary
             parametersAB = paramAB;
             parametersL = paramL;
         }
-        private DoubleVector GenerateMatrix(int size)
+        public DoubleVector GenerateMatrix(int size)
         {
             string matrix = "";
             for (int i = 0; i < size; i++)
@@ -33,7 +33,7 @@ namespace ClassLibrary
             }
             return new DoubleVector(matrix);
         }
-        private (DoubleVector, DoubleVector) GenerateAB(int size)
+        public (DoubleVector, DoubleVector) GenerateAB(int size)
         {
             bool success = false;
             List<double> a, b;
@@ -63,7 +63,7 @@ namespace ClassLibrary
 
             return (new DoubleVector(strA), new DoubleVector(strB));
         }
-        private DoubleVector GenerateL(int quantity)
+        public DoubleVector GenerateL(int quantity)
         {
             string l = "";
             for (int i = 0; i < quantity; i++)

@@ -18,7 +18,7 @@ namespace ClassLibrary
                 case "norm":
                     return Normal(parameters.Item1, parameters.Item2);
                 case "unif":
-                    return Uniform(parameters.Item1 - parameters.Item2, parameters.Item1 + parameters.Item2);
+                    return Uniform(parameters.Item1, parameters.Item2);
             }
             return double.MinValue;
         }
