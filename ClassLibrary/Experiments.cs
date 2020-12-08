@@ -68,10 +68,7 @@ namespace ClassLibrary
             string l = "";
             for (int i = 0; i < quantity; i++)
             {
-                for (int j = 0; j < quantity; j++)
-                {
-                    l += $"{Math.Round(generator.GetDoubleValue(distribution, parametersL))} ";
-                }
+                l += $"{Math.Round(generator.GetDoubleValue(distribution, parametersL))} ";
             }
             return new DoubleVector(l);
         }
@@ -104,15 +101,15 @@ namespace ClassLibrary
             (DoubleVector a, DoubleVector b) = GenerateAB(size);
             DoubleVector l = GenerateL(matrixQuantity);
             double average = 0;
-            double diff = double.MaxValue;
+            double diff;
             int runAmount = 0;
-            while (diff > 0.1)
+            do
             {
                 diff = runAmount != 0 ? average / runAmount : 0;
                 average += FindPercentOfChange(size, matrixQuantity, a, b, l);
                 runAmount++;
                 diff = average / runAmount - diff;
-            }
+            } while (!(diff < 0.001 && runAmount > 40));
             return average / runAmount;
         }
         public List<(int, double)> RunExperiment(int startSize, int finishSize, int matrixQuantity)
@@ -127,28 +124,39 @@ namespace ClassLibrary
         private double FindPercentOfChange(int size, int matrixQuantity, DoubleVector a, DoubleVector b, DoubleVector l)
         {
             double percent = 0;
-            DoubleVector[] cs = new DoubleVector[matrixQuantity];
-            List<double> solutions;
-            DoubleVector newX, oldX = new DoubleVector();
             bool change = false;
-
-            for (int i = 0; i < matrixQuantity; i++)
-            {
-                cs[i] = GenerateMatrix(size);
-            }
             while (!change)
             {
+                DoubleVector[] cs = new DoubleVector[matrixQuantity];
+                List<double> solutions;
+                DoubleVector newX, oldX;
+
+                for (int i = 0; i < matrixQuantity; i++)
+                {
+                    cs[i] = GenerateMatrix(size);
+                }
                 solutions = Solver.GetSolutions(cs, a, b);
                 DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, solutions);
-                newX = solution.OptimalX;
-                if (newX == oldX)
+                newX = Solver.RoundMatrix(Solver.DivideX(solution.OptimalX, matrixQuantity));
+                if (!Solver.CheckABConstraints(newX, a, b))
                 {
-                    percent++;
-                    ChangeMatrixs(ref cs, percent);
+                    continue;
                 }
-                else
+                oldX = newX;
+                while (!change)
                 {
-                    change = true;
+                    if (newX == oldX)
+                    {
+                        percent++;
+                        ChangeMatrixs(ref cs, percent);
+                        solutions = Solver.GetSolutions(cs, a, b);
+                        solution = Solver.SolveSeveral(cs, a, b, l, solutions);
+                        newX = Solver.RoundMatrix(Solver.DivideX(solution.OptimalX, matrixQuantity));
+                    }
+                    else
+                    {
+                        change = true;
+                    }
                 }
             }
             return percent;
