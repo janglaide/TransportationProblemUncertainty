@@ -4,3 +4,6 @@ nmath_native_x64.dll
 nmath_native_x86.dll 
 Wpf/bin
 ClassLibrary/bin
+ClassLibrary/packages.config
+ClassLibrary/obj
+Wpf/obj
