@@ -82,16 +82,7 @@ namespace ClassLibrary
                     for (int j = 0; j < size; j++)
                     {
                         double e = cs[k][i * size + j] * (percent / 100);
-                        double factE;
-                        if (distribution == "exp")
-                        {
-                            factE = generator.GetDoubleValue(distribution, (e, -1));
-                        }
-                        else
-                        {
-                            factE = generator.GetDoubleValue(distribution, (0, e));
-                        }
-                        cs[k][i * size + j] += factE;
+                        cs[k][i * size + j] += generator.GetDoubleValue("unif", (-e, e));
                     }
                 }
             }
@@ -148,7 +139,7 @@ namespace ClassLibrary
                     if (newX == oldX)
                     {
                         percent++;
-                        ChangeMatrixs(ref cs, percent);
+                        ChangeMatrixs(ref cs, 1);
                         solutions = Solver.GetSolutions(cs, a, b);
                         solution = Solver.SolveSeveral(cs, a, b, l, solutions);
                         newX = Solver.RoundMatrix(Solver.DivideX(solution.OptimalX, matrixQuantity));
