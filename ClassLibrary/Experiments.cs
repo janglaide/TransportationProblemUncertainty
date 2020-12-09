@@ -96,7 +96,7 @@ namespace ClassLibrary
                 }
             }
         }
-        private double SearchMeanPercent(int size, int matrixQuantity)
+        private double SearchMeanPercent(int size, int matrixQuantity, double averChange)
         {
             (DoubleVector a, DoubleVector b) = GenerateAB(size);
             DoubleVector l = GenerateL(matrixQuantity);
@@ -108,16 +108,16 @@ namespace ClassLibrary
                 diff = runAmount != 0 ? average / runAmount : 0;
                 average += FindPercentOfChange(size, matrixQuantity, a, b, l);
                 runAmount++;
-                diff = average / runAmount - diff;
-            } while (!(diff < 0.001 && runAmount > 40));
+                diff = Math.Abs(average / runAmount - diff);
+            } while (!(diff < averChange && runAmount > 10));
             return average / runAmount;
         }
-        public List<(int, double)> RunExperiment(int startSize, int finishSize, int matrixQuantity)
+        public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange)
         {
             List<(int, double)> results = new List<(int, double)>();
-            for (int i = startSize; i <= finishSize; i++)
+            for (int i = startSize; i <= finishSize; i += step)
             {
-                results.Add((i, SearchMeanPercent(i, matrixQuantity)));
+                results.Add((i, SearchMeanPercent(i, matrixQuantity, averChange)));
             }
             return results;
         }
