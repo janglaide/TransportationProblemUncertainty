@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AnalysisInputWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChartExampleWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ExperimentResultWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="SolutionWindow.xaml.cs">
@@ -21,7 +27,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AnalysisInputWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChartExampleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ExperimentResultWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

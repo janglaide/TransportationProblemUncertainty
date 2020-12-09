@@ -40,7 +40,9 @@ namespace Wpf
 
         private void AnalysisButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = new AnalysisInputWindow();
+            window.Show();
+            Close();
         }
     }
 }

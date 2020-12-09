@@ -76,3 +76,7 @@ C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationP
 C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolverRandomInputWindow.baml
 C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolutionWindow.g.cs
 C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\SolutionWindow.baml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\AnalysisInputWindow.g.cs
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\AnalysisInputWindow.baml
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\ExperimentResultWindow.g.cs
+C:\Users\Alisa\Desktop\lessons\7 sem\models\курсач\program\TransportationProblem\Wpf\obj\Debug\netcoreapp3.0\ExperimentResultWindow.baml

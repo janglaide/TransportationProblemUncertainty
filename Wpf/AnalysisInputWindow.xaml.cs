@@ -14,79 +14,81 @@ using System.Windows.Shapes;
 namespace Wpf
 {
     /// <summary>
-    /// Логика взаимодействия для SolverRandomInputWindow.xaml
+    /// Логика взаимодействия для AnalysisInputWindow.xaml
     /// </summary>
-    public partial class SolverRandomInputWindow : Window
+    public partial class AnalysisInputWindow : Window
     {
-        public SolverRandomInputWindow()
+        public AnalysisInputWindow()
         {
             InitializeComponent();
         }
 
-        private void RunButton_Click(object sender, RoutedEventArgs e)
+        private void RunButton_Clicked(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!int.TryParse(SizeBox.Text, out int N)) throw new Exception("The 'N' must be integer");
-                if (N <= 0) throw new Exception("The 'N' must be positive");
-
+                if (AccuracyComboBox.SelectedItem == null) throw new Exception("Choose an accuracy");
+                var accuracy = double.Parse(AccuracyComboBox.Text);
+                if (!int.TryParse(StartSizeBox.Text, out int startSize) ||
+                    !int.TryParse(FinalSizeBox.Text, out int finalSize)) throw new Exception("The range must consist of integers");
+                if (finalSize - startSize <= 0) throw new Exception("Invalid range of sizing");
+                if (startSize <= 0) throw new Exception("Sizes of matrixes must be positive");
+                if (!int.TryParse(StepBox.Text, out int step)) throw new Exception("The step must be integer");
+                if (step <= 0) throw new Exception("The step must be positive");
+                if (finalSize - startSize < step) throw new Exception("Incorrect step for the sizing range");
                 if (!int.TryParse(RBox.Text, out int R)) throw new Exception("The 'R' must be integer");
                 if (R <= 0) throw new Exception("The 'R' must be positive");
-                if (DistributionComboBox.SelectedItem == null)
-                    throw new Exception("The distribution is not chosen yet");
+                if (DistributionComboBox.SelectedItem == null) throw new Exception("The distribution is not chosen yet");
 
                 double delay, deviation, a, b;
+                Experiment experiment;
 
                 var item = (ComboBoxItem)DistributionComboBox.SelectedItem;
                 switch (item.Name)
                 {
                     case "exp":
-                        if (!double.TryParse(DelayMeanBox.Text, out delay)) throw new Exception("The delay must be numeric");
+                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception("The delay must be numeric");
                         if (delay <= 0) throw new Exception("The delay must be positive");
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
+                        experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm":
-                        if (!double.TryParse(DelayMeanBox.Text, out delay)) throw new Exception("The delay must be numeric");
+                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception("The delay must be numeric");
                         if (delay <= 0) throw new Exception("The delay must be positive");
                         if (!double.TryParse(DeviationBox.Text, out deviation)) throw new Exception("The deviation must be numeric");
                         if (deviation <= 0) throw new Exception("The deviation must be positive");
                         a = -1.0;
                         b = -1.0;
+                        experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
-                        if (!double.TryParse(DelayMeanBox.Text, out a) || !double.TryParse(DeviationBox.Text, out b)) 
+                        if (!double.TryParse(DelayBox.Text, out a) || !double.TryParse(DeviationBox.Text, out b))
                             throw new Exception("The range must consist of numbers");
                         if (b - a < 0) throw new Exception("The range must be positive");
                         if (a < 0) throw new Exception("The range must be of positive");
                         delay = -1.0;
                         deviation = -1.0;
+                        experiment = new Experiment(item.Name, (a, b), (a, b), (a, b));
                         break;
                 }
                 ExceptionLabel.Content = "";
 
-                Problem problem;
-                switch (item.Name)
-                {
-                    case "exp":
-                        problem = new Problem(N, R, item.Name, delay);
-                        break;
-                    case "norm":
-                        problem = new Problem(N, R, item.Name, delay, deviation);
-                        break;
-                    default:
-                        problem = new Problem(N, R, item.Name, a, b);
-                        break;
-                }
-                var optimalX = problem.Run();
-                var window = new SolutionWindow(optimalX);
+                var results = experiment.RunExperiment(startSize, finalSize, step, R, accuracy);
+
+                var window = new ExperimentResultWindow(results);
                 window.Show();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ExceptionLabel.Content = ex.Message;
             }
+        }
+
+        private void Accuracy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
 
         private void Distribution_SelectionChanged(object sender, SelectionChangedEventArgs e)

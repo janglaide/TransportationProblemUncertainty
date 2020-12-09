@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SolverRandomInputWindow" Height="450" Width="800" FontSize="22">
     <Grid>
-        <Label Content="Enter quantity of cost matrixes (R):" HorizontalAlignment="Left" Margin="58,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="Quantity of cost matrixes (R):" HorizontalAlignment="Left" Margin="58,75,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="58,135,0,0" VerticalAlignment="Top" Width="373"/>
         <Label Name="ParametersLabel" Content="Delay mean and deviation:" HorizontalAlignment="Left" Margin="58,193,0,0" VerticalAlignment="Top" Width="373"/>
         <Label Name="ExceptionLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Left" Margin="58,355,0,0" VerticalAlignment="Top" Width="373"/>
@@ -26,7 +26,7 @@
             </ComboBoxItem>
         </ComboBox>
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,358,0,0" VerticalAlignment="Top" Width="195" Click="RunButton_Click"/>
-        <Label Content="Enter a size of matrix:" HorizontalAlignment="Left" Margin="58,23,0,0" VerticalAlignment="Top"/>
+        <Label Content="Size of matrix (N):" HorizontalAlignment="Left" Margin="58,23,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SizeBox" HorizontalAlignment="Left" Margin="526,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
 
     </Grid>
