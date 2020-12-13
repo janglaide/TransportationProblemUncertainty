@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CenterSpace.NMath.Analysis;
 using CenterSpace.NMath.Core;
 
@@ -7,7 +8,7 @@ namespace ClassLibrary
 {
     public static class Solver
     {
-        public static DualSimplexSolver SolveSeveral(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, List<double> solutions)
+        public static DualSimplexSolver SolveSeveral(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, DoubleVector alpha, List<double> solutions)
         {
             int rows, columns, xQuantity, yQuantity, fullQuantity;
             rows = a.Length;
@@ -22,7 +23,7 @@ namespace ClassLibrary
                 Minimize = true
             };
 
-            var coeffZ = CreateSuperZ(xQuantity, yQuantity);
+            var coeffZ = CreateSuperZ(xQuantity, yQuantity, alpha);
 
             var problem = new MixedIntegerLinearProgrammingProblem(coeffZ);
             for (int i = 0; i < rows; i++)
@@ -55,9 +56,10 @@ namespace ClassLibrary
             solver.Solve(problem, solverParams);
             return solver;
         }
-        public static List<double> GetSolutions(DoubleVector[] cs, DoubleVector a, DoubleVector b)
+        public static (List<DoubleVector>, List<double>) GetSolutions(DoubleVector[] cs, DoubleVector a, DoubleVector b)
         {
             List<double> solutions = new List<double>();
+            List<DoubleVector> xs = new List<DoubleVector>();
             for (int i = 0; i < cs.Length; i++)
             {
                 DoubleVector z = new DoubleVector(cs[i]);
@@ -65,10 +67,10 @@ namespace ClassLibrary
                 if (solver.OptimalX.Length != 0)
                 {
                     solutions.Add(Solver.RoundValue(solver.OptimalObjectiveFunctionValue));
-
+                    xs.Add(solver.OptimalX);
                 }
             }
-            return solutions;
+            return (xs, solutions);
         }
         public static DualSimplexSolver SolveOne(DoubleVector c, DoubleVector a, DoubleVector b)
         {
@@ -117,7 +119,7 @@ namespace ClassLibrary
                 return Math.Round(value, 5);
             }
         }
-        private static DoubleVector CreateSuperZ(int xQuantity, int yQuantity)
+        private static DoubleVector CreateSuperZ(int xQuantity, int yQuantity, DoubleVector alpha)
         {
             string newZ = "";
             for (int i = 0; i < xQuantity; i++)
@@ -126,7 +128,7 @@ namespace ClassLibrary
             }
             for (int i = 0; i < yQuantity; i++)
             {
-                newZ += "1 ";
+                newZ += $"{alpha[i]} ";
             }
             for (int i = 0; i < yQuantity; i++)
             {
@@ -234,17 +236,7 @@ namespace ClassLibrary
             }
             return new DoubleVector(strX);
         }
-        public static DoubleVector DivideY(DoubleVector values, int yQuantity)
-        {
-            string strY;
-            strY = $"{values[values.Length - yQuantity * 2]} ";
-            for (int i = values.Length - yQuantity * 2 + 1; i < values.Length - yQuantity; i++)
-            {
-                strY += $"{values[i]} ";
-            }
-            return new DoubleVector(strY);
-        }
-        private static double CountSumProduct(DoubleVector first, DoubleVector second)
+        public static double SumProduct(DoubleVector first, DoubleVector second)
         {
             double result = 0;
             if (first.Length != second.Length)
@@ -257,16 +249,44 @@ namespace ClassLibrary
             }
             return result;
         }
+        public static double CalculateDistance(DoubleVector first, DoubleVector second)
+        {
+            double result = 0;
+            if (first.Length != second.Length)
+            {
+                throw new Exception("Points are in different dimension spaces.");
+            }
+            for (int i = 0; i < first.Length; i++)
+            {
+                result += Math.Pow(first[i] - second[i], 2);
+            }
+            return Math.Sqrt(result);
+        }
         public static List<double> CalculateDeltas(DoubleVector[] cs, DoubleVector x, List<double> solutions)
         {
             List<double> deltas = new List<double>();
             for (int i = 0; i < solutions.Count; i++)
             {
-                deltas.Add(CountSumProduct(cs[i], x) - solutions[i]);
+                deltas.Add(SumProduct(cs[i], x) - solutions[i]);
             }
             return deltas;
         }
-        public static DoubleVector RoundMatrix(DoubleVector X)
+        public static List<double> CalculateYs(List<double> deltas, DoubleVector l)
+        {
+            List<double> ys = new List<double>();
+            for (int i = 0; i < deltas.Count; i++)
+            {
+                ys.Add(Math.Max(deltas[i] - l[i], 0));
+            }
+            return ys;
+        }
+        public static double CalculateOptimanFunc(List<double> ys, DoubleVector alpha)
+        {
+            string value = "";
+            ys.ForEach(x => value += $"{x} ");
+            return SumProduct(new DoubleVector(value), alpha);
+        }
+        private static DoubleVector RoundMatrix(DoubleVector X)
         {
             string result = "";
             for (int i = 0; i < X.Length; i++)
@@ -280,7 +300,7 @@ namespace ClassLibrary
             bool success = true;
             for (int i = 0; i < a.Length; i++)
             {
-                if (RoundValue(CountSumProduct(x, CreateUsualXRow(a.Length, b.Length, i))) != a[i])
+                if (RoundValue(SumProduct(x, CreateUsualXRow(a.Length, b.Length, i))) != a[i])
                 {
                     success = false;
                     break;
@@ -290,7 +310,7 @@ namespace ClassLibrary
             {
                 for (int i = 0; i < b.Length; i++)
                 {
-                    if (RoundValue(CountSumProduct(x, CreateUsualXColumn(a.Length, b.Length, i))) != b[i])
+                    if (RoundValue(SumProduct(x, CreateUsualXColumn(a.Length, b.Length, i))) != b[i])
                     {
                         success = false;
                         break;
@@ -298,6 +318,53 @@ namespace ClassLibrary
                 }
             }
             return success;
+        }
+        private static DoubleVector IterativeProcedure(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, ref DoubleVector alpha, List<double> solutions, DoubleVector oldX)
+        {
+            DoubleVector newX;
+            while (true)
+            {
+                double step = 0.1;
+                newX = new DoubleVector();
+                List<double> deltas = CalculateDeltas(cs, oldX, solutions);
+                List<double> ys = CalculateYs(deltas, l);
+                if (!ys.Any(x => x == 0))
+                {
+                    break;
+                }
+                for (int i = 0; i < ys.Count; i++)
+                {
+                    if (ys[i] <= 0)
+                    {
+                        alpha[i] -= step;
+                    }
+                    else
+                    {
+                        alpha[i] += step;
+                    }
+                }
+                var solution = SolveSeveral(cs, a, b, l, alpha, solutions);
+                newX = DivideX(RoundMatrix(solution.OptimalX), cs.Length);
+                if (CheckABConstraints(newX, a, b))
+                {
+                    break;
+                }
+            }
+            return newX;
+        }
+        public static DoubleVector UpdateX(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, ref DoubleVector alpha, List<double> solutions, DoubleVector oldX)
+        {
+            oldX = DivideX(oldX, cs.Length);
+            DoubleVector newX = RoundMatrix(oldX);
+            if (CheckABConstraints(newX, a, b))
+            {
+                return newX;
+            }
+            else
+            {
+                newX = IterativeProcedure(cs, a, b, l, ref alpha, solutions, oldX);
+            }
+            return newX;
         }
     }
 }

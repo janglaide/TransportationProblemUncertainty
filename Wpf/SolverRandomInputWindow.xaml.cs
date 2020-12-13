@@ -27,8 +27,8 @@ namespace Wpf
         {
             try
             {
-                if (!int.TryParse(SizeBox.Text, out int N)) throw new Exception("The 'N' must be integer");
-                if (N <= 0) throw new Exception("The 'N' must be positive");
+                if (!int.TryParse(SizeBox.Text, out int N)) throw new Exception("The 'n' must be integer");
+                if (N <= 0) throw new Exception("The 'n' must be positive");
 
                 if (!int.TryParse(RBox.Text, out int R)) throw new Exception("The 'R' must be integer");
                 if (R <= 0) throw new Exception("The 'R' must be positive");

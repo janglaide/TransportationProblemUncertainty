@@ -72,6 +72,15 @@ namespace ClassLibrary
             }
             return new DoubleVector(l);
         }
+        public DoubleVector GenerateAlpha(int quantity)
+        {
+            string alpha = "";
+            for (int i = 0; i < quantity; i++)
+            {
+                alpha += $"1 ";
+            }
+            return new DoubleVector(alpha);
+        }
         private void ChangeMatrixs(ref DoubleVector[] cs, double percent)
         {
             for (int k = 0; k < cs.Length; k++)
@@ -91,13 +100,16 @@ namespace ClassLibrary
         {
             (DoubleVector a, DoubleVector b) = GenerateAB(size);
             DoubleVector l = GenerateL(matrixQuantity);
+            DoubleVector alpha = GenerateAlpha(matrixQuantity);
             double average = 0;
             double diff;
             int runAmount = 0;
             do
             {
                 diff = runAmount != 0 ? average / runAmount : 0;
-                average += FindPercentOfChange(size, matrixQuantity, a, b, l);
+                double percent;
+                (percent, _) = FindPercentOfChange(size, matrixQuantity, a, b, l, alpha);
+                average += percent;
                 runAmount++;
                 diff = Math.Abs(average / runAmount - diff);
             } while (!(diff < averChange && runAmount > 10));
@@ -112,23 +124,24 @@ namespace ClassLibrary
             }
             return results;
         }
-        private double FindPercentOfChange(int size, int matrixQuantity, DoubleVector a, DoubleVector b, DoubleVector l)
+        public (double, DoubleVector) FindPercentOfChange(int size, int matrixQuantity, DoubleVector a, DoubleVector b, DoubleVector l, DoubleVector alpha)
         {
             double percent = 0;
+            DoubleVector newX = new DoubleVector();
             bool change = false;
             while (!change)
             {
                 DoubleVector[] cs = new DoubleVector[matrixQuantity];
                 List<double> solutions;
-                DoubleVector newX, oldX;
+                DoubleVector oldX;
 
                 for (int i = 0; i < matrixQuantity; i++)
                 {
                     cs[i] = GenerateMatrix(size);
                 }
-                solutions = Solver.GetSolutions(cs, a, b);
-                DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, solutions);
-                newX = Solver.RoundMatrix(Solver.DivideX(solution.OptimalX, matrixQuantity));
+                (_, solutions) = Solver.GetSolutions(cs, a, b);
+                DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
+                newX = Solver.UpdateX(cs, a, b, l, ref alpha, solutions, Solver.DivideX(solution.OptimalX, matrixQuantity));
                 if (!Solver.CheckABConstraints(newX, a, b))
                 {
                     continue;
@@ -140,9 +153,9 @@ namespace ClassLibrary
                     {
                         percent++;
                         ChangeMatrixs(ref cs, 1);
-                        solutions = Solver.GetSolutions(cs, a, b);
-                        solution = Solver.SolveSeveral(cs, a, b, l, solutions);
-                        newX = Solver.RoundMatrix(Solver.DivideX(solution.OptimalX, matrixQuantity));
+                        (_, solutions) = Solver.GetSolutions(cs, a, b);
+                        solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
+                        newX = Solver.UpdateX(cs, a, b, l, ref alpha, solutions, Solver.DivideX(solution.OptimalX, matrixQuantity));
                     }
                     else
                     {
@@ -150,7 +163,7 @@ namespace ClassLibrary
                     }
                 }
             }
-            return percent;
+            return (percent, newX);
         }
     }
 }

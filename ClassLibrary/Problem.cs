@@ -16,6 +16,7 @@ namespace ClassLibrary
         private DoubleVector _A;
         private DoubleVector _B;
         private DoubleVector _l;
+        private DoubleVector _alpha;
         private DoubleVector[] _Cs;
         public Problem(int N, int R, string distribution, double delay)
         {
@@ -35,12 +36,13 @@ namespace ClassLibrary
         {
             (_A, _B) = _experiment.GenerateAB(_N);
             _l = _experiment.GenerateL(_R);
+            _alpha = _experiment.GenerateAlpha(_R);
             _Cs = new DoubleVector[_R];
             for (var i = 0; i < _R; i++)
                 _Cs[i] = _experiment.GenerateMatrix(_N);
 
-            var solutions = Solver.GetSolutions(_Cs, _A, _B);
-            var solution = Solver.SolveSeveral(_Cs, _A, _B, _l, solutions);
+            (_, var solutions) = Solver.GetSolutions(_Cs, _A, _B);
+            var solution = Solver.SolveSeveral(_Cs, _A, _B, _l, _alpha, solutions);
             return (TransfromToOutput(solution.OptimalX),  
                 Solver.RoundValue(solution.OptimalObjectiveFunctionValue).ToString());
         }
