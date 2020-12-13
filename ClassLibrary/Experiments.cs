@@ -141,8 +141,8 @@ namespace ClassLibrary
                 }
                 (_, solutions) = Solver.GetSolutions(cs, a, b);
                 DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
-                newX = Solver.UpdateX(cs, a, b, l, ref alpha, solutions, Solver.DivideX(solution.OptimalX, matrixQuantity));
-                if (!Solver.CheckABConstraints(newX, a, b))
+                newX = Solver.DivideX(Solver.RoundMatrix(solution.OptimalX), matrixQuantity);
+                if(!Solver.CheckABConstraints(newX, a, b))
                 {
                     continue;
                 }
@@ -155,7 +155,7 @@ namespace ClassLibrary
                         ChangeMatrixs(ref cs, 1);
                         (_, solutions) = Solver.GetSolutions(cs, a, b);
                         solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
-                        newX = Solver.UpdateX(cs, a, b, l, ref alpha, solutions, Solver.DivideX(solution.OptimalX, matrixQuantity));
+                        newX = Solver.DivideX(Solver.RoundMatrix(solution.OptimalX), matrixQuantity);
                     }
                     else
                     {

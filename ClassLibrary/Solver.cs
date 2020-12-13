@@ -286,7 +286,7 @@ namespace ClassLibrary
             ys.ForEach(x => value += $"{x} ");
             return SumProduct(new DoubleVector(value), alpha);
         }
-        private static DoubleVector RoundMatrix(DoubleVector X)
+        public static DoubleVector RoundMatrix(DoubleVector X)
         {
             string result = "";
             for (int i = 0; i < X.Length; i++)
@@ -363,6 +363,10 @@ namespace ClassLibrary
             else
             {
                 newX = IterativeProcedure(cs, a, b, l, ref alpha, solutions, oldX);
+                if(newX.Length == 0)
+                {
+                    newX = oldX;
+                }
             }
             return newX;
         }
