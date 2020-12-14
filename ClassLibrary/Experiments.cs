@@ -9,14 +9,30 @@ namespace ClassLibrary
     public class Experiment
     {
         private Generator generator = new Generator();
-        private string distribution;
+        private string distributionC;
+        public string DistributionC
+        {
+            get { return distributionC; }
+        }
+        private string distributionAB;
+        public string DistributionAB
+        {
+            get { return distributionAB; }
+        }
+        private string distributionL;
+        public string DistributionL
+        {
+            get { return distributionL; }
+        }
         private (double, double) parametersC;
         private (double, double) parametersAB;
         private (double, double) parametersL;
 
-        public Experiment(string distr, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
+        public Experiment( (string, string, string) distribution, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
         {
-            distribution = distr;
+            distributionC = distribution.Item1;
+            distributionAB = distribution.Item2;
+            distributionL = distribution.Item3;
             parametersC = paramC;
             parametersAB = paramAB;
             parametersL = paramL;
@@ -28,7 +44,7 @@ namespace ClassLibrary
             {
                 for (int j = 0; j < size; j++)
                 {
-                    matrix += $"{generator.GetDoubleValue(distribution, parametersC)} ";
+                    matrix += $"{generator.GetDoubleValue(distributionC, parametersC)} ";
                 }
             }
             return new DoubleVector(matrix);
@@ -43,10 +59,10 @@ namespace ClassLibrary
                 b = new List<double>();
                 for (int i = 0; i < size; i++)
                 {
-                    a.Add(generator.GetIntValue(distribution, parametersAB));
+                    a.Add(generator.GetIntValue(distributionAB, parametersAB));
                     if (i < size - 1)
                     {
-                        b.Add(generator.GetIntValue(distribution, parametersAB));
+                        b.Add(generator.GetIntValue(distributionAB, parametersAB));
                     }
                 }
                 double value = a.Sum() - b.Sum();
@@ -68,7 +84,7 @@ namespace ClassLibrary
             string l = "";
             for (int i = 0; i < quantity; i++)
             {
-                l += $"{Math.Round(generator.GetDoubleValue(distribution, parametersL))} ";
+                l += $"{Math.Round(generator.GetDoubleValue(distributionL, parametersL))} ";
             }
             return new DoubleVector(l);
         }

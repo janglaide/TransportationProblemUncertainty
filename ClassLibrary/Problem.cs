@@ -12,25 +12,22 @@ namespace ClassLibrary
         private int _N;
         private int _R;
         private string _distribution;
+        private string _distributionAB;
+        private string _distributionL;
         private Experiment _experiment;
         private DoubleVector _A;
         private DoubleVector _B;
         private DoubleVector _l;
         private DoubleVector _alpha;
         private DoubleVector[] _Cs;
-        public Problem(int N, int R, string distribution, double delay)
+        public Problem(int N, int R, Experiment experiment)
         {
             _N = N;
             _R = R;
-            _distribution = distribution;
-            _experiment = new Experiment(distribution, (delay, delay), (delay, delay), (delay, delay));
-        }
-        public Problem(int N, int R, string distribution, double delay, double deviation)
-        {
-            _N = N;
-            _R = R;
-            _distribution = distribution;
-            _experiment = new Experiment(distribution, (delay, deviation), (delay, deviation), (delay, deviation));
+            _experiment = experiment;
+            _distribution = experiment.DistributionC;
+            _distributionAB = experiment.DistributionAB;
+            _distributionL = experiment.DistributionL;
         }
         public (string, string) Run()
         {
