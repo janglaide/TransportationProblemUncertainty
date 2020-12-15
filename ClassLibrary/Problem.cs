@@ -1,9 +1,4 @@
 ﻿using CenterSpace.NMath.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
@@ -29,45 +24,48 @@ namespace ClassLibrary
             _distributionAB = experiment.DistributionAB;
             _distributionL = experiment.DistributionL;
         }
-        public (string, string) Run()
+        public Problem(DoubleVector a, DoubleVector b, DoubleVector l, DoubleVector alpha, DoubleVector[] cs, Experiment experiment)
         {
-            (_A, _B) = _experiment.GenerateAB(_N);
-            _l = _experiment.GenerateL(_R);
-            _alpha = _experiment.GenerateAlpha(_R);
-            _Cs = new DoubleVector[_R];
-            for (var i = 0; i < _R; i++)
-                _Cs[i] = _experiment.GenerateMatrix(_N);
-
-            (_, var solutions) = Solver.GetSolutions(_Cs, _A, _B);
-            var solution = Solver.SolveSeveral(_Cs, _A, _B, _l, _alpha, solutions);
-            return (TransfromToOutput(solution.OptimalX),  
-                Solver.RoundValue(solution.OptimalObjectiveFunctionValue).ToString());
+            _A = a;
+            _B = b;
+            _l = l;
+            _alpha = alpha;
+            _Cs = cs;
+            _experiment = experiment;
         }
-        private string TransfromToOutput(DoubleVector optimalX)
+        public FullSolution Run()
         {
-            var result = "";
-            int xQuantity = optimalX.Length;
-            for (int i = 0; i < xQuantity; i++)
+            if (_A is null)
             {
-                double number = Solver.RoundValue(optimalX[i]);
-
-                if (number != 0)
-                {
-                    //result += $"{number}   ";
-                    result += string.Format("{0:0.00}", number) + "\t";
-                }
-                else
-                {
-                    result += $"-\t";
-                }
-
-                if ((i + 1) % _N == 0)
-                {
-                    result += "\n";
-                }
-
+                (_A, _B) = _experiment.GenerateAB(_N);
+                _l = _experiment.GenerateL(_R);
+                _alpha = _experiment.GenerateAlpha(_R);
+                _Cs = new DoubleVector[_R];
+                for (var i = 0; i < _R; i++)
+                    _Cs[i] = _experiment.GenerateMatrix(_N);
             }
-            return result;
+            (DoubleVector[] xs, DoubleVector fs) = Solver.GetSolutions(_Cs, _A, _B);
+            var solution = Solver.SolveSeveral(_Cs, _A, _B, _l, _alpha, fs);
+            DoubleVector newAlpha = _alpha;
+            DoubleVector optimalX = Solver.UpdateX(_Cs, _A, _B, _l, ref newAlpha, fs, solution.OptimalX);
+            double functionValue = solution.OptimalObjectiveFunctionValue;
+            DoubleVector deltas = Solver.CalculateDeltas(_Cs, optimalX, fs);
+            DoubleVector ys = Solver.CalculateYs(deltas, _l);
+            DoubleVector distances = Solver.CalculateDistances(_Cs, optimalX);
+            Solution solutionWithoutChange = new Solution(optimalX, functionValue, _alpha, newAlpha, _Cs, xs, fs, deltas, ys, distances, _B.Length);
+
+            DoubleVector[] newCs = (DoubleVector[])_Cs.Clone();
+            (double persentOfChange, DoubleVector newX) = _experiment.FindPercentOfChange(optimalX, ref newCs, _A, _B, _l, _alpha);
+            DoubleVector newNewAlpha = newAlpha;
+            (DoubleVector[] newXs, DoubleVector newFs) = Solver.GetSolutions(newCs, _A, _B);
+            newX = Solver.UpdateX(newCs, _A, _B, _l, ref newNewAlpha, newFs, newX);
+            DoubleVector newDeltas = Solver.CalculateDeltas(newCs, newX, newFs);
+            DoubleVector newYs = Solver.CalculateYs(newDeltas, _l);
+            double newFunctionValue = Solver.CalculateOptimanFunc(newYs, newNewAlpha);
+            DoubleVector newDistances = Solver.CalculateDistances(newCs, newX);
+            Solution solutionWithChange = new Solution(newX, newFunctionValue, newAlpha, newNewAlpha, newCs, newXs, newFs, newDeltas, newYs, newDistances, _B.Length);
+
+            return new FullSolution(_A, _B, _l, solutionWithoutChange, persentOfChange, solutionWithChange);
         }
     }
 }

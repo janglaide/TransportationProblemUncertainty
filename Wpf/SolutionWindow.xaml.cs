@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using ClassLibrary;
 
 namespace Wpf
 {
@@ -17,11 +8,12 @@ namespace Wpf
     /// </summary>
     public partial class SolutionWindow : Window
     {
-        public SolutionWindow((string, string) optimals)
+        public SolutionWindow(FullSolution solution)
         {
             InitializeComponent();
-            OutputBlock.Text = optimals.Item1;
-            OptimalValueBlock.Text = optimals.Item2;
+
+            OutputBlock.Text = solution.SolutionWithoutChange.OptimalX;
+            OptimalValueBlock.Text = solution.SolutionWithoutChange.FunctionValue;
         }
     }
 }

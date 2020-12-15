@@ -10,7 +10,7 @@
         <TextBlock x:Name="OutputBlock" FontSize="15" HorizontalAlignment="Left" Margin="10,94,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="330" Width="369"/>
         <Label Name="ValueLabel" Content="Optimal Value:" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="158"/>
         <TextBlock x:Name="CsBlock" HorizontalAlignment="Left" Margin="433,94,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="330" Width="357"/>
-        <TextBlock x:Name="OptimalValueBlock" HorizontalAlignment="Left" Margin="182,12,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="158"/>
+        <TextBlock x:Name="OptimalValueBlock" HorizontalAlignment="Left" Margin="168,7,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="158"/>
         <Label Content="Optimal X:" HorizontalAlignment="Left" Margin="134,52,0,0" VerticalAlignment="Top"/>
         <Label Content="Matrix C:" HorizontalAlignment="Left" Margin="567,52,0,0" VerticalAlignment="Top"/>
 
