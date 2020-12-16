@@ -14,6 +14,7 @@ namespace ClassLibrary
         public string[] Deltas { get; }
         public string[] Ys { get; }
         public string[] Distances { get; }
+        public int N { get; }
         public Solution(DoubleVector optimalX, double functionValue, DoubleVector alpha, DoubleVector alphaChanged, DoubleVector[] cs, DoubleVector[] xs, DoubleVector fs, DoubleVector deltas, DoubleVector ys, DoubleVector distances, int columns)
         {
             OptimalX = OutputTransform.MatrixTransform(optimalX, columns);
@@ -26,6 +27,7 @@ namespace ClassLibrary
             Deltas = OutputTransform.ArrayValuesTransform(deltas);
             Ys = OutputTransform.ArrayValuesTransform(ys);
             Distances = OutputTransform.ArrayValuesTransform(distances);
+            N = columns;
         }
     }
 }

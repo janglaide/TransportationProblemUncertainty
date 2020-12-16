@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
-        Title="SolutionWindow" Height="450" Width="800" FontSize="20"
+        Title="SolutionWindow" Height="550" Width="826" FontSize="16"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <ScrollViewer>
             <Grid x:Name="CoolGrid">
-                <Label x:Name="ValueLabel" Content="Optimal Value:" Width="158" Margin="10,8,615,384"/>
-                <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Width="158" Margin="168,7,457,394"/>
-                <Label Content="Optimal X:" Width="262" Margin="10,50,511,340"/>
-                <Label Content="Matrix C:" Margin="497,44,135,345"/>
-                <TextBlock x:Name="OutputBlock" FontSize="15" Text="" TextWrapping="Wrap" Height="330" Width="369" Margin="10,94,404,10"/>
-                <TextBlock x:Name="CsBlock" Text="" TextWrapping="Wrap" Height="330" Width="357" RenderTransformOrigin="0.494,0.489" Margin="416,91,10,18" />
+                <Label x:Name="ValueLabel" Content="Optimal Value:" Margin="23,8,628,484"/>
+                <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Margin="181,13,471,499"/>
+                <Label Content="Optimal X:" Margin="23,50,524,437"/>
+                <Label Name="MatrixesCLabel" Content="Matrixes C:" Margin="23,318,601,163"/>
+                <TextBlock x:Name="OutputBlock" Text="" TextWrapping="NoWrap" Margin="23,101,417,239"/>
+                <Label Content="Alpha:" Margin="404,8,300,484" />
+                <Label Content="Alpha changed:"  Margin="404,50,272,437" />
+                <TextBlock Name="AlphaBlock" HorizontalAlignment="Left"  Margin="550,13,0,499" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="AlphaBlockChanged"  HorizontalAlignment="Left" Margin="550,55,0,457" Text="" TextWrapping="Wrap"  />
+
             </Grid>
         </ScrollViewer>
+
     </Grid>
 </Window>
