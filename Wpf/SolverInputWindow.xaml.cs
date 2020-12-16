@@ -33,5 +33,12 @@ namespace Wpf
         {
 
         }
+
+        private void Back_Clicked(object sender, RoutedEventArgs e)
+        {
+            var window = new MainWindow();
+            window.Show();
+            Close();
+        }
     }
 }

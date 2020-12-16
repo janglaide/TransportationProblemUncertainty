@@ -13,7 +13,7 @@
         <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,365,0,0" VerticalAlignment="Top" Width="671" Height="123"/>
         <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,230,0,0" VerticalAlignment="Top" Width="671" Height="119"/>
         <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
-        
+
         <Label Content="Quantity of cost matrixes (R):" HorizontalAlignment="Left" Margin="58,61,0,0" VerticalAlignment="Top"/>
         <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="107,135,0,0" VerticalAlignment="Top" Width="373"/>
@@ -69,5 +69,6 @@
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="638,450,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
 
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,517,0,0" VerticalAlignment="Top" Width="195" Click="RunButton_Click"/>
+        <Button Name="Back" Content="Back" HorizontalAlignment="Left" Margin="746,517,0,0" VerticalAlignment="Top" Width="58" Click="Back_Clicked"/>
     </Grid>
 </Window>

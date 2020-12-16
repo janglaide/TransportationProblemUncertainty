@@ -57,7 +57,7 @@
         <Label Name="ParametersLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="92,258,0,0" VerticalAlignment="Top"/>
         <TextBox Name="DelayBox" HorizontalAlignment="Left" Margin="443,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBox" IsEnabled="False" HorizontalAlignment="Left" Margin="597,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        
+
         <Label Content="Generator for vectors a and b:" HorizontalAlignment="Left" Margin="47,306,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,336,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxAB" HorizontalAlignment="Left" Margin="442,333,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionAB_SelectionChanged">
@@ -74,7 +74,7 @@
         <Label x:Name="ParametersABLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="91,374,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DelayBoxAB" HorizontalAlignment="Left" Margin="442,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBoxAB" IsEnabled="False" HorizontalAlignment="Left" Margin="594,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        
+
         <Label Content="Generator for vector l:" HorizontalAlignment="Left" Margin="43,421,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,461,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxL" HorizontalAlignment="Left" Margin="442,459,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionL_SelectionChanged">
@@ -94,5 +94,6 @@
 
         <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
         <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked"/>
     </Grid>
 </Window>
