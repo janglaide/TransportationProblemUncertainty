@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Wpf"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="Wpf.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="22">
+        Title="MainWindow" Height="450" Width="800" FontSize="22"
+        WindowStartupLocation="CenterScreen">
     <Grid Loaded="Loaded_MainWindow">
         <Label Content="Transportation problem under uncertainty solver and analysis" HorizontalAlignment="Left" Margin="82,42,0,0" VerticalAlignment="Top" Height="71" Width="672"/>
         <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,0,0,0" VerticalAlignment="Center" Height="51" Width="225" Click="SolverButton_Click"/>

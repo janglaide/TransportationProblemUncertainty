@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
-        Title="SolutionWindow" Height="450" Width="800" FontSize="20">
+        Title="SolutionWindow" Height="450" Width="800" FontSize="20"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock x:Name="OutputBlock" FontSize="15" HorizontalAlignment="Left" Margin="10,94,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="330" Width="369"/>
-        <Label Name="ValueLabel" Content="Optimal Value:" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="158"/>
-        <TextBlock x:Name="CsBlock" HorizontalAlignment="Left" Margin="433,94,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="330" Width="357"/>
-        <TextBlock x:Name="OptimalValueBlock" HorizontalAlignment="Left" Margin="168,7,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="158"/>
-        <Label Content="Optimal X:" HorizontalAlignment="Left" Margin="134,52,0,0" VerticalAlignment="Top"/>
-        <Label Content="Matrix C:" HorizontalAlignment="Left" Margin="567,52,0,0" VerticalAlignment="Top"/>
-
+        <ScrollViewer>
+            <Grid x:Name="CoolGrid">
+                <Label x:Name="ValueLabel" Content="Optimal Value:" Width="158" Margin="10,8,615,384"/>
+                <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Width="158" Margin="168,7,457,394"/>
+                <Label Content="Optimal X:" Width="262" Margin="10,50,511,340"/>
+                <Label Content="Matrix C:" Margin="497,44,135,345"/>
+                <TextBlock x:Name="OutputBlock" FontSize="15" Text="" TextWrapping="Wrap" Height="330" Width="369" Margin="10,94,404,10"/>
+                <TextBlock x:Name="CsBlock" Text="" TextWrapping="Wrap" Height="330" Width="357" RenderTransformOrigin="0.494,0.489" Margin="416,91,10,18" />
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

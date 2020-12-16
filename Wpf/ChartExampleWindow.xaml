@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Wpf"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="Wpf.ChartExampleWindow"
         mc:Ignorable="d"
-        Title="ChartExampleWindow" Height="450" Width="800" Loaded="Loaded_Window">
+        Title="ChartExampleWindow" Height="450" Width="800" Loaded="Loaded_Window"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Wpf:CartesianChart Name="chart" HorizontalAlignment="Center" Height="414" VerticalAlignment="Center" Width="780"/>

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
-        Title="AnalysisInputWindow" Height="665" Width="921" FontSize="16">
-    <Grid Height="828">
+        Title="AnalysisInputWindow" Height="665" Width="921" FontSize="16"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="383*"/>
             <ColumnDefinition Width="78*"/>
@@ -40,6 +41,7 @@
         <TextBox x:Name="StepBox" HorizontalAlignment="Left" Margin="442,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
         <Label Content="Quantity of matrixes (R):" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="RBox" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
+        <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="92,222,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="DistributionComboBox" HorizontalAlignment="Left" Margin="443,220,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="Distribution_SelectionChanged">
             <ComboBoxItem Name="exp">
@@ -52,12 +54,11 @@
                 <TextBlock>Uniform</TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
-        <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
         <Label Name="ParametersLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="92,258,0,0" VerticalAlignment="Top"/>
         <TextBox Name="DelayBox" HorizontalAlignment="Left" Margin="443,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBox" IsEnabled="False" HorizontalAlignment="Left" Margin="597,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
+        
+        <Label Content="Generator for vectors a and b:" HorizontalAlignment="Left" Margin="47,306,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,336,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxAB" HorizontalAlignment="Left" Margin="442,333,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionAB_SelectionChanged">
             <ComboBoxItem x:Name="exp1">
@@ -73,7 +74,8 @@
         <Label x:Name="ParametersABLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="91,374,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DelayBoxAB" HorizontalAlignment="Left" Margin="442,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBoxAB" IsEnabled="False" HorizontalAlignment="Left" Margin="594,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        <Label Content="Generator for vectors a and b:" HorizontalAlignment="Left" Margin="47,306,0,0" VerticalAlignment="Top"/>
+        
+        <Label Content="Generator for vector l:" HorizontalAlignment="Left" Margin="43,421,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,461,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxL" HorizontalAlignment="Left" Margin="442,459,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionL_SelectionChanged">
             <ComboBoxItem x:Name="exp2">
@@ -89,7 +91,8 @@
         <Label x:Name="ParametersLLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="92,500,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DelayBoxL" HorizontalAlignment="Left" Margin="443,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="595,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        <Label Content="Generator for vector l:" HorizontalAlignment="Left" Margin="43,421,0,0" VerticalAlignment="Top"/>
 
+        <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
+        <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
     </Grid>
 </Window>

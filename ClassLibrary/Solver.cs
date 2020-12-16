@@ -326,14 +326,14 @@ namespace ClassLibrary
         }
         private static DoubleVector IterativeProcedure(DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, ref DoubleVector alpha, DoubleVector solutions, DoubleVector oldX)
         {
-            DoubleVector newX;
+            DoubleVector newX = oldX;
+            DoubleVector newAlpha = (DoubleVector)alpha.Clone();
             while (true)
             {
                 double step = 0.1;
-                newX = new DoubleVector();
-                DoubleVector deltas = CalculateDeltas(cs, oldX, solutions);
+                DoubleVector deltas = CalculateDeltas(cs, newX, solutions);
                 DoubleVector ys = CalculateYs(deltas, l);
-                if (!ys.Any(x => x == 0))
+                if (!ys.Any(x => RoundValue(x) == 0) || ys.All(x => RoundValue(x) == 0))
                 {
                     break;
                 }
@@ -341,17 +341,23 @@ namespace ClassLibrary
                 {
                     if (ys[i] <= 0)
                     {
-                        alpha[i] -= step;
+                        newAlpha[i] -= step;
                     }
                     else
                     {
-                        alpha[i] += step;
+                        newAlpha[i] += step;
                     }
                 }
-                var solution = SolveSeveral(cs, a, b, l, alpha, solutions);
+                var solution = SolveSeveral(cs, a, b, l, newAlpha, solutions);
                 newX = DivideX(RoundMatrix(solution.OptimalX), cs.Length);
                 if (CheckABConstraints(newX, a, b))
                 {
+                    alpha = newAlpha;
+                    break;
+                }
+                if(newAlpha.Any(x => x <= 0))
+                {
+                    newX = oldX;
                     break;
                 }
             }
@@ -368,7 +374,7 @@ namespace ClassLibrary
             else
             {
                 newX = IterativeProcedure(cs, a, b, l, ref alpha, solutions, oldX);
-                if(newX.Length == 0)
+                if (newX.Length == 0)
                 {
                     newX = oldX;
                 }
