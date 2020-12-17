@@ -269,12 +269,12 @@ namespace ClassLibrary
             }
             return distances;
         }
-        public static DoubleVector CalculateDeltas(DoubleVector[] cs, DoubleVector x, DoubleVector solutions)
+        public static DoubleVector CalculateDeltas(DoubleVector fsForX, DoubleVector fsForXs)
         {
-            DoubleVector deltas = new DoubleVector(solutions.Length);
-            for (int i = 0; i < solutions.Length; i++)
+            DoubleVector deltas = new DoubleVector(fsForXs.Length);
+            for (int i = 0; i < fsForXs.Length; i++)
             {
-                deltas[i] = SumProduct(cs[i], x) - solutions[i];
+                deltas[i] = fsForX[i] - fsForXs[i];
             }
             return deltas;
         }
@@ -286,6 +286,15 @@ namespace ClassLibrary
                 ys[i] = Math.Max(deltas[i] - l[i], 0);
             }
             return ys;
+        }
+        public static DoubleVector CalculateFs(DoubleVector[] cs, DoubleVector x)
+        {
+            DoubleVector fs = new DoubleVector(cs.Length);
+            for (int i = 0; i < cs.Length; i++)
+            {
+                fs[i] = SumProduct(cs[i], x);
+            }
+            return fs;
         }
         public static double CalculateOptimanFunc(DoubleVector ys, DoubleVector alpha)
         {
@@ -331,7 +340,7 @@ namespace ClassLibrary
             while (true)
             {
                 double step = 0.1;
-                DoubleVector deltas = CalculateDeltas(cs, newX, solutions);
+                DoubleVector deltas = CalculateDeltas(CalculateFs(cs, newX), solutions);
                 DoubleVector ys = CalculateYs(deltas, l);
                 if (!ys.Any(x => RoundValue(x) == 0) || ys.All(x => RoundValue(x) == 0))
                 {

@@ -150,7 +150,6 @@ namespace Wpf
                 ExceptionLabel.Content = "";
                 var experiment = new Experiment(distribution, paramsC, paramsAB, paramsL);
                 Problem problem = new Problem(N, R, experiment);
-                
                 var solution = problem.Run();
                 var window = new SolutionWindow(solution);
                 window.Show();
