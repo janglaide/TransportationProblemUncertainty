@@ -15,11 +15,21 @@ namespace Wpf
 
             OptimalValueBlock.Text = solution.SolutionWithoutChange.FunctionValue;
             AlphaBlock.Text = solution.SolutionWithoutChange.Alpha;
-            AlphaBlockChanged.Text = solution.SolutionWithoutChange.AlphaChanged;
+            if(solution.SolutionWithoutChange.Alpha != solution.SolutionWithoutChange.AlphaChanged)
+            {
+                AlphaBlockChanged.Text = solution.SolutionWithoutChange.AlphaChanged;
+            }
+            else
+            {
+                AlphaBlockChangedLable.Content = "";
+            }
+            ABlock.Text = solution.A;
+            BBlock.Text = solution.B;
+            LBlock.Text = solution.L;
             OutputBlock.Text = solution.SolutionWithoutChange.OptimalX;
             OutputBlock.VerticalAlignment = VerticalAlignment.Top;
             OutputBlock.HorizontalAlignment = HorizontalAlignment.Left;
-            OutputBlock.Margin = new Thickness(23, 101, 0, 0);
+            OutputBlock.Margin = new Thickness(23, 199, 0, 0);
 
             //OutputBlock.Width = 65 * solution.SolutionWithoutChange.N;
             //OutputBlock.Height = 35 * solution.SolutionWithoutChange.N;
@@ -158,9 +168,11 @@ namespace Wpf
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(23, height
                         , 0, 0),
-                Content = "After changes:"
+                Content = $"After changes ({solution.PersentOfChange}%):"
             };
             CoolGrid.Children.Add(ChangesLabel);
+
+
 
 
             for (var i = 0; i < solution.SolutionWithChange.Cs.Length; i++)

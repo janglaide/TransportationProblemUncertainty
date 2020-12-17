@@ -8,18 +8,23 @@
         Title="SolutionWindow" Height="550" Width="826" FontSize="16"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="CoolGrid">
                 <Label x:Name="ValueLabel" Content="Optimal Value:" Margin="23,8,628,484"/>
                 <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Margin="181,13,471,499"/>
-                <Label Content="Optimal X:" Margin="23,50,524,437"/>
+                <Label Content="Optimal X:" Margin="23,117,524,370"/>
                 <Label Name="MatrixesCLabel" Content="Matrixes C:" Margin="23,318,601,163"/>
-                <TextBlock x:Name="OutputBlock" Text="" TextWrapping="NoWrap" Margin="23,101,417,239"/>
-                <Label Content="Alpha:" Margin="404,8,300,484" />
-                <Label Content="Alpha changed:"  Margin="404,50,272,437" />
-                <TextBlock Name="AlphaBlock" HorizontalAlignment="Left"  Margin="550,13,0,499" Text="" TextWrapping="Wrap"  />
-                <TextBlock x:Name="AlphaBlockChanged"  HorizontalAlignment="Left" Margin="550,55,0,457" Text="" TextWrapping="Wrap"  />
-
+                <TextBlock x:Name="OutputBlock" Text="" TextWrapping="NoWrap" Margin="23,164,417,176"/>
+                <Label Content="Alpha:" Margin="404,114,300,373" />
+                <Label x:Name="AlphaBlockChangedLable" Content="Alpha changed:"  Margin="404,152,272,335" />
+                <Label Content="a:"  Margin="404,8,353,484" />
+                <Label Content="b:"  Margin="404,40,353,447" />
+                <Label Content="l:"  Margin="404,77,353,410" />
+                <TextBlock Name="AlphaBlock" HorizontalAlignment="Left"  Margin="550,114,0,397" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="AlphaBlockChanged"  HorizontalAlignment="Left" Margin="550,158,0,353" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="ABlock"  HorizontalAlignment="Left" Margin="461,13,0,499" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="BBlock"  HorizontalAlignment="Left" Margin="461,45,0,467" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="461,81,0,431" Text="" TextWrapping="Wrap"  />
             </Grid>
         </ScrollViewer>
 

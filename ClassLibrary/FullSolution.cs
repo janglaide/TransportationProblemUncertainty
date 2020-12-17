@@ -12,9 +12,9 @@ namespace ClassLibrary
         public Solution SolutionWithChange { get; }
         public FullSolution(DoubleVector a, DoubleVector b, DoubleVector l, Solution solutionWithoutChange, double persentOfChange, Solution solutionWithChange)
         {
-            A = OutputTransform.VectorTransform(a, "\n");
-            B = OutputTransform.VectorTransform(b, "\n");
-            L = OutputTransform.VectorTransform(l, "\n");
+            A = OutputTransform.VectorTransform(a, "\t");
+            B = OutputTransform.VectorTransform(b, "\t");
+            L = OutputTransform.VectorTransform(l, "\t");
             SolutionWithoutChange = solutionWithoutChange;
             PersentOfChange = OutputTransform.ValueTransform(persentOfChange);
             SolutionWithChange = solutionWithChange;
