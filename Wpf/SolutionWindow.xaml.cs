@@ -36,14 +36,14 @@ namespace Wpf
 
             MatrixesCLabel.VerticalAlignment = VerticalAlignment.Top;
             MatrixesCLabel.HorizontalAlignment = HorizontalAlignment.Left;
-            MatrixesCLabel.Margin = new Thickness(23, 70 + 35 * solution.SolutionWithoutChange.N, 0, 0);
+            MatrixesCLabel.Margin = new Thickness(23, 120 + 35 * solution.SolutionWithoutChange.N, 0, 0);
 
             var XsLabel = new Label
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(50 + 65 * solution.SolutionWithoutChange.N, 
-                    70 + 35 * solution.SolutionWithoutChange.N, 0, 0),
+                    120 + 35 * solution.SolutionWithoutChange.N, 0, 0),
                 Content = "Solutions X:"
             };
 
@@ -60,7 +60,7 @@ namespace Wpf
                     Height = 35 * solution.SolutionWithoutChange.N,
                     Width = 65 * solution.SolutionWithoutChange.N,
                     Text = solution.SolutionWithoutChange.Cs[i],
-                    Margin = new Thickness(23, 120 + 35 * solution.SolutionWithoutChange.N + 
+                    Margin = new Thickness(23, 170 + 35 * solution.SolutionWithoutChange.N + 
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0)
                 };
                 var newXBlock = new TextBlock
@@ -71,7 +71,7 @@ namespace Wpf
                     Width = 65 * solution.SolutionWithoutChange.N,
                     Text = solution.SolutionWithoutChange.Xs[i],
                     Margin = new Thickness(50 + 65 * solution.SolutionWithoutChange.N, 
-                        120 + 35 * solution.SolutionWithoutChange.N +
+                        170 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0)
                 };
                 var FsLabel = new Label
@@ -79,7 +79,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        115 + 35 * solution.SolutionWithoutChange.N + 
+                        165 + 35 * solution.SolutionWithoutChange.N + 
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Content = "F:"
                 };
@@ -88,7 +88,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        120 + 35 * solution.SolutionWithoutChange.N +
+                        170 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithoutChange.Fs[i]
                 };
@@ -97,7 +97,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        135 + 35 * solution.SolutionWithoutChange.N +
+                        185 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Content = "Delta:"
                 };
@@ -106,7 +106,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        140 + 35 * solution.SolutionWithoutChange.N +
+                        190 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithoutChange.Deltas[i]
                 };
@@ -115,7 +115,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        155 + 35 * solution.SolutionWithoutChange.N +
+                        205 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Content = "Y:"
                 };
@@ -124,7 +124,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        160 + 35 * solution.SolutionWithoutChange.N +
+                        210 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithoutChange.Ys[i]
                 };
@@ -133,7 +133,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        175 + 35 * solution.SolutionWithoutChange.N +
+                        225 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Content = "Distance:"
                 };
@@ -142,7 +142,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithoutChange.N,
-                        180 + 35 * solution.SolutionWithoutChange.N +
+                        230 + 35 * solution.SolutionWithoutChange.N +
                         (i * 35 * (solution.SolutionWithoutChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithoutChange.Distances[i]
                 };
@@ -173,7 +173,68 @@ namespace Wpf
             CoolGrid.Children.Add(ChangesLabel);
 
 
+            var optimalXLabel = new Label()
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 35 * solution.SolutionWithChange.N,
+                Width = 65 * solution.SolutionWithChange.N,
+                Content = "Optimal X:",
+                Margin = new Thickness(23, height + 45, 0, 0)
+            };
+            CoolGrid.Children.Add(optimalXLabel);
+            var alphaChangedLabel = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 35 * solution.SolutionWithChange.N,
+                Width = 65 * solution.SolutionWithChange.N,
+                Content = "Alpha Changed:",
+                Margin = new Thickness(50 + 65 * solution.SolutionWithChange.N,
+                         height + 45, 0, 0)
+            };
+            CoolGrid.Children.Add(alphaChangedLabel);
+            var changedOtimalX = new TextBlock()
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 35 * solution.SolutionWithChange.N,
+                Width = 65 * solution.SolutionWithChange.N,
+                Text = solution.SolutionWithChange.OptimalX,
+                Margin = new Thickness(23, height + 90, 0, 0)
+            };
+            CoolGrid.Children.Add(changedOtimalX);
+            var alphaChanged = new TextBlock()
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 35 * solution.SolutionWithChange.N,
+                Width = 65 * solution.SolutionWithChange.N,
+                Text = solution.SolutionWithChange.AlphaChanged,
+                Margin = new Thickness(200 + 65 * solution.SolutionWithChange.N,
+                         height + 50, 0, 0)
+            };
+            CoolGrid.Children.Add(alphaChanged);
 
+
+            var CsMatrixesChanged = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(23,
+                    height + 50 + 35 * solution.SolutionWithChange.N, 0, 0),
+                Content = "Matrixes C:"
+            };
+            CoolGrid.Children.Add(CsMatrixesChanged);
+            var XsChangedLabel = new Label
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(50 + 65 * solution.SolutionWithoutChange.N,
+                    height + 50 + 35 * solution.SolutionWithChange.N, 0, 0),
+                Content = "Solutions X:"
+            };
+            CoolGrid.Children.Add(XsChangedLabel);
 
             for (var i = 0; i < solution.SolutionWithChange.Cs.Length; i++)
             {
@@ -184,7 +245,7 @@ namespace Wpf
                     Height = 35 * solution.SolutionWithChange.N,
                     Width = 65 * solution.SolutionWithChange.N,
                     Text = solution.SolutionWithChange.Cs[i],
-                    Margin = new Thickness(23, height + 50 +
+                    Margin = new Thickness(23, height + 100 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0)
                 };
                 var newXBlock = new TextBlock
@@ -195,7 +256,7 @@ namespace Wpf
                     Width = 65 * solution.SolutionWithChange.N,
                     Text = solution.SolutionWithChange.Xs[i],
                     Margin = new Thickness(50 + 65 * solution.SolutionWithChange.N,
-                         height + 50 +
+                         height + 100 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0)
                 };
                 var FsLabel = new Label
@@ -203,7 +264,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 45 +
+                         height + 95 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Content = "F:"
                 };
@@ -212,7 +273,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 50 +
+                         height + 100 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithChange.Fs[i]
                 };
@@ -221,7 +282,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 65 +
+                         height + 115 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Content = "Delta:"
                 };
@@ -230,7 +291,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 70 +
+                         height + 120 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithChange.Deltas[i]
                 };
@@ -239,7 +300,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 85 +
+                         height + 135 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Content = "Y:"
                 };
@@ -248,7 +309,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 90 +
+                         height + 140 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithChange.Ys[i]
                 };
@@ -257,7 +318,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 105 +
+                         height + 155 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Content = "Distance:"
                 };
@@ -266,7 +327,7 @@ namespace Wpf
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(150 + 2 * 65 * solution.SolutionWithChange.N,
-                         height + 110 +
+                         height + 160 + 35 * solution.SolutionWithChange.N +
                         (i * 35 * (solution.SolutionWithChange.N - 1)), 0, 0),
                     Text = solution.SolutionWithChange.Distances[i]
                 };
