@@ -175,21 +175,24 @@ namespace ClassLibrary
             bool change = false;
             DualSimplexSolver solution;
             DoubleVector compareX = oldX;
+            DoubleVector[] changedCs = cs;
 
             while (!change)
             {
                 if (compareX == oldX)
                 {
+                    changedCs = cs;
                     percent++;
-                    ChangeMatrixs(ref cs, 1);
-                    (_, solutions) = Solver.GetSolutions(cs, a, b);
-                    solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
+                    ChangeMatrixs(ref changedCs, percent);
+                    (_, solutions) = Solver.GetSolutions(changedCs, a, b);
+                    solution = Solver.SolveSeveral(changedCs, a, b, l, alpha, solutions);
                     newX = solution.OptimalX;
                     compareX = Solver.DivideX(Solver.RoundMatrix(newX), cs.Length);
                 }
                 else
                 {
                     change = true;
+                    cs = changedCs;
                 }
             }
             return (percent, newX);
