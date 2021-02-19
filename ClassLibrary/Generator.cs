@@ -4,23 +4,20 @@ namespace ClassLibrary
 {
     public class Generator
     {
-        private static Random rand = new Random();
+        private static readonly Random rand = new Random();
         public int GetIntValue(string distr, (double, double) parameters)
         {
             return (int)Math.Round(GetDoubleValue(distr, parameters));
         }
         public double GetDoubleValue(string distr, (double, double) parameters)
         {
-            switch (distr)
+            return distr switch
             {
-                case "exp":
-                    return Exponential(parameters.Item1);
-                case "norm":
-                    return Normal(parameters.Item1, parameters.Item2);
-                case "unif":
-                    return Uniform(parameters.Item1, parameters.Item2);
-            }
-            return double.MinValue;
+                "exp" => Exponential(parameters.Item1),
+                "norm" => Normal(parameters.Item1, parameters.Item2),
+                "unif" => Uniform(parameters.Item1, parameters.Item2),
+                _ => double.MinValue,
+            };
         }
         public double Exponential(double lambda)
         {

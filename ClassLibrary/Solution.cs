@@ -1,6 +1,4 @@
-﻿using CenterSpace.NMath.Core;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
     public class Solution
     {
@@ -16,7 +14,7 @@ namespace ClassLibrary
         public string[] Ys { get; }
         public string[] Distances { get; }
         public int N { get; }
-        public Solution(DoubleVector optimalX, double functionValue, DoubleVector alpha, DoubleVector alphaChanged, DoubleVector[] cs, DoubleVector fsForX, DoubleVector[] xs, DoubleVector fsForXs, DoubleVector deltas, DoubleVector ys, DoubleVector distances, int columns)
+        public Solution(double[] optimalX, double functionValue, double[] alpha, double[] alphaChanged, double[][] cs, double[] fsForX, double[][] xs, double[] fsForXs, double[] deltas, double[] ys, double[] distances, int columns)
         {
             OptimalX = OutputTransform.MatrixTransform(optimalX, columns);
             FunctionValue = OutputTransform.ValueTransform(functionValue);

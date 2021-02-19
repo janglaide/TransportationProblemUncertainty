@@ -1,6 +1,4 @@
-﻿using CenterSpace.NMath.Core;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
     public class FullSolution
     {
@@ -10,7 +8,7 @@ namespace ClassLibrary
         public Solution SolutionWithoutChange { get; }
         public string PersentOfChange { get; }
         public Solution SolutionWithChange { get; }
-        public FullSolution(DoubleVector a, DoubleVector b, DoubleVector l, Solution solutionWithoutChange, double persentOfChange, Solution solutionWithChange)
+        public FullSolution(double[] a, double[] b, double[] l, Solution solutionWithoutChange, double persentOfChange, Solution solutionWithChange)
         {
             A = OutputTransform.VectorTransform(a, "\t");
             B = OutputTransform.VectorTransform(b, "\t");

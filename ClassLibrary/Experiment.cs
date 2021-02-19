@@ -1,6 +1,4 @@
-﻿using CenterSpace.NMath.Analysis;
-using CenterSpace.NMath.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,25 +6,25 @@ namespace ClassLibrary
 {
     public class Experiment
     {
-        private Generator generator = new Generator();
-        private string distributionC;
+        private readonly Generator generator = new Generator();
+        private readonly string distributionC;
         public string DistributionC
         {
             get { return distributionC; }
         }
-        private string distributionAB;
+        private readonly string distributionAB;
         public string DistributionAB
         {
             get { return distributionAB; }
         }
-        private string distributionL;
+        private readonly string distributionL;
         public string DistributionL
         {
             get { return distributionL; }
         }
-        private (double, double) parametersC;
-        private (double, double) parametersAB;
-        private (double, double) parametersL;
+        private readonly (double, double) parametersC;
+        private readonly (double, double) parametersAB;
+        private readonly (double, double) parametersL;
 
         public Experiment((string, string, string) distribution, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
         {
@@ -37,99 +35,98 @@ namespace ClassLibrary
             parametersAB = paramAB;
             parametersL = paramL;
         }
-        public DoubleVector GenerateMatrix(int size)
+        public double[] GenerateMatrix(int size)
         {
-            string matrix = "";
-            for (int i = 0; i < size; i++)
+            int fullSize = size * size;
+            double[] matrix = new double[fullSize];
+            for (int i = 0; i < fullSize; i++)
             {
-                for (int j = 0; j < size; j++)
-                {
-                    matrix += $"{generator.GetDoubleValue(distributionC, parametersC)} ";
-                }
+                matrix[i] = generator.GetDoubleValue(distributionC, parametersC);
+
             }
-            return new DoubleVector(matrix);
+            return matrix;
         }
-        public (DoubleVector, DoubleVector) GenerateAB(int size)
+        public (double[], double[]) GenerateAB(int size)
         {
             bool success = false;
-            List<double> a, b;
+            double[] a, b;
             do
             {
-                a = new List<double>();
-                b = new List<double>();
+                a = new double[size];
+                b = new double[size];
                 for (int i = 0; i < size; i++)
                 {
-                    a.Add(generator.GetIntValue(distributionAB, parametersAB));
+                    a[i] = generator.GetIntValue(distributionAB, parametersAB);
                     if (i < size - 1)
                     {
-                        b.Add(generator.GetIntValue(distributionAB, parametersAB));
+                        b[i] = generator.GetIntValue(distributionAB, parametersAB);
                     }
                 }
                 double value = a.Sum() - b.Sum();
                 if (value > 0)
                 {
                     success = true;
-                    b.Add(value);
+                    b[size - 1] = value;
                 }
             } while (!success);
-            string strA = "";
-            string strB = "";
-            a.ForEach(x => strA += $"{x} ");
-            b.ForEach(x => strB += $"{x} ");
 
-            return (new DoubleVector(strA), new DoubleVector(strB));
+            return (a, b);
         }
-        public DoubleVector GenerateL(int quantity)
+        public double[] GenerateL(int quantity)
         {
-            string l = "";
+            double[] l = new double[quantity];
             for (int i = 0; i < quantity; i++)
             {
-                l += $"{Math.Round(generator.GetDoubleValue(distributionL, parametersL))} ";
+                l[i] = Math.Round(generator.GetDoubleValue(distributionL, parametersL));
             }
-            return new DoubleVector(l);
+            return l;
         }
-        public DoubleVector GenerateAlpha(int quantity)
+        public double[] GenerateAlpha(int quantity)
         {
-            string alpha = "";
+            double[] alpha = new double[quantity];
             for (int i = 0; i < quantity; i++)
             {
-                alpha += $"1 ";
+                alpha[i] = 1;
             }
-            return new DoubleVector(alpha);
+            return alpha;
         }
-        private void ChangeMatrixs(ref DoubleVector[] cs, double percent)
+        private void ChangeMatrixs(ref double[][] cs, double percent)
         {
             for (int k = 0; k < cs.Length; k++)
             {
-                int size = (int)Math.Round(Math.Sqrt(cs[k].Length));
+                int size = cs[k].Length;
                 for (int i = 0; i < size; i++)
                 {
-                    for (int j = 0; j < size; j++)
-                    {
-                        double e = cs[k][i * size + j] * (percent / 100);
-                        cs[k][i * size + j] += generator.GetDoubleValue("unif", (-e, e));
-                    }
+                    double e = cs[k][i] * (percent / 100);
+                    cs[k][i] += generator.GetDoubleValue("unif", (-e, e));
                 }
             }
         }
         private double SearchMeanPercent(int size, int matrixQuantity, double averChange)
         {
-            (DoubleVector a, DoubleVector b) = GenerateAB(size);
-            DoubleVector l = GenerateL(matrixQuantity);
-            DoubleVector alpha = GenerateAlpha(matrixQuantity);
+            (double[] a, double[] b) = GenerateAB(size);
+            double[] l = GenerateL(matrixQuantity);
+            double[] alpha = GenerateAlpha(matrixQuantity);
             double average = 0;
             double diff;
-            int runAmount = 0;
+            int runNumber = 0;
+            int accuracyAmount = 0;
+            int runFinish = int.MaxValue;
             do
             {
-                diff = runAmount != 0 ? average / runAmount : 0;
+                diff = runNumber != 0 ? average / runNumber : 0;
                 double percent;
                 percent = GetPercentOfChange(size, matrixQuantity, a, b, l, alpha);
                 average += percent;
-                runAmount++;
-                diff = Math.Abs(average / runAmount - diff);
-            } while (!(diff < averChange && runAmount > 10));
-            return average / runAmount;
+                runNumber++;
+                diff = Math.Abs(average / runNumber - diff);
+                accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
+                if (accuracyAmount == 10 && runFinish == int.MaxValue)
+                {
+                    runFinish = runNumber * 10;
+                }
+            } while (runNumber != runFinish);
+            return average / runNumber;
         }
         public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange)
         {
@@ -140,13 +137,12 @@ namespace ClassLibrary
             }
             return results;
         }
-        private double GetPercentOfChange(int size, int matrixQuantity, DoubleVector a, DoubleVector b, DoubleVector l, DoubleVector alpha)
+        private double GetPercentOfChange(int size, int matrixQuantity, double[] a, double[] b, double[] l, double[] alpha)
         {
             double percent;
-            DoubleVector x = new DoubleVector();
-
-            DoubleVector[] cs = new DoubleVector[matrixQuantity];
-            DoubleVector solutions;
+            double[] x = new double[size * size];
+            double[][] cs = new double[matrixQuantity][];
+            double[] solutions;
 
             bool success = false;
             while (!success)
@@ -156,9 +152,8 @@ namespace ClassLibrary
                     cs[i] = GenerateMatrix(size);
                 }
                 (_, solutions) = Solver.GetSolutions(cs, a, b);
-                DualSimplexSolver solution = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
-                x = Solver.DivideX(Solver.RoundMatrix(solution.OptimalX), matrixQuantity);
-                if (!Solver.CheckABConstraints(x, a, b))
+                (x, _) = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
+                if (!Solver.CheckABConstraints(Solver.DivideX(Solver.RoundVector(x), matrixQuantity), a, b))
                 {
                     continue;
                 }
@@ -167,35 +162,43 @@ namespace ClassLibrary
             (percent, _) = FindPercentOfChange(x, ref cs, a, b, l, alpha);
             return percent;
         }
-        public (double, DoubleVector) FindPercentOfChange(DoubleVector oldX, ref DoubleVector[] cs, DoubleVector a, DoubleVector b, DoubleVector l, DoubleVector alpha)
+        public (double, double[]) FindPercentOfChange(double[] oldX, ref double[][] cs, double[] a, double[] b, double[] l, double[] alpha)
         {
             double percent = 0;
-            DoubleVector newX = new DoubleVector();
-            DoubleVector solutions;
             bool change = false;
-            DualSimplexSolver solution;
-            DoubleVector compareX = oldX;
-            DoubleVector[] changedCs = cs;
+            int cNumber = cs.Length;
+            double[] newX = new double[oldX.Length];
+            double[] solutions;
+            double[][] changedCs = new double[cNumber][];
+            oldX.CopyTo(newX, 0);
 
             while (!change)
             {
-                if (compareX == oldX)
+                if (Solver.DivideX(Solver.RoundVector(newX), cNumber).SequenceEqual(Solver.DivideX(Solver.RoundVector(oldX), cNumber)))
                 {
-                    changedCs = cs;
+                    CopyMultidimensional(cs, ref changedCs);
                     percent++;
                     ChangeMatrixs(ref changedCs, percent);
                     (_, solutions) = Solver.GetSolutions(changedCs, a, b);
-                    solution = Solver.SolveSeveral(changedCs, a, b, l, alpha, solutions);
-                    newX = solution.OptimalX;
-                    compareX = Solver.DivideX(Solver.RoundMatrix(newX), cs.Length);
+                    (newX, _) = Solver.SolveSeveral(changedCs, a, b, l, alpha, solutions);
                 }
                 else
                 {
                     change = true;
-                    cs = changedCs;
+                    changedCs.CopyTo(cs, 0);
                 }
             }
             return (percent, newX);
+        }
+
+        public static void CopyMultidimensional(double[][] from, ref double[][] to)
+        {
+            int size = from.Length;
+            for (int i = 0; i < size; i++)
+            {
+                to[i] = new double[from[i].Length];
+                from[i].CopyTo(to[i], 0);
+            }
         }
     }
 }

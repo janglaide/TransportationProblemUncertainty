@@ -1,10 +1,8 @@
-﻿using CenterSpace.NMath.Core;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary
 {
     public static class OutputTransform
     {
-        public static string MatrixTransform(DoubleVector matrix, int columns)
+        public static string MatrixTransform(double[] matrix, int columns)
         {
             var result = "";
             int valueQuantity = matrix.Length;
@@ -30,7 +28,7 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static string VectorTransform(DoubleVector vector, string separ) // separ = "\t" || "\n"
+        public static string VectorTransform(double[] vector, string separ) // separ = "\t" || "\n"
         {
             var result = "";
             int valueQuantity = vector.Length;
@@ -41,7 +39,7 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static string[] ArrayMatrixTransform(DoubleVector[] vector, int columns)
+        public static string[] ArrayMatrixTransform(double[][] vector, int columns)
         {
             int vectorQuantity = vector.Length;
             string[] result = new string[vectorQuantity];
@@ -51,7 +49,7 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static string[] ArrayValuesTransform(DoubleVector vector)
+        public static string[] ArrayValuesTransform(double[] vector)
         {
             int vectorQuantity = vector.Length;
             string[] result = new string[vectorQuantity];
