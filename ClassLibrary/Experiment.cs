@@ -6,6 +6,7 @@ namespace ClassLibrary
 {
     public class Experiment
     {
+        private readonly bool? basicChange;
         private readonly Generator generator = new Generator();
         private readonly string distributionC;
         public string DistributionC
@@ -34,6 +35,10 @@ namespace ClassLibrary
             parametersC = paramC;
             parametersAB = paramAB;
             parametersL = paramL;
+        }
+        public Experiment((string, string, string) distribution, (double, double) paramC, (double, double) paramAB, (double, double) paramL, bool basic) : this(distribution, paramC, paramAB, paramL)
+        {
+            this.basicChange = basic;
         }
         public double[] GenerateMatrix(int size)
         {
@@ -102,6 +107,38 @@ namespace ClassLibrary
                 }
             }
         }
+        private void ChangeMatrixs(ref double[][] cs, double percent, double[] selected)
+        {
+            for (int k = 0; k < cs.Length; k++)
+            {
+                int size = cs[k].Length;
+                for (int i = 0; i < size; i++)
+                {
+                    double e = cs[k][i] * (percent / 100);
+                    cs[k][i] += generator.GetDoubleValue("unif", (-e, e)) * selected[i];
+                }
+            }
+        }
+        private double[] GetBasic(double[] x)
+        {
+            int xNumber = x.Length;
+            double[] basic = new double[xNumber];
+            for (int i = 0; i < xNumber; i++)
+            {
+                basic[i] = (x[i] != 0) ? 1 : 0;
+            }
+            return basic;
+        }
+        private double[] GetNonbasic(double[] x)
+        {
+            int xNumber = x.Length;
+            double[] basic = new double[xNumber];
+            for (int i = 0; i < xNumber; i++)
+            {
+                basic[i] = (x[i] != 0) ? 0 : 1;
+            }
+            return basic;
+        }
         private double SearchMeanPercent(int size, int matrixQuantity, double averChange)
         {
             (double[] a, double[] b) = GenerateAB(size);
@@ -137,6 +174,16 @@ namespace ClassLibrary
             }
             return results;
         }
+        public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, double averChange)
+        {
+
+            List < List <(int, double)>> results = new List<List<(int, double)>>();
+            for (int i = startMatrixQuantity; i <= finishMatrixQuantity; i += step)
+            {
+                results.Add(RunExperiment(startSize, finishSize, step, i, averChange));
+            }
+            return results;
+        }
         private double GetPercentOfChange(int size, int matrixQuantity, double[] a, double[] b, double[] l, double[] alpha)
         {
             double percent;
@@ -168,17 +215,36 @@ namespace ClassLibrary
             bool change = false;
             int cNumber = cs.Length;
             double[] newX = new double[oldX.Length];
+            double[] roundedOldX = Solver.RoundVector(oldX);
+            double[] selectedValues = null;
             double[] solutions;
             double[][] changedCs = new double[cNumber][];
             oldX.CopyTo(newX, 0);
 
+            if (basicChange == true)
+            {
+                selectedValues = GetBasic(roundedOldX);
+            }
+            else if (basicChange == false)
+            {
+                selectedValues = GetNonbasic(roundedOldX);
+            }
+
             while (!change)
             {
-                if (Solver.DivideX(Solver.RoundVector(newX), cNumber).SequenceEqual(Solver.DivideX(Solver.RoundVector(oldX), cNumber)))
+                
+                if (Solver.DivideX(Solver.RoundVector(newX), cNumber).SequenceEqual(Solver.DivideX(roundedOldX, cNumber)))
                 {
                     CopyMultidimensional(cs, ref changedCs);
                     percent++;
-                    ChangeMatrixs(ref changedCs, percent);
+                    if (basicChange == null)
+                    {
+                        ChangeMatrixs(ref changedCs, percent);
+                    }
+                    else
+                    {
+                        ChangeMatrixs(ref changedCs, percent, selectedValues);
+                    }
                     (_, solutions) = Solver.GetSolutions(changedCs, a, b);
                     (newX, _) = Solver.SolveSeveral(changedCs, a, b, l, alpha, solutions);
                 }
