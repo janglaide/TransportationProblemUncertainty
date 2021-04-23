@@ -22,8 +22,10 @@
             _distributionAB = experiment.DistributionAB;
             _distributionL = experiment.DistributionL;
         }
-        public Problem(double[] a, double[] b, double[] l, double[] alpha, double[][] cs, Experiment experiment)
+        public Problem(int N, int R, double[] a, double[] b, double[] l, double[] alpha, double[][] cs, Experiment experiment)
         {
+            _N = N;
+            _R = R;
             _A = a;
             _B = b;
             _l = l;

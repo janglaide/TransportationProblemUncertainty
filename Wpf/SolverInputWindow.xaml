@@ -11,7 +11,10 @@
         <Button x:Name="RandomButton" Content="Random" HorizontalAlignment="Left" Margin="62,167,0,0" VerticalAlignment="Top" Height="50" Width="171" Click="RandomButton_Click"/>
         <Label Content="Choose a type of input" HorizontalAlignment="Left" Margin="62,61,0,0" VerticalAlignment="Top" Width="510"/>
         <Button x:Name="FromFileButton" Content="From file" HorizontalAlignment="Left" Margin="62,270,0,0" VerticalAlignment="Top" Height="49" Width="171" Click="FromFileButton_Click"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="593,270,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="Back_Clicked"/>
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="598,347,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="Back_Clicked"/>
+        <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="62,357,0,0" VerticalAlignment="Top" Width="319"/>
+        <Button Name="RunFromFile" IsEnabled="False" Content="Run from file" HorizontalAlignment="Left" Margin="501,270,0,0" VerticalAlignment="Top" Height="49" Width="199" Click="RunFromFile_Click"/>
+        <TextBlock Name="Filename" HorizontalAlignment="Left" Margin="317,287,0,0" Foreground="Gray" FontSize="15" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="105"/>
 
     </Grid>
 </Window>

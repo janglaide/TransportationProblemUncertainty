@@ -27,6 +27,7 @@ namespace ClassLibrary
         private readonly (double, double) parametersAB;
         private readonly (double, double) parametersL;
 
+        public Experiment() { }
         public Experiment((string, string, string) distribution, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
         {
             distributionC = distribution.Item1;
