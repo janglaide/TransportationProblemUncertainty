@@ -2,17 +2,17 @@
 {
     public class Problem
     {
-        private readonly int _N;
-        private readonly int _R;
+        public readonly int _N;
+        public readonly int _R;
         private readonly string _distribution;
         private readonly string _distributionAB;
         private readonly string _distributionL;
         private readonly Experiment _experiment;
-        private double[] _A;
-        private double[] _B;
-        private double[] _l;
-        private double[] _alpha;
-        private double[][] _Cs;
+        public double[] _A;
+        public double[] _B;
+        public double[] _l;
+        public double[] _alpha;
+        public double[][] _Cs;
         public Problem(int N, int R, Experiment experiment)
         {
             _N = N;

@@ -133,7 +133,7 @@ namespace Wpf
             var experiment = new Experiment();
             var problem = new Problem(N, R, a, b, l, alpha, Cs, experiment);
             var solution = problem.Run();
-            var window = new SolutionWindow(solution);
+            var window = new SolutionWindow(solution, problem);
             window.Show();
         }
     }

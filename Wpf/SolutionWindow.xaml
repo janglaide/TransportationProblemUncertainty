@@ -25,6 +25,7 @@
                 <TextBlock x:Name="ABlock"  HorizontalAlignment="Left" Margin="461,13,0,499" Text="" TextWrapping="Wrap"  />
                 <TextBlock x:Name="BBlock"  HorizontalAlignment="Left" Margin="461,45,0,467" Text="" TextWrapping="Wrap"  />
                 <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="461,81,0,431" Text="" TextWrapping="Wrap"  />
+                <Button Name="SaveInputButton" Content="Save input data" HorizontalAlignment="Left" Margin="680,13,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveInputButton_Click"/>
             </Grid>
         </ScrollViewer>
 

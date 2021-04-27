@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using ClassLibrary;
+using Microsoft.Win32;
 
 namespace Wpf
 {
@@ -9,8 +12,11 @@ namespace Wpf
     /// </summary>
     public partial class SolutionWindow : Window
     {
-        public SolutionWindow(FullSolution solution)
+        private const char V = '\n';
+        private readonly Problem _data;
+        public SolutionWindow(FullSolution solution, Problem data)
         {
+            _data = data;
             InitializeComponent();
 
             OptimalValueBlock.Text = solution.SolutionWithoutChange.FunctionValue;
@@ -390,6 +396,48 @@ namespace Wpf
                 CoolGrid.Children.Add(DistancesLabel);
                 CoolGrid.Children.Add(DistancesValues);
             }
+        }
+
+        private void SaveInputButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                
+                if (saveFileDialog.ShowDialog() != true)
+                    throw new Exception("File save dialog does not open");
+
+                var fullText = _data._N.ToString() + "\n\n";
+                fullText += _data._R.ToString() + V;
+                foreach(var c in _data._Cs)
+                {
+                    for(var i = 0; i < c.Length; i++)
+                    {
+                        if (i % Math.Sqrt(c.Length) == 0)
+                            fullText += V;
+                        fullText += c[i].ToString() + ' ';
+                    }
+                    fullText += V;
+                }
+                fullText += V;
+                foreach(var a in _data._A)
+                    fullText += a.ToString() + ' ';
+                fullText += "\n\n";
+                foreach (var b in _data._B)
+                    fullText += b.ToString() + ' ';
+                fullText += "\n\n";
+                foreach (var l in _data._l)
+                    fullText += l.ToString() + ' ';
+                fullText += "\n\n";
+                foreach (var alpha in _data._alpha)
+                    fullText += alpha.ToString() + ' ';
+                fullText += V;
+
+                File.WriteAllText(saveFileDialog.FileName, fullText);
+            }
+            catch (Exception)
+            { }
+            
         }
     }
 }

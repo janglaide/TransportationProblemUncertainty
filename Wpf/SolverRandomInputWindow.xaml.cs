@@ -151,7 +151,7 @@ namespace Wpf
                 var experiment = new Experiment(distribution, paramsC, paramsAB, paramsL);
                 Problem problem = new Problem(N, R, experiment);
                 var solution = problem.Run();
-                var window = new SolutionWindow(solution);
+                var window = new SolutionWindow(solution, problem);
                 window.Show();
             }
             catch (Exception ex)
