@@ -407,9 +407,9 @@ namespace Wpf
                 if (saveFileDialog.ShowDialog() != true)
                     throw new Exception("File save dialog does not open");
 
-                var fullText = _data._N.ToString() + "\n\n";
-                fullText += _data._R.ToString() + V;
-                foreach(var c in _data._Cs)
+                var fullText = _data.N.ToString() + "\n\n";
+                fullText += _data.R.ToString() + V;
+                foreach(var c in _data.Cs)
                 {
                     for(var i = 0; i < c.Length; i++)
                     {
@@ -420,16 +420,16 @@ namespace Wpf
                     fullText += V;
                 }
                 fullText += V;
-                foreach(var a in _data._A)
+                foreach(var a in _data.A)
                     fullText += a.ToString() + ' ';
                 fullText += "\n\n";
-                foreach (var b in _data._B)
+                foreach (var b in _data.B)
                     fullText += b.ToString() + ' ';
                 fullText += "\n\n";
-                foreach (var l in _data._l)
+                foreach (var l in _data.L)
                     fullText += l.ToString() + ' ';
                 fullText += "\n\n";
-                foreach (var alpha in _data._alpha)
+                foreach (var alpha in _data.Alpha)
                     fullText += alpha.ToString() + ' ';
                 fullText += V;
 

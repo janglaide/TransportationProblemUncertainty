@@ -148,8 +148,8 @@ namespace Wpf
                 }
 
                 ExceptionLabel.Content = "";
-                var experiment = new Experiment(distribution, paramsC, paramsAB, paramsL);
-                Problem problem = new Problem(N, R, experiment);
+                var generator = new GeneratorTaskCondition(distribution, paramsC, paramsAB, paramsL);
+                Problem problem = new Problem(N, R, generator, CChangeParameters.Default, deviation);
                 var solution = problem.Run();
                 var window = new SolutionWindow(solution, problem);
                 window.Show();

@@ -129,9 +129,7 @@ namespace Wpf
                 alpha[j] = double.Parse(col);
                 j++;
             }
-
-            var experiment = new Experiment();
-            var problem = new Problem(N, R, a, b, l, alpha, Cs, experiment);
+            var problem = new Problem(a, b, l, alpha, Cs, CChangeParameters.Default, 0.001);
             var solution = problem.Run();
             var window = new SolutionWindow(solution, problem);
             window.Show();

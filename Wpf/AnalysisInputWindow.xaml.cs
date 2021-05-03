@@ -161,7 +161,9 @@ namespace Wpf
                 
                 ExceptionLabel.Content = "";
 
-                var experiment = new Experiment(distribuiton, paramsC, paramsAB, paramsL);
+
+                GeneratorTaskCondition generator = new GeneratorTaskCondition(distribuiton, paramsC, paramsAB, paramsL);
+                var experiment = new Experiment(generator);
                 var results = experiment.RunExperiment(startSize, finalSize, step, R, accuracy);
 
                 var window = new ExperimentResultWindow(results);
