@@ -9,24 +9,22 @@ namespace ClassLibrary
         public static double SearchMeanPercentForDefinedCondition(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
         {
             double average = 0;
-            double diff;
             int runNumber = 0;
             int accuracyAmount = 0;
-            int runFinish = int.MaxValue;
+            int runFinish;
             do
             {
-                diff = runNumber != 0 ? average / runNumber : 0;
-                double percent;
-                percent = SearchPercent(parameters);
-                average += percent;
+                double diff = runNumber != 0 ? average / runNumber : 0;
+                average += SearchPercent(parameters);
                 runNumber++;
                 diff = Math.Abs(average / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
-                if (accuracyAmount == 10 && runFinish == int.MaxValue)
-                {
-                    runFinish = runNumber * 10;
-                }
-            } while (runNumber != runFinish);
+            } while (accuracyAmount < 10);
+            runFinish = runNumber * 10;
+            for(; runNumber <= runFinish; runNumber++)
+            {
+                average += SearchPercent(parameters);
+            }
             return average / runNumber;
         }
         public static double FindPercentOfChange(SearchParameters parameters)

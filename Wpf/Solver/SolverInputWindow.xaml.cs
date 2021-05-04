@@ -139,7 +139,7 @@ namespace Wpf
                 alpha[j] = double.Parse(col);
                 j++;
             }
-            var problem = new Problem(a, b, l, alpha, Cs, CChangeParameters.Default, 0.001);
+            var problem = new Problem(a, b, l, alpha, Cs, CChangeParameters.Default);
             ExceptionLabel.Content = "";
             var solution = problem.Run();
             var window = new SolutionWindow(solution, problem);

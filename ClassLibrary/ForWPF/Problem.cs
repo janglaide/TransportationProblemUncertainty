@@ -4,7 +4,6 @@
     {
         private readonly GeneratorTaskCondition _generator;
         private readonly CChangeParameters _cChangeParameters;
-        private readonly double _averChange;
         public readonly int N;
         public readonly int R;
         public double[] A;
@@ -12,15 +11,14 @@
         public double[] L;
         public double[] Alpha;
         public double[][] Cs;
-        public Problem(int N, int R, GeneratorTaskCondition generator, CChangeParameters cChangeParameters, double averChange)
+        public Problem(int N, int R, GeneratorTaskCondition generator, CChangeParameters cChangeParameters)
         {
             this.N = N;
             this.R = R;
-            _averChange = averChange;
             _generator = generator;
             _cChangeParameters = cChangeParameters;
         }
-        public Problem(double[] a, double[] b, double[] l, double[] alpha, double[][] cs, CChangeParameters cChangeParameters, double averChange)
+        public Problem(double[] a, double[] b, double[] l, double[] alpha, double[][] cs, CChangeParameters cChangeParameters)
         {
             N = a.Length;
             R = l.Length;
@@ -29,7 +27,6 @@
             L = l;
             Alpha = alpha;
             Cs = cs;
-            _averChange = averChange;
             _cChangeParameters = cChangeParameters;
         }
         public FullSolution Run()
