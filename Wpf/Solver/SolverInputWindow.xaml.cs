@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace Wpf
 {
@@ -21,6 +23,13 @@ namespace Wpf
     /// </summary>
     public partial class SolverInputWindow : Window
     {
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
         private string _filename;
         public SolverInputWindow()
         {
@@ -133,6 +142,12 @@ namespace Wpf
             var solution = problem.Run();
             var window = new SolutionWindow(solution, problem);
             window.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
     }
 }

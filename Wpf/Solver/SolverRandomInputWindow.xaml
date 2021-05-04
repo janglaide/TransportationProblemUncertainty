@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
         Title="SolverRandomInputWindow" Height="609" Width="826" FontSize="16"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid Height="570">
         <Label Content="Size of matrix (n):" HorizontalAlignment="Left" Margin="58,23,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SizeBox" HorizontalAlignment="Left" Margin="526,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>

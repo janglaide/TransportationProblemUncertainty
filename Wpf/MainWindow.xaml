@@ -13,6 +13,7 @@
         <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="SolverButton_Click"/>
         <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="82,217,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="AnalysisButton_Click"/>
         <Button x:Name="PersistenceButton" Content="Persistence test" HorizontalAlignment="Left" Margin="82,293,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="PersistenceButton_Click"/>
+        <Button Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="584,293,0,0" VerticalAlignment="Top" Height="51" Width="115" Click="Exit_Click"/>
 
     </Grid>
 </Window>

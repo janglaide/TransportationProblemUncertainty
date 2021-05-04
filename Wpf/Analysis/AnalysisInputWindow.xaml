@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
         Title="AnalysisInputWindow" Height="665" Width="921" FontSize="16"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="383*"/>

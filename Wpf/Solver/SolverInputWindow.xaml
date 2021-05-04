@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
         Title="SolverInputWindow" Height="450" Width="800" FontSize="22"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="RandomButton" Content="Random" HorizontalAlignment="Left" Margin="62,167,0,0" VerticalAlignment="Top" Height="50" Width="171" Click="RandomButton_Click"/>
         <Label Content="Choose a type of input" HorizontalAlignment="Left" Margin="62,61,0,0" VerticalAlignment="Top" Width="510"/>
