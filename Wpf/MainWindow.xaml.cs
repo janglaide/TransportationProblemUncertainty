@@ -56,7 +56,9 @@ namespace Wpf
 
         private void PersistenceButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = new PersistenceTest.InputWindow();
+            window.Show();
+            Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

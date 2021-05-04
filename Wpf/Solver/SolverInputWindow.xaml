@@ -14,7 +14,7 @@
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="598,347,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="Back_Clicked"/>
         <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="62,357,0,0" VerticalAlignment="Top" Width="319"/>
         <Button Name="RunFromFile" IsEnabled="False" Content="Run from file" HorizontalAlignment="Left" Margin="501,270,0,0" VerticalAlignment="Top" Height="49" Width="199" Click="RunFromFile_Click"/>
-        <TextBlock Name="Filename" HorizontalAlignment="Left" Margin="317,287,0,0" Foreground="Gray" FontSize="15" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="105"/>
+        <TextBlock Name="Filename" HorizontalAlignment="Left" Margin="283,287,0,0" Foreground="Gray" FontSize="15" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="172"/>
 
     </Grid>
 </Window>

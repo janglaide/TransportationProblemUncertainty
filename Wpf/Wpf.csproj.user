@@ -13,6 +13,9 @@
     <Compile Update="Analysis\ExperimentResultWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="PersistenceTest\InputWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Solver\SolutionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PersistenceTest\InputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Solver\SolutionWindow.xaml">

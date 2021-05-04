@@ -54,12 +54,13 @@ namespace Wpf
                 _filename = openFileDialog.FileName;
                 Filename.Text = _filename.Split("\\").Last();
                 RunFromFile.IsEnabled = true;
+                ExceptionLabel.Foreground = Brushes.DarkGreen;
+                ExceptionLabel.Content = "File chosen successfully";
             }
             catch(Exception ex)
             {
                 ExceptionLabel.Content = ex.Message;
             }
-
         }
 
         private void Back_Clicked(object sender, RoutedEventArgs e)
@@ -139,6 +140,7 @@ namespace Wpf
                 j++;
             }
             var problem = new Problem(a, b, l, alpha, Cs, CChangeParameters.Default, 0.001);
+            ExceptionLabel.Content = "";
             var solution = problem.Run();
             var window = new SolutionWindow(solution, problem);
             window.Show();

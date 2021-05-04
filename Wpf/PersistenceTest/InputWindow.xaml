@@ -1,0 +1,20 @@
+﻿<Window x:Class="Wpf.PersistenceTest.InputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.PersistenceTest"
+        mc:Ignorable="d"
+        Title="InputWindow" Height="450" Width="729" FontSize="22"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Button Name="SelectFile" Content="Select file" HorizontalAlignment="Left" Margin="58,102,0,0" VerticalAlignment="Top" Height="50" Width="161" Click="SelectFile_Click"/>
+        <Button Name="Run" IsEnabled="False" Content="Run test" HorizontalAlignment="Left" Margin="58,259,0,0" VerticalAlignment="Top" Height="50" Width="161" Click="Run_Click"/>
+        <Label Name="ExceptionLabel" Foreground="DarkRed" FontSize="16" Content="" HorizontalAlignment="Left" Margin="58,348,0,0" VerticalAlignment="Top" Height="38" Width="493"/>
+        <TextBlock Name="Filename" HorizontalAlignment="Left" Foreground="Gray" Margin="58,175,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" FontSize="16" Width="402"/>
+        <Button Name="Back" Content="Back" HorizontalAlignment="Left" Margin="551,259,0,0" VerticalAlignment="Top" Height="50" Width="106" Click="Back_Click"/>
+        <TextBlock Name="Description" HorizontalAlignment="Left" Margin="58,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="599"
+                   Text="Choose a file with your task and solution for test" />
+
+    </Grid>
+</Window>
