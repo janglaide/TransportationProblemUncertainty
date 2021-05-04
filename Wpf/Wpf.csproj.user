@@ -7,39 +7,39 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AnalysisInputWindow.xaml.cs">
+    <Compile Update="Analysis\AnalysisInputWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ExperimentResultWindow.xaml.cs">
+    <Compile Update="Analysis\ExperimentResultWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SolutionWindow.xaml.cs">
+    <Compile Update="Solver\SolutionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SolverInputWindow.xaml.cs">
+    <Compile Update="Solver\SolverInputWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SolverRandomInputWindow.xaml.cs">
+    <Compile Update="Solver\SolverRandomInputWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AnalysisInputWindow.xaml">
+    <Page Update="Analysis\AnalysisInputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ExperimentResultWindow.xaml">
+    <Page Update="Analysis\ExperimentResultWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SolutionWindow.xaml">
+    <Page Update="Solver\SolutionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SolverInputWindow.xaml">
+    <Page Update="Solver\SolverInputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SolverRandomInputWindow.xaml">
+    <Page Update="Solver\SolverRandomInputWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

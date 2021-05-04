@@ -44,5 +44,10 @@ namespace Wpf
             window.Show();
             Close();
         }
+
+        private void PersistenceButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

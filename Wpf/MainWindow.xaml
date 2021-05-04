@@ -10,8 +10,9 @@
         WindowStartupLocation="CenterScreen">
     <Grid Loaded="Loaded_MainWindow">
         <Label Content="Transportation problem under uncertainty solver and analysis" HorizontalAlignment="Left" Margin="82,42,0,0" VerticalAlignment="Top" Height="71" Width="672"/>
-        <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,0,0,0" VerticalAlignment="Center" Height="51" Width="225" Click="SolverButton_Click"/>
-        <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="474,0,0,0" VerticalAlignment="Center" Height="51" Width="236" Click="AnalysisButton_Click"/>
+        <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="SolverButton_Click"/>
+        <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="82,217,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="AnalysisButton_Click"/>
+        <Button x:Name="PersistenceButton" Content="Persistence test" HorizontalAlignment="Left" Margin="82,293,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="PersistenceButton_Click"/>
 
     </Grid>
 </Window>
