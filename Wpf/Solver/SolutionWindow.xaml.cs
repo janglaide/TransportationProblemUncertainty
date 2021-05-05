@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using ClassLibrary;
+using ClassLibrary.ForWPF;
 using Microsoft.Win32;
 
 namespace Wpf
@@ -12,12 +13,14 @@ namespace Wpf
     /// </summary>
     public partial class SolutionWindow : Window
     {
-        private const char V = '\n';
         private readonly Problem _data;
+        private readonly FullSolution _fullSolution;
         public SolutionWindow(FullSolution solution, Problem data)
         {
             _data = data;
+            _fullSolution = solution;
             InitializeComponent();
+            SaveInputButton.Margin = new Thickness(Width - 100, 77, 0, 0);
 
             OptimalValueBlock.Text = solution.SolutionWithoutChange.FunctionValue;
             AlphaBlock.Text = solution.SolutionWithoutChange.Alpha;
@@ -407,37 +410,36 @@ namespace Wpf
                 if (saveFileDialog.ShowDialog() != true)
                     throw new Exception("File save dialog does not open");
 
-                var fullText = _data.N.ToString() + "\n\n";
-                fullText += _data.R.ToString() + V;
-                foreach(var c in _data.Cs)
-                {
-                    for(var i = 0; i < c.Length; i++)
-                    {
-                        if (i % Math.Sqrt(c.Length) == 0)
-                            fullText += V;
-                        fullText += c[i].ToString() + ' ';
-                    }
-                    fullText += V;
-                }
-                fullText += V;
-                foreach(var a in _data.A)
-                    fullText += a.ToString() + ' ';
-                fullText += "\n\n";
-                foreach (var b in _data.B)
-                    fullText += b.ToString() + ' ';
-                fullText += "\n\n";
-                foreach (var l in _data.L)
-                    fullText += l.ToString() + ' ';
-                fullText += "\n\n";
-                foreach (var alpha in _data.Alpha)
-                    fullText += alpha.ToString() + ' ';
-                fullText += V;
-
-                File.WriteAllText(saveFileDialog.FileName, fullText);
+                FileProcessing.WriteProblemIntoFile(_data, saveFileDialog.FileName);
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
+        }
+
+        private void Resized(object sender, SizeChangedEventArgs e)
+        {
+            SaveInputButton.Margin = new Thickness(Width - 200, 77, 0, 0);
+            SaveResult.Margin = new Thickness(Width - 200, 135, 0, 0);
+        }
+
+        private void SaveResult_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                if (saveFileDialog.ShowDialog() != true)
+                    throw new Exception("File save dialog does not open");
+
+                FileProcessing.WriteSolutionIntoFile(_fullSolution, saveFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
