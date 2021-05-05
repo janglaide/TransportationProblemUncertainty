@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ClassLibrary.Logic;
+using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
@@ -21,11 +25,46 @@ namespace ClassLibrary
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
-            for(; runNumber <= runFinish; runNumber++)
+
+            for(; runNumber <= runFinish; runNumber++) //simple
             {
                 average += SearchPercent(parameters);
             }
+
+
+            /*                                          //threads try (unsuccessfull)
+            var iterations = runFinish - runNumber;
+            var quantity = 10;
+            int step = iterations / quantity;
+
+            Thread[] tasks = new Thread[quantity];
+            Counter[] averages = new Counter[quantity];
+            for(var i = 0; i < quantity; i++)
+            {
+                averages[i] = new Counter(step, SearchPercent, parameters);
+                tasks[i] = new Thread(new ParameterizedThreadStart(Count));               
+            }
+            for (var i = 0; i < quantity; i++)
+            {
+                tasks[i].Start(averages[i]);
+            }
+            foreach (var task in tasks)
+            {
+                task.Join();
+            }
+            foreach(var counter in averages)
+            {
+                average += counter.Average;
+            }
+            */
+
             return average / runNumber;
+        }
+        private static void Count(object obj) // for threads try
+        {
+            Counter average = (Counter)obj;
+            for (var i = 0; i < average.N; i++)
+                average.Average += average.percentDelegate(average.percentParameters);
         }
         public static double FindPercentOfChange(SearchParameters parameters)
         {
