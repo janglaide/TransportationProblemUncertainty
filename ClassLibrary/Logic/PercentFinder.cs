@@ -1,5 +1,4 @@
-﻿using ClassLibrary.Logic;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -25,47 +24,43 @@ namespace ClassLibrary
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
-
+            /*
             for(; runNumber <= runFinish; runNumber++) //simple
             {
                 average += SearchPercent(parameters);
             }
+            */
 
-
-            /*                                          //threads try (unsuccessfull)
+                                                      //threads try (unsuccessfull)
             var iterations = runFinish - runNumber;
             var quantity = 10;
             int step = iterations / quantity;
 
-            Thread[] tasks = new Thread[quantity];
-            Counter[] averages = new Counter[quantity];
-            for(var i = 0; i < quantity; i++)
-            {
-                averages[i] = new Counter(step, SearchPercent, parameters);
-                tasks[i] = new Thread(new ParameterizedThreadStart(Count));               
-            }
+            Task[] tasks = new Task[quantity];
+            double[] averages = new double[quantity];
+
             for (var i = 0; i < quantity; i++)
             {
-                tasks[i].Start(averages[i]);
+                var localThread = i;
+                averages[localThread] = 0.0;
+                tasks[localThread] = Task.Run(() => { 
+                    for(var j = 0; j < step; j++)
+                    {
+                        averages[localThread] += SearchPercent(parameters);
+                    }
+                });
             }
-            foreach (var task in tasks)
+            //Task.WaitAll(tasks);                // crash (focus on the window)
+            //await Task.WhenAll(tasks);
+            foreach (var counter in averages)
             {
-                task.Join();
+                average += counter;
             }
-            foreach(var counter in averages)
-            {
-                average += counter.Average;
-            }
-            */
+            
 
             return average / runNumber;
         }
-        private static void Count(object obj) // for threads try
-        {
-            Counter average = (Counter)obj;
-            for (var i = 0; i < average.N; i++)
-                average.Average += average.percentDelegate(average.percentParameters);
-        }
+        
         public static double FindPercentOfChange(SearchParameters parameters)
         {
             if (!(parameters is ParametersForDefined))
