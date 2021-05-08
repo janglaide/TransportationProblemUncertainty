@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,67 +8,56 @@ namespace ClassLibrary
 {
     public static class PercentFinder
     {
-        public delegate double PercentDelegate(SearchParameters parameters);
-        public static double SearchMeanPercentForDefinedCondition(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
+        public delegate int PercentDelegate(SearchParameters parameters);
+        public static double SearchMeanPercent(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
         {
-            double average = 0;
+            int sum = 0;
             int runNumber = 0;
             int accuracyAmount = 0;
             int runFinish;
             do
             {
-                double diff = runNumber != 0 ? average / runNumber : 0;
-                average += SearchPercent(parameters);
+                double diff = runNumber != 0 ? sum / runNumber : 0;
+                sum += SearchPercent(parameters);
                 runNumber++;
-                diff = Math.Abs(average / runNumber - diff);
+                diff = Math.Abs(sum / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
             /*
             for(; runNumber <= runFinish; runNumber++) //simple
             {
-                average += SearchPercent(parameters);
+                sum += SearchPercent(parameters);
             }
             */
-
                                                       //threads try (unsuccessfull)
             var iterations = runFinish - runNumber;
-            var quantity = 10;
-            int step = iterations / quantity;
+            var quantity = Environment.ProcessorCount;
+            var step = (int)Math.Ceiling((double)iterations / quantity);
+            runNumber += step * quantity;
 
-            Task[] tasks = new Task[quantity];
-            double[] averages = new double[quantity];
-
-            for (var i = 0; i < quantity; i++)
-            {
-                var localThread = i;
-                averages[localThread] = 0.0;
-                tasks[localThread] = Task.Run(() => { 
-                    for(var j = 0; j < step; j++)
+            Parallel.ForEach(
+                Enumerable.Range(0, quantity), 
+                (sumLocal) =>
+                {
+                    for (var j = 0; j < step; j++)
                     {
-                        averages[localThread] += SearchPercent(parameters);
+                        sumLocal += SearchPercent(parameters);
                     }
-                });
-            }
-            //Task.WaitAll(tasks);                // crash (focus on the window)
-            //await Task.WhenAll(tasks);
-            foreach (var counter in averages)
-            {
-                average += counter;
-            }
-            
-
-            return average / runNumber;
+                    Interlocked.Add(ref sum, sumLocal);
+                }
+            );
+            return (double)sum / runNumber;
         }
         
-        public static double FindPercentOfChange(SearchParameters parameters)
+        public static int FindPercentOfChange(SearchParameters parameters)
         {
             if (!(parameters is ParametersForDefined))
             {
                 throw new ArgumentException("Wrong parameters type in method PercentFinder.ParametersForDefined. Need to be ParametersForDefined.");
             }
             ParametersForDefined param = (ParametersForDefined)parameters;
-            double percent = 0;
+            int percent = 0;
             bool change = false;
             int cNumber = param.Cs.Length;
             double[] newX = new double[param.OldX.Length];

@@ -20,17 +20,17 @@ namespace ClassLibrary
         private double SearchMeanPercentForSize(int size, int matrixQuantity, double averChange)
         {
             PercentFinder.PercentDelegate SearchPercent = GetPercentOfChange;
-            ParametersForRandom parameters = new ParametersForRandom(size, matrixQuantity, /*a, b, l, alpha,*/ _cChangeParameters);
-            return PercentFinder.SearchMeanPercentForDefinedCondition(SearchPercent, parameters, averChange);
+            ParametersForRandom parameters = new ParametersForRandom(size, matrixQuantity, _cChangeParameters);
+            return PercentFinder.SearchMeanPercent(SearchPercent, parameters, averChange);
         }
-        private double GetPercentOfChange(SearchParameters parameters)
+        private int GetPercentOfChange(SearchParameters parameters)
         {
             if (!(parameters is ParametersForRandom))
             {
                 throw new ArgumentException("Wrong parameters type in method Experiment.GetPercentOfChange. Need to be ParametersForRandom.");
             }
             ParametersForRandom param = (ParametersForRandom)parameters;
-            double percent;
+            int percent;
             double[] x = new double[param.Size * param.Size];
             double[][] cs = new double[param.MatrixQuantity][];
             double[] a = new double[param.Size];

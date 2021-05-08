@@ -7,3 +7,5 @@ ClassLibrary/bin
 ClassLibrary/packages.config
 ClassLibrary/obj
 Wpf/obj
+DataAccess/bin
+DataAccess/obj
