@@ -88,5 +88,9 @@ namespace ClassLibrary
             }
             return alpha;
         }
+        public GeneratorTaskCondition Copy()
+        {
+            return new GeneratorTaskCondition((_distributionC, _distributionAB, _distributionL), _parametersC, _parametersAB, _parametersL);
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace ClassLibrary
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
             /*
-            for(; runNumber <= runFinish; runNumber++) //simple
+            for (; runNumber <= runFinish; runNumber++) //simple
             {
                 average += SearchPercent(parameters);
             }
@@ -47,6 +47,7 @@ namespace ClassLibrary
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
             );
+
             average += threadsSum;
             average /= runNumber;
             return average;
@@ -54,12 +55,12 @@ namespace ClassLibrary
         
         public static int FindPercentOfChange(SearchParameters parameters)
         {
-            Solver solver = new Solver();
             if (!(parameters is ParametersForDefined))
             {
                 throw new ArgumentException("Wrong parameters type in method PercentFinder.ParametersForDefined. Need to be ParametersForDefined.");
             }
-            ParametersForDefined param = (ParametersForDefined)parameters;
+            var param = (ParametersForDefined)parameters;
+            var solver = new Solver();
             int percent = 0;
             bool change = false;
             int cNumber = param.Cs.Length;
@@ -114,7 +115,7 @@ namespace ClassLibrary
         }
         private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected)
         {
-            GeneratorValues generator = new GeneratorValues();
+            var generator = new GeneratorValues();
             for (int k = 0; k < cs.Length; k++)
             {
                 int size = cs[k].Length;
