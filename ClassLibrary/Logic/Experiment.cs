@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.Logic;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -75,6 +76,10 @@ namespace ClassLibrary
                 }
             });
             task.Wait();
+
+            var service = new ExperimentService();
+            service.AddExperimentResult(results, _generator, averChange);
+
             return results;
         }
         public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, double averChange)

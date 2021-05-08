@@ -67,7 +67,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsC = (delay, delay);
-                        distribuiton.Item1 = "exp";
+                        distribuiton.Item1 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm":
@@ -78,7 +78,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsC = (delay, deviation);
-                        distribuiton.Item1 = "norm";
+                        distribuiton.Item1 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -89,7 +89,7 @@ namespace Wpf
                         delay = -1.0;
                         deviation = -1.0;
                         paramsC = (a, b);
-                        distribuiton.Item1 = "unif";
+                        distribuiton.Item1 = "Uniform";
                         //experiment = new Experiment(item.Name, (a, b), (a, b), (a, b));
                         break;
                 }
@@ -104,7 +104,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsAB = (delay, delay);
-                        distribuiton.Item2 = "exp";
+                        distribuiton.Item2 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm1":
@@ -115,7 +115,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsAB = (delay, deviation);
-                        distribuiton.Item2 = "norm";
+                        distribuiton.Item2 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -126,7 +126,7 @@ namespace Wpf
                         delay = -1.0;
                         deviation = -1.0;
                         paramsAB = (a, b);
-                        distribuiton.Item2 = "unif";
+                        distribuiton.Item2 = "Uniform";
                         //experiment = new Experiment(item.Name, (a, b), (a, b), (a, b));
                         break;
                 }
@@ -141,7 +141,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsL = (delay, delay);
-                        distribuiton.Item3 = "exp";
+                        distribuiton.Item3 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm2":
@@ -152,7 +152,7 @@ namespace Wpf
                         a = -1.0;
                         b = -1.0;
                         paramsL = (delay, deviation);
-                        distribuiton.Item3 = "norm";
+                        distribuiton.Item3 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -163,7 +163,7 @@ namespace Wpf
                         delay = -1.0;
                         deviation = -1.0;
                         paramsL = (a, b);
-                        distribuiton.Item3 = "unif";
+                        distribuiton.Item3 = "Uniform";
                         break;
                 }
                 

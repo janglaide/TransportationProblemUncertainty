@@ -122,7 +122,7 @@ namespace ClassLibrary
                 for (int i = 0; i < size; i++)
                 {
                     double e = cs[k][i] * (percent / 100);
-                    cs[k][i] += generator.GetDoubleValue("unif", (-e, e)) * selected[i];
+                    cs[k][i] += generator.GetDoubleValue("Uniform", (-e, e)) * selected[i];
                 }
             }
         }

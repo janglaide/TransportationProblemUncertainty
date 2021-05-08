@@ -63,7 +63,7 @@ namespace Wpf
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item1 = "exp";
+                        distribution.Item1 = "Exponential";
                         paramsC = (delay, delay);
                         break;
                     case "norm":
@@ -73,7 +73,7 @@ namespace Wpf
                         if (deviation <= 0) throw new Exception("The deviation must be positive");
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item1 = "norm";
+                        distribution.Item1 = "Normal";
                         paramsC = (delay, deviation);
                         break;
                     default:
@@ -83,7 +83,7 @@ namespace Wpf
                         if (a < 0) throw new Exception("The range must be of positive");
                         delay = -1.0;
                         deviation = -1.0;
-                        distribution.Item1 = "unif";
+                        distribution.Item1 = "Uniform";
                         paramsC = (a, b);
                         break;
                 }
@@ -97,7 +97,7 @@ namespace Wpf
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item2 = "exp";
+                        distribution.Item2 = "Exponential";
                         paramsAB = (delay, delay);
                         break;
                     case "norm1":
@@ -107,7 +107,7 @@ namespace Wpf
                         if (deviation <= 0) throw new Exception("The deviation must be positive");
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item2 = "norm";
+                        distribution.Item2 = "Normal";
                         paramsAB = (delay, deviation);
                         break;
                     default:
@@ -117,7 +117,7 @@ namespace Wpf
                         if (a < 0) throw new Exception("The range must be of positive");
                         delay = -1.0;
                         deviation = -1.0;
-                        distribution.Item2= "unif";
+                        distribution.Item2= "Uniform";
                         paramsAB = (a, b);
                         break;
                 }
@@ -131,7 +131,7 @@ namespace Wpf
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item3 = "exp";
+                        distribution.Item3 = "Exponential";
                         paramsL = (delay, delay);
                         break;
                     case "norm2":
@@ -141,7 +141,7 @@ namespace Wpf
                         if (deviation <= 0) throw new Exception("The deviation must be positive");
                         a = -1.0;
                         b = -1.0;
-                        distribution.Item3 = "norm";
+                        distribution.Item3 = "Normal";
                         paramsL = (delay, deviation);
                         break;
                     default:
@@ -151,7 +151,7 @@ namespace Wpf
                         if (a < 0) throw new Exception("The range must be of positive");
                         delay = -1.0;
                         deviation = -1.0;
-                        distribution.Item3 = "unif";
+                        distribution.Item3 = "Uniform";
                         paramsL = (a, b);
                         break;
                 }

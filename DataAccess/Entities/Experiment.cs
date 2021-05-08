@@ -8,6 +8,9 @@ namespace DataAccess.Entities
     {
         public int Id { get; set; }
         public int DistributionId { get; set; }
+        public DistributionParameters Distribution { get; set; }
         public double Accuracy { get; set; }
+
+        public ICollection<Percentage> Percentages { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace DataAccess
         public DbSet<Percentage> Percentages { get; set; }
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,6 +27,18 @@ namespace DataAccess
             modelBuilder.Entity<Experiment>().HasKey(x => x.Id);
             modelBuilder.Entity<Percentage>().HasKey(x => x.Id);
 
+            modelBuilder.Entity<Distribution>().HasData(new Distribution[] {
+                new Distribution{Id = 1, Name = "Exponential"}, 
+                new Distribution{Id = 2, Name = "Normal"}, 
+                new Distribution{Id = 3, Name = "Uniform"}
+            });
+
+            modelBuilder.Entity<DistributionParameters>().HasOne(x => x.DistributionCs)
+                .WithMany(y => y.DistributionParametersCs).HasForeignKey(k => k.DistributionCsId);
+            modelBuilder.Entity<DistributionParameters>().HasOne(x => x.DistributionAB)
+                .WithMany(y => y.DistributionParametersAB).HasForeignKey(k => k.DistributionABId);
+            modelBuilder.Entity<DistributionParameters>().HasOne(x => x.DistributionL)
+                .WithMany(y => y.DistributionParametersL).HasForeignKey(k => k.DistributionLId);
         }
     }
 }

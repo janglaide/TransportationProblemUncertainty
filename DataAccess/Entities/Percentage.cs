@@ -8,6 +8,7 @@ namespace DataAccess.Entities
     {
         public int Id { get; set; }
         public int ExperimentId { get; set; }
+        public Experiment Experiment { get; set; }
         public int N { get; set; }
         public double Value { get; set; }
     }

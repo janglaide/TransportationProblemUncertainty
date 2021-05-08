@@ -13,9 +13,9 @@ namespace ClassLibrary
         {
             return distr switch
             {
-                "exp" => Exponential(parameters.Item1),
-                "norm" => Normal(parameters.Item1, parameters.Item2),
-                "unif" => Uniform(parameters.Item1, parameters.Item2),
+                "Exponential" => Exponential(parameters.Item1),
+                "Normal" => Normal(parameters.Item1, parameters.Item2),
+                "Uniform" => Uniform(parameters.Item1, parameters.Item2),
                 _ => double.MinValue,
             };
         }

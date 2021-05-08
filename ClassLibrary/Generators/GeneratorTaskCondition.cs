@@ -24,6 +24,18 @@ namespace ClassLibrary
         {
             get { return _distributionL; }
         }
+        public (double, double) ParametersC
+        {
+            get { return _parametersC; }
+        }
+        public (double, double) ParametersAB
+        {
+            get { return _parametersAB; }
+        }
+        public (double, double) ParametersL
+        {
+            get { return _parametersL; }
+        }
         public GeneratorTaskCondition((string, string, string) distribution, (double, double) paramC, (double, double) paramAB, (double, double) paramL)
         {
             _distributionC = distribution.Item1;
