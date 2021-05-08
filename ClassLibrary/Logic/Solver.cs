@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace ClassLibrary
 {
-    public static class Solver
+    public class Solver
     {
-        public static (double[], double) SolveOne(double[] c, double[] a, double[] b)
+        public (double[], double) SolveOne(double[] c, double[] a, double[] b)
         {
             int rows = a.Length;
             int columns = b.Length;
@@ -33,7 +33,7 @@ namespace ClassLibrary
             alglib.minlpresults(state, out double[] x, out alglib.minlpreport rep);
             return (x, rep.f);
         }
-        public static (double[], double) SolveSeveral(double[][] cs, double[] a, double[] b, double[] l, double[] alpha, double[] solutions)
+        public (double[], double) SolveSeveral(double[][] cs, double[] a, double[] b, double[] l, double[] alpha, double[] solutions)
         {
             int rows = a.Length;
             int columns = b.Length;
@@ -74,21 +74,21 @@ namespace ClassLibrary
             alglib.minlpresults(state, out variables, out rep);
             return (variables, rep.f);
         }
-        private static void FillScale(ref double[] s)
+        private void FillScale(ref double[] s)
         {
             for (int i = 0; i < s.Length; i++)
             {
                 s[i] = 1;
             }
         }
-        private static void FillVarBoundUForOne(ref double[] boundXU)
+        private void FillVarBoundUForOne(ref double[] boundXU)
         {
             for (int i = 0; i < boundXU.Length; i++)
             {
                 boundXU[i] = double.PositiveInfinity;
             }
         }
-        private static void FillConstrBoundsForOne(ref double[] constrBound, double[] a, double[] b)
+        private void FillConstrBoundsForOne(ref double[] constrBound, double[] a, double[] b)
         {
             int aConstrNumber = a.Length;
             int constrNumber = aConstrNumber + b.Length;
@@ -101,7 +101,7 @@ namespace ClassLibrary
                 constrBound[i] = b[i - aConstrNumber];
             }
         }
-        private static void FillConstrVarsForOne(ref double[,] constrVars, int rows, int columns)
+        private void FillConstrVarsForOne(ref double[,] constrVars, int rows, int columns)
         {
             int xNumber = rows * columns;
             int constrNumber = rows + columns;
@@ -127,7 +127,7 @@ namespace ClassLibrary
                 }
             }
         }
-        private static void FillConstrVarsForSeveral(ref double[,] constrVars, double[][] cs, double[] solutions)
+        private void FillConstrVarsForSeveral(ref double[,] constrVars, double[][] cs, double[] solutions)
         {
             int xNumber = cs[0].Length;
             int yNumber = solutions.Length;
@@ -142,7 +142,7 @@ namespace ClassLibrary
                 constrVars[constrNumber - yNumber + i, xNumber + yNumber + i] = -1;
             }
         }
-        private static void FillConstrBoundLForSeveral(ref double[] constrBound, int yNumber)
+        private void FillConstrBoundLForSeveral(ref double[] constrBound, int yNumber)
         {
             int constNumber = constrBound.Length;
             for (int i = yNumber; i > 0; i--)
@@ -150,7 +150,7 @@ namespace ClassLibrary
                 constrBound[constNumber - i] = -double.PositiveInfinity;
             }
         }
-        private static void FillConstrBoundUForSeveral(ref double[] constrBound, double[] l)
+        private void FillConstrBoundUForSeveral(ref double[] constrBound, double[] l)
         {
             int constNumber = constrBound.Length;
             int yNumber = l.Length;
@@ -159,11 +159,11 @@ namespace ClassLibrary
                 constrBound[constNumber - yNumber + i] = l[i];
             }
         }
-        private static void FillZForSeveral(ref double[] z, double[] alpha)
+        private void FillZForSeveral(ref double[] z, double[] alpha)
         {
             FillConstrBoundUForSeveral(ref z, alpha);
         }
-        private static void FillVarBoundsForSeveral(ref double[] varBoundL, ref double[] varBoundU, int yNumber)
+        private void FillVarBoundsForSeveral(ref double[] varBoundL, ref double[] varBoundU, int yNumber)
         {
             int varNumber = varBoundL.Length;
             for(int i = 0; i < yNumber; i++)
@@ -172,7 +172,7 @@ namespace ClassLibrary
                 varBoundU[varNumber - yNumber - yNumber + i] = 1;
             }
         }
-        public static (double[][], double[]) GetSolutions(double[][] c, double[] a, double[] b)
+        public (double[][], double[]) GetSolutions(double[][] c, double[] a, double[] b)
         {
             int solutionNumber = c.Length;
             double[][] varValues = new double[solutionNumber][];
@@ -183,7 +183,7 @@ namespace ClassLibrary
             }
             return (varValues, funcValues);
         }
-        public static double RoundValue(double value)
+        public double RoundValue(double value)
         {
             double eps = 0.0000000001;
             double roundedValue = Math.Round(value, 0);
@@ -196,7 +196,7 @@ namespace ClassLibrary
                 return Math.Round(value, 5);
             }
         }
-        public static double[] DivideX(double[] values, int yQuantity)
+        public double[] DivideX(double[] values, int yQuantity)
         {
             int xNumber = values.Length - yQuantity * 2;
             double[] xValues = new double[xNumber];
@@ -206,7 +206,7 @@ namespace ClassLibrary
             }
             return xValues;
         }
-        public static double SumProduct(double[] first, double[] second)
+        public double SumProduct(double[] first, double[] second)
         {
             int valueNumber = first.Length;
             double result = 0;
@@ -220,7 +220,7 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static double CalculateDistance(double[] first, double[] second)
+        public double CalculateDistance(double[] first, double[] second)
         {
             int valueNumber = first.Length;
             double result = 0;
@@ -234,7 +234,7 @@ namespace ClassLibrary
             }
             return Math.Sqrt(result);
         }
-        public static double[] CalculateDistances(double[][] cs, double[] x)
+        public double[] CalculateDistances(double[][] cs, double[] x)
         {
             int distNumber = cs.Length;
             double[] distances = new double[distNumber];
@@ -244,7 +244,7 @@ namespace ClassLibrary
             }
             return distances;
         }
-        public static double[] CalculateDeltas(double[] fsForX, double[] fsForXs)
+        public double[] CalculateDeltas(double[] fsForX, double[] fsForXs)
         {
             int deltNumber = fsForXs.Length;
             double[] deltas = new double[deltNumber];
@@ -254,7 +254,7 @@ namespace ClassLibrary
             }
             return deltas;
         }
-        public static double[] CalculateYs(double[] deltas, double[] l)
+        public double[] CalculateYs(double[] deltas, double[] l)
         {
             int deltNumber = deltas.Length;
             double[] ys = new double[deltNumber];
@@ -264,7 +264,7 @@ namespace ClassLibrary
             }
             return ys;
         }
-        public static double[] CalculateFs(double[][] cs, double[] x)
+        public double[] CalculateFs(double[][] cs, double[] x)
         {
             int fsNumber = cs.Length;
             double[] fs = new double[fsNumber];
@@ -274,11 +274,11 @@ namespace ClassLibrary
             }
             return fs;
         }
-        public static double CalculateOptimanFunc(double[] ys, double[] alpha)
+        public double CalculateOptimanFunc(double[] ys, double[] alpha)
         {
             return SumProduct(ys, alpha);
         }
-        public static double[] RoundVector(double[] x)
+        public double[] RoundVector(double[] x)
         {
             int valueNumber = x.Length;
             double[] result = new double[valueNumber];
@@ -288,7 +288,7 @@ namespace ClassLibrary
             }
             return result;
         }
-        public static bool CheckABConstraints(double[] x, double[] a, double[] b)
+        public bool CheckABConstraints(double[] x, double[] a, double[] b)
         {
             bool success = true;
             int rows = a.Length;
@@ -317,7 +317,7 @@ namespace ClassLibrary
             }
             return success;
         }
-        private static void TransposeMatrix(ref double[,] matrix)
+        private void TransposeMatrix(ref double[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int columns = matrix.GetLength(1);
@@ -331,7 +331,7 @@ namespace ClassLibrary
             }
             matrix = newMatrix;
         }
-        private static double[] IterativeProcedure(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
+        private double[] IterativeProcedure(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
         {
             double[] newX = new double[oldX.Length];
             double[] newAlpha = new double[alpha.Length];
@@ -374,7 +374,7 @@ namespace ClassLibrary
             }
             return newX;
         }
-        public static double[] UpdateX(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
+        public double[] UpdateX(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
         {
             oldX = DivideX(oldX, cs.Length);
             double[] newX = new double[oldX.Length];

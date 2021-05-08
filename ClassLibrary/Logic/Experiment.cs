@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
@@ -29,6 +30,7 @@ namespace ClassLibrary
             {
                 throw new ArgumentException("Wrong parameters type in method Experiment.GetPercentOfChange. Need to be ParametersForRandom.");
             }
+            Solver solver = new Solver();
             ParametersForRandom param = (ParametersForRandom)parameters;
             int percent;
             double[] x = new double[param.Size * param.Size];
@@ -49,9 +51,9 @@ namespace ClassLibrary
                 {
                     cs[i] = _generator.GenerateMatrix(param.Size);
                 }
-                (_, solutions) = Solver.GetSolutions(cs, a, b);
-                (x, _) = Solver.SolveSeveral(cs, a, b, l, alpha, solutions);
-                if (!Solver.CheckABConstraints(Solver.DivideX(Solver.RoundVector(x), param.MatrixQuantity), a, b))
+                (_, solutions) = solver.GetSolutions(cs, a, b);
+                (x, _) = solver.SolveSeveral(cs, a, b, l, alpha, solutions);
+                if (!solver.CheckABConstraints(solver.DivideX(solver.RoundVector(x), param.MatrixQuantity), a, b))
                 {
                     continue;
                 }
@@ -64,10 +66,14 @@ namespace ClassLibrary
         public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange)
         {
             List<(int, double)> results = new List<(int, double)>();
-            for (int i = startSize; i <= finishSize; i += step)
+            var task = Task.Run(() =>
             {
-                results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange)));
-            }
+                for (int i = startSize; i <= finishSize; i += step)
+                {
+                    results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange)));
+                }
+            });
+            task.Wait();
             return results;
         }
         public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, double averChange)

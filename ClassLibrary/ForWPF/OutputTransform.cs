@@ -2,13 +2,14 @@
 {
     public static class OutputTransform
     {
+        private static readonly Solver solver = new Solver();
         public static string MatrixTransform(double[] matrix, int columns)
         {
             var result = "";
             int valueQuantity = matrix.Length;
             for (int i = 0; i < valueQuantity; i++)
             {
-                double number = Solver.RoundValue(matrix[i]);
+                double number = solver.RoundValue(matrix[i]);
 
                 if (number != 0)
                 {
@@ -34,7 +35,7 @@
             int valueQuantity = vector.Length;
             for (int i = 0; i < valueQuantity; i++)
             {
-                double number = Solver.RoundValue(vector[i]);
+                double number = solver.RoundValue(vector[i]);
                 result += string.Format("{0:0.00}", number) + separ;
             }
             return result;
@@ -61,7 +62,7 @@
         }
         public static string ValueTransform(double value)
         {
-            return Solver.RoundValue(value).ToString();
+            return solver.RoundValue(value).ToString();
         }
     }
 }

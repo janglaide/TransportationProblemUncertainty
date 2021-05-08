@@ -31,6 +31,7 @@
         }
         public FullSolution Run()
         {
+            Solver solver = new Solver();
             if (A is null)
             {
                 if (_generator is null)
@@ -45,16 +46,16 @@
                     Cs[i] = _generator.GenerateMatrix(N);
             }
 
-            (double[][] xs, double[] fsForXs) = Solver.GetSolutions(Cs, A, B);
-            (double[] solution, _) = Solver.SolveSeveral(Cs, A, B, L, Alpha, fsForXs);
+            (double[][] xs, double[] fsForXs) = solver.GetSolutions(Cs, A, B);
+            (double[] solution, _) = solver.SolveSeveral(Cs, A, B, L, Alpha, fsForXs);
             double[] newAlpha = new double[R];
             Alpha.CopyTo(newAlpha, 0);
-            double[] optimalX = Solver.UpdateX(Cs, A, B, L, ref newAlpha, fsForXs, solution);
-            double[] fsForX = Solver.CalculateFs(Cs, optimalX);
-            double[] deltas = Solver.CalculateDeltas(fsForX, fsForXs);
-            double[] ys = Solver.CalculateYs(deltas, L);
-            double functionValue = Solver.CalculateOptimanFunc(ys, newAlpha);
-            double[] distances = Solver.CalculateDistances(Cs, optimalX);
+            double[] optimalX = solver.UpdateX(Cs, A, B, L, ref newAlpha, fsForXs, solution);
+            double[] fsForX = solver.CalculateFs(Cs, optimalX);
+            double[] deltas = solver.CalculateDeltas(fsForX, fsForXs);
+            double[] ys = solver.CalculateYs(deltas, L);
+            double functionValue = solver.CalculateOptimanFunc(ys, newAlpha);
+            double[] distances = solver.CalculateDistances(Cs, optimalX);
 
             Solution solutionWithoutChange = new Solution(optimalX, functionValue, Alpha, newAlpha, Cs, fsForX, xs, fsForXs, deltas, ys, distances, B.Length);
 
@@ -67,13 +68,13 @@
             double[] newX = parameters.NewX;
             double[] newNewAlpha = new double[R];
             newAlpha.CopyTo(newNewAlpha, 0);
-            (double[][] newXs, double[] newFsForXs) = Solver.GetSolutions(newCs, A, B);
-            newX = Solver.UpdateX(newCs, A, B, L, ref newNewAlpha, newFsForXs, newX);
-            double[] newfsForX = Solver.CalculateFs(newCs, newX);
-            double[] newDeltas = Solver.CalculateDeltas(newfsForX, newFsForXs);
-            double[] newYs = Solver.CalculateYs(newDeltas, L);
-            double newFunctionValue = Solver.CalculateOptimanFunc(newYs, newNewAlpha);
-            double[] newDistances = Solver.CalculateDistances(newCs, newX);
+            (double[][] newXs, double[] newFsForXs) = solver.GetSolutions(newCs, A, B);
+            newX = solver.UpdateX(newCs, A, B, L, ref newNewAlpha, newFsForXs, newX);
+            double[] newfsForX = solver.CalculateFs(newCs, newX);
+            double[] newDeltas = solver.CalculateDeltas(newfsForX, newFsForXs);
+            double[] newYs = solver.CalculateYs(newDeltas, L);
+            double newFunctionValue = solver.CalculateOptimanFunc(newYs, newNewAlpha);
+            double[] newDistances = solver.CalculateDistances(newCs, newX);
             Solution solutionWithChange = new Solution(newX, newFunctionValue, newAlpha, newNewAlpha, newCs, newfsForX, newXs, newFsForXs, newDeltas, newYs, newDistances, B.Length);
 
             return new FullSolution(A, B, L, solutionWithoutChange, persentOfChange, solutionWithChange);

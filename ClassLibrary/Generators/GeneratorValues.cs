@@ -4,12 +4,12 @@ namespace ClassLibrary
 {
     public class GeneratorValues
     {
-        private static readonly Random rand = new Random();
-        public static int GetIntValue(string distr, (double, double) parameters)
+        private readonly Random rand = new Random();
+        public int GetIntValue(string distr, (double, double) parameters)
         {
             return (int)Math.Round(GetDoubleValue(distr, parameters));
         }
-        public static double GetDoubleValue(string distr, (double, double) parameters)
+        public double GetDoubleValue(string distr, (double, double) parameters)
         {
             return distr switch
             {
@@ -19,11 +19,11 @@ namespace ClassLibrary
                 _ => double.MinValue,
             };
         }
-        private static double Exponential(double lambda)
+        private double Exponential(double lambda)
         {
             return -Math.Log(rand.NextDouble()) / lambda;
         }
-        private static double Normal(double mean, double deviation)
+        private double Normal(double mean, double deviation)
         {
             double mu = 0;
             for (int j = 0; j < 12; j++)
@@ -33,7 +33,7 @@ namespace ClassLibrary
             mu -= 6;
             return deviation * mu + mean;
         }
-        private static double Uniform(double min, double max)
+        private double Uniform(double min, double max)
         {
             return rand.NextDouble() * (max - min) + min;
         }

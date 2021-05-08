@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +29,6 @@ namespace ClassLibrary
                 sum += SearchPercent(parameters);
             }
             */
-                                                      //threads try (unsuccessfull)
             var iterations = runFinish - runNumber;
             var quantity = Environment.ProcessorCount;
             var step = (int)Math.Ceiling((double)iterations / quantity);
@@ -40,6 +38,7 @@ namespace ClassLibrary
                 Enumerable.Range(0, quantity), 
                 (sumLocal) =>
                 {
+                    sumLocal = 0;
                     for (var j = 0; j < step; j++)
                     {
                         sumLocal += SearchPercent(parameters);
@@ -52,6 +51,7 @@ namespace ClassLibrary
         
         public static int FindPercentOfChange(SearchParameters parameters)
         {
+            Solver solver = new Solver();
             if (!(parameters is ParametersForDefined))
             {
                 throw new ArgumentException("Wrong parameters type in method PercentFinder.ParametersForDefined. Need to be ParametersForDefined.");
@@ -61,7 +61,7 @@ namespace ClassLibrary
             bool change = false;
             int cNumber = param.Cs.Length;
             double[] newX = new double[param.OldX.Length];
-            double[] roundedOldX = Solver.RoundVector(param.OldX);
+            double[] roundedOldX = solver.RoundVector(param.OldX);
             double[] selectedValues = null;
             double[] solutions;
             double[][] changedCs = new double[cNumber][];
@@ -82,13 +82,13 @@ namespace ClassLibrary
 
             while (!change)
             {
-                if (Solver.DivideX(Solver.RoundVector(newX), cNumber).SequenceEqual(Solver.DivideX(roundedOldX, cNumber)))
+                if (solver.DivideX(solver.RoundVector(newX), cNumber).SequenceEqual(solver.DivideX(roundedOldX, cNumber)))
                 {
                     CopyMultidimensional(param.Cs, ref changedCs);
                     percent++;
                     ChangeMatrixs(ref changedCs, percent, selectedValues);
-                    (_, solutions) = Solver.GetSolutions(changedCs, param.A, param.B);
-                    (newX, _) = Solver.SolveSeveral(changedCs, param.A, param.B, param.L, param.Alpha, solutions);
+                    (_, solutions) = solver.GetSolutions(changedCs, param.A, param.B);
+                    (newX, _) = solver.SolveSeveral(changedCs, param.A, param.B, param.L, param.Alpha, solutions);
                 }
                 else
                 {
@@ -111,13 +111,14 @@ namespace ClassLibrary
         }
         private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected)
         {
+            GeneratorValues generator = new GeneratorValues();
             for (int k = 0; k < cs.Length; k++)
             {
                 int size = cs[k].Length;
                 for (int i = 0; i < size; i++)
                 {
                     double e = cs[k][i] * (percent / 100);
-                    cs[k][i] += GeneratorValues.GetDoubleValue("unif", (-e, e)) * selected[i];
+                    cs[k][i] += generator.GetDoubleValue("unif", (-e, e)) * selected[i];
                 }
             }
         }

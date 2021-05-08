@@ -10,7 +10,8 @@ namespace ClassLibrary
         private readonly string _distributionL;
         private readonly (double, double) _parametersC;
         private readonly (double, double) _parametersAB;
-        private readonly (double, double) _parametersL; 
+        private readonly (double, double) _parametersL;
+        private readonly GeneratorValues generator = new GeneratorValues();
         public string DistributionC
         {
             get { return _distributionC; }
@@ -38,7 +39,7 @@ namespace ClassLibrary
             double[] matrix = new double[fullSize];
             for (int i = 0; i < fullSize; i++)
             {
-                matrix[i] = GeneratorValues.GetDoubleValue(_distributionC, _parametersC);
+                matrix[i] = generator.GetDoubleValue(_distributionC, _parametersC);
 
             }
             return matrix;
@@ -53,10 +54,10 @@ namespace ClassLibrary
                 b = new double[size];
                 for (int i = 0; i < size; i++)
                 {
-                    a[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB);
+                    a[i] = generator.GetIntValue(_distributionAB, _parametersAB);
                     if (i < size - 1)
                     {
-                        b[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB);
+                        b[i] = generator.GetIntValue(_distributionAB, _parametersAB);
                     }
                 }
                 double value = a.Sum() - b.Sum();
@@ -74,7 +75,7 @@ namespace ClassLibrary
             double[] l = new double[quantity];
             for (int i = 0; i < quantity; i++)
             {
-                l[i] = Math.Round(GeneratorValues.GetDoubleValue(_distributionL, _parametersL));
+                l[i] = Math.Round(generator.GetDoubleValue(_distributionL, _parametersL));
             }
             return l;
         }
