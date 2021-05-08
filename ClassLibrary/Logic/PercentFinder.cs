@@ -10,23 +10,23 @@ namespace ClassLibrary
         public delegate int PercentDelegate(SearchParameters parameters);
         public static double SearchMeanPercent(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
         {
-            int sum = 0;
+            double average = 0;
             int runNumber = 0;
             int accuracyAmount = 0;
             int runFinish;
             do
             {
-                double diff = runNumber != 0 ? sum / runNumber : 0;
-                sum += SearchPercent(parameters);
+                double diff = runNumber != 0 ? average / runNumber : 0;
+                average += SearchPercent(parameters);
                 runNumber++;
-                diff = Math.Abs(sum / runNumber - diff);
+                diff = Math.Abs(average / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
             /*
             for(; runNumber <= runFinish; runNumber++) //simple
             {
-                sum += SearchPercent(parameters);
+                average += SearchPercent(parameters);
             }
             */
             var iterations = runFinish - runNumber;
@@ -34,6 +34,7 @@ namespace ClassLibrary
             var step = (int)Math.Ceiling((double)iterations / quantity);
             runNumber += step * quantity;
 
+            int threadsSum = 0;
             Parallel.ForEach(
                 Enumerable.Range(0, quantity), 
                 (sumLocal) =>
@@ -43,10 +44,12 @@ namespace ClassLibrary
                     {
                         sumLocal += SearchPercent(parameters);
                     }
-                    Interlocked.Add(ref sum, sumLocal);
+                    Interlocked.Add(ref threadsSum, sumLocal);
                 }
             );
-            return (double)sum / runNumber;
+            average += threadsSum;
+            average /= runNumber;
+            return average;
         }
         
         public static int FindPercentOfChange(SearchParameters parameters)
