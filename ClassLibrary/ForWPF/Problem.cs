@@ -64,7 +64,7 @@
 
             ParametersForDefined parameters = new ParametersForDefined(optimalX, newCs, A, B, L, Alpha, _cChangeParameters);
 
-            double persentOfChange = PercentFinder.FindPercentOfChange(parameters);
+            double persentOfChange = PercentFinder.FindPercentOfChange(parameters, solver);
             double[] newX = parameters.NewX;
             double[] newNewAlpha = new double[R];
             newAlpha.CopyTo(newNewAlpha, 0);

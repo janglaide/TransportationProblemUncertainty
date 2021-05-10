@@ -7,17 +7,18 @@ namespace ClassLibrary
 {
     public static class PercentFinder
     {
-        public delegate int PercentDelegate(SearchParameters parameters);
+        public delegate int PercentDelegate(SearchParameters parameters, Solver solver);
         public static double SearchMeanPercent(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
         {
             double average = 0;
             int runNumber = 0;
             int accuracyAmount = 0;
             int runFinish;
+            Solver solver = new Solver();
             do
             {
                 double diff = runNumber != 0 ? average / runNumber : 0;
-                average += SearchPercent(parameters);
+                average += SearchPercent(parameters, solver);
                 runNumber++;
                 diff = Math.Abs(average / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
@@ -40,9 +41,10 @@ namespace ClassLibrary
                 (sumLocal) =>
                 {
                     sumLocal = 0;
+                    Solver solverLocal = new Solver();
                     for (var j = 0; j < step; j++)
                     {
-                        sumLocal += SearchPercent(parameters);
+                        sumLocal += SearchPercent(parameters, solverLocal);
                     }
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
@@ -53,14 +55,13 @@ namespace ClassLibrary
             return average;
         }
         
-        public static int FindPercentOfChange(SearchParameters parameters)
+        public static int FindPercentOfChange(SearchParameters parameters, Solver solver)
         {
             if (!(parameters is ParametersForDefined))
             {
                 throw new ArgumentException("Wrong parameters type in method PercentFinder.ParametersForDefined. Need to be ParametersForDefined.");
             }
             var param = (ParametersForDefined)parameters;
-            var solver = new Solver();
             int percent = 0;
             bool change = false;
             int cNumber = param.Cs.Length;

@@ -25,13 +25,12 @@ namespace ClassLibrary
             var parameters = new ParametersForRandom(size, matrixQuantity, _cChangeParameters);
             return PercentFinder.SearchMeanPercent(SearchPercent, parameters, averChange);
         }
-        private int GetPercentOfChange(SearchParameters parameters)
+        private int GetPercentOfChange(SearchParameters parameters, Solver solver)
         {
             if (!(parameters is ParametersForRandom))
             {
                 throw new ArgumentException("Wrong parameters type in method Experiment.GetPercentOfChange. Need to be ParametersForRandom.");
             }
-            var solver = new Solver();
             var generator = _generator.Copy();
             var param = (ParametersForRandom)parameters;
             int percent;
@@ -62,7 +61,7 @@ namespace ClassLibrary
                 success = true;
             }
             var parametersForDefined = new ParametersForDefined(x, cs, a, b, l, alpha, _cChangeParameters);
-            percent = PercentFinder.FindPercentOfChange(parametersForDefined);
+            percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver);
             return percent;
         }
         public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange)
@@ -73,6 +72,10 @@ namespace ClassLibrary
                 for (int i = startSize; i <= finishSize; i += step)
                 {
                     results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange)));
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
                 }
             });
             task.Wait();
