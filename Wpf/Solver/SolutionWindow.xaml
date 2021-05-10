@@ -27,7 +27,7 @@
                 <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="461,81,0,431" Text="" TextWrapping="Wrap"  />
                 <Button Name="SaveInputButton" Content="Save input data" HorizontalAlignment="Left" Margin="673,77,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveInputButton_Click"/>
                 <Button Name="SaveResult" Content="Save result" HorizontalAlignment="Left" Margin="673,135,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveResult_Click"/>
-                <Label Content="Accuracy for percent search:" HorizontalAlignment="Left" Margin="404,199,0,0" VerticalAlignment="Top" Height="37" Width="238"/>
+                <Label Name="AccuracyLabel" Content="Accuracy for percent search:" HorizontalAlignment="Left" Margin="404,199,0,0" VerticalAlignment="Top" Height="37" Width="238"/>
                 <ComboBox Name="AccuracyComboBox" HorizontalAlignment="Left" Margin="673,204,0,0" VerticalAlignment="Top" Width="127" SelectionChanged="Accuracy_SelectionChanged">
                     <ComboBoxItem Name="D01">
                         <TextBlock>0,1</TextBlock>

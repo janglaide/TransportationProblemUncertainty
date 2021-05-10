@@ -423,6 +423,9 @@ namespace Wpf
         {
             SaveInputButton.Margin = new Thickness(Width - 200, 77, 0, 0);
             SaveResult.Margin = new Thickness(Width - 200, 135, 0, 0);
+            AccuracyLabel.Margin = new Thickness(Width - 435, 199, 0, 0);
+            AccuracyComboBox.Margin = new Thickness(Width - 200, 204, 0, 0);
+            FindPercentButton.Margin = new Thickness(Width - 200, 261, 0, 0);
         }
 
         private void SaveResult_Click(object sender, RoutedEventArgs e)
