@@ -19,19 +19,18 @@ namespace ClassLibrary
         {
             _cChangeParameters = cChangeParameters;
         }
-        private double SearchMeanPercentForSize(int size, int matrixQuantity, double averChange)
+        private double SearchMeanPercentForSize(int size, int matrixQuantity, double averChange, Solver solver, Random random)
         {
             PercentFinder.PercentDelegate SearchPercent = GetPercentOfChange;
             var parameters = new ParametersForRandom(size, matrixQuantity, _cChangeParameters);
-            return PercentFinder.SearchMeanPercent(SearchPercent, parameters, averChange);
+            return PercentFinder.SearchMeanPercent(SearchPercent, parameters, averChange, solver, random);
         }
-        private int GetPercentOfChange(SearchParameters parameters, Solver solver)
+        private int GetPercentOfChange(SearchParameters parameters, Solver solver, Random random)
         {
             if (!(parameters is ParametersForRandom))
             {
                 throw new ArgumentException("Wrong parameters type in method Experiment.GetPercentOfChange. Need to be ParametersForRandom.");
             }
-            var generator = _generator.Copy();
             var param = (ParametersForRandom)parameters;
             int percent;
             double[] x = new double[param.Size * param.Size];
@@ -45,12 +44,12 @@ namespace ClassLibrary
             bool success = false;
             while (!success)
             {
-                (a, b) = generator.GenerateAB(param.Size);
-                l = generator.GenerateL(param.MatrixQuantity);
-                alpha = generator.GenerateAlpha(param.MatrixQuantity);
+                (a, b) = _generator.GenerateAB(param.Size, random);
+                l = _generator.GenerateL(param.MatrixQuantity, random);
+                alpha = _generator.GenerateAlpha(param.MatrixQuantity);
                 for (int i = 0; i < param.MatrixQuantity; i++)
                 {
-                    cs[i] = generator.GenerateMatrix(param.Size);
+                    cs[i] = _generator.GenerateMatrix(param.Size, random);
                 }
                 (_, solutions) = solver.GetSolutions(cs, a, b);
                 (x, _) = solver.SolveSeveral(cs, a, b, l, alpha, solutions);
@@ -61,21 +60,19 @@ namespace ClassLibrary
                 success = true;
             }
             var parametersForDefined = new ParametersForDefined(x, cs, a, b, l, alpha, _cChangeParameters);
-            percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver);
+            percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
             return percent;
         }
         public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange)
         {
             List<(int, double)> results = new List<(int, double)>();
+            var random = new Random();
+            var solver = new Solver();
             var task = Task.Run(() =>
             {
                 for (int i = startSize; i <= finishSize; i += step)
                 {
-                    results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange)));
-
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect();
+                    results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
                 }
             });
             task.Wait();

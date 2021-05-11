@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using System;
+
+namespace ClassLibrary
 {
     public class Problem
     {
@@ -32,18 +34,19 @@
         public FullSolution Run()
         {
             Solver solver = new Solver();
+            Random rand = new Random();
             if (A is null)
             {
                 if (_generator is null)
                 {
                     throw new System.InvalidOperationException("Generating values parameters in GeneratorTaskCondition must be assigned to Problem");
                 }
-                (A, B) = _generator.GenerateAB(N);
-                L = _generator.GenerateL(R);
+                (A, B) = _generator.GenerateAB(N, rand);
+                L = _generator.GenerateL(R, rand);
                 Alpha = _generator.GenerateAlpha(R);
                 Cs = new double[R][];
                 for (var i = 0; i < R; i++)
-                    Cs[i] = _generator.GenerateMatrix(N);
+                    Cs[i] = _generator.GenerateMatrix(N, rand);
             }
 
             (double[][] xs, double[] fsForXs) = solver.GetSolutions(Cs, A, B);
@@ -64,7 +67,7 @@
 
             ParametersForDefined parameters = new ParametersForDefined(optimalX, newCs, A, B, L, Alpha, _cChangeParameters);
 
-            double persentOfChange = PercentFinder.FindPercentOfChange(parameters, solver);
+            double persentOfChange = PercentFinder.FindPercentOfChange(parameters, solver, rand);
             double[] newX = parameters.NewX;
             double[] newNewAlpha = new double[R];
             newAlpha.CopyTo(newNewAlpha, 0);

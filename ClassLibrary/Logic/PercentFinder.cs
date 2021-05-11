@@ -7,18 +7,17 @@ namespace ClassLibrary
 {
     public static class PercentFinder
     {
-        public delegate int PercentDelegate(SearchParameters parameters, Solver solver);
-        public static double SearchMeanPercent(PercentDelegate SearchPercent, SearchParameters parameters, double averChange)
+        public delegate int PercentDelegate(SearchParameters parameters, Solver solver, Random rand);
+        public static double SearchMeanPercent(PercentDelegate SearchPercent, SearchParameters parameters, double averChange, Solver solver, Random rand)
         {
             double average = 0;
             int runNumber = 0;
             int accuracyAmount = 0;
             int runFinish;
-            Solver solver = new Solver();
             do
             {
                 double diff = runNumber != 0 ? average / runNumber : 0;
-                average += SearchPercent(parameters, solver);
+                average += SearchPercent(parameters, solver, rand);
                 runNumber++;
                 diff = Math.Abs(average / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
@@ -27,7 +26,7 @@ namespace ClassLibrary
             /*
             for (; runNumber <= runFinish; runNumber++) //simple
             {
-                average += SearchPercent(parameters);
+                average += SearchPercent(parameters, solver, rand);
             }
             */
             var iterations = runFinish - runNumber;
@@ -36,26 +35,25 @@ namespace ClassLibrary
             runNumber += step * quantity;
 
             int threadsSum = 0;
-            Parallel.ForEach(
-                Enumerable.Range(0, quantity), 
-                (sumLocal) =>
+            Parallel.For(0, quantity, i =>
                 {
-                    sumLocal = 0;
-                    Solver solverLocal = new Solver();
+                    int sumLocal = 0;
+                    var solverLocal = new Solver();
+                    var randLocal = new Random();
                     for (var j = 0; j < step; j++)
                     {
-                        sumLocal += SearchPercent(parameters, solverLocal);
+                        sumLocal += SearchPercent(parameters, solverLocal, randLocal);
                     }
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
             );
-
+            
             average += threadsSum;
             average /= runNumber;
             return average;
         }
         
-        public static int FindPercentOfChange(SearchParameters parameters, Solver solver)
+        public static int FindPercentOfChange(SearchParameters parameters, Solver solver, Random rand)
         {
             if (!(parameters is ParametersForDefined))
             {
@@ -91,7 +89,7 @@ namespace ClassLibrary
                 {
                     CopyMultidimensional(param.Cs, ref changedCs);
                     percent++;
-                    ChangeMatrixs(ref changedCs, percent, selectedValues);
+                    ChangeMatrixs(ref changedCs, percent, selectedValues, rand);
                     (_, solutions) = solver.GetSolutions(changedCs, param.A, param.B);
                     (newX, _) = solver.SolveSeveral(changedCs, param.A, param.B, param.L, param.Alpha, solutions);
                 }
@@ -114,16 +112,15 @@ namespace ClassLibrary
                 from[i].CopyTo(to[i], 0);
             }
         }
-        private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected)
+        private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected, Random rand)
         {
-            var generator = new GeneratorValues();
             for (int k = 0; k < cs.Length; k++)
             {
                 int size = cs[k].Length;
                 for (int i = 0; i < size; i++)
                 {
                     double e = cs[k][i] * (percent / 100);
-                    cs[k][i] += generator.GetDoubleValue("Uniform", (-e, e)) * selected[i];
+                    cs[k][i] += GeneratorValues.GetDoubleValue("Uniform", (-e, e), rand) * selected[i];
                 }
             }
         }

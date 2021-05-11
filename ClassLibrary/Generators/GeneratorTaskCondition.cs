@@ -11,7 +11,6 @@ namespace ClassLibrary
         private readonly (double, double) _parametersC;
         private readonly (double, double) _parametersAB;
         private readonly (double, double) _parametersL;
-        private readonly GeneratorValues generator = new GeneratorValues();
         public string DistributionC
         {
             get { return _distributionC; }
@@ -45,18 +44,18 @@ namespace ClassLibrary
             _parametersAB = paramAB;
             _parametersL = paramL;
         }
-        public double[] GenerateMatrix(int size)
+        public double[] GenerateMatrix(int size, Random rand)
         {
             int fullSize = size * size;
             double[] matrix = new double[fullSize];
             for (int i = 0; i < fullSize; i++)
             {
-                matrix[i] = generator.GetDoubleValue(_distributionC, _parametersC);
+                matrix[i] = GeneratorValues.GetDoubleValue(_distributionC, _parametersC, rand);
 
             }
             return matrix;
         }
-        public (double[], double[]) GenerateAB(int size)
+        public (double[], double[]) GenerateAB(int size, Random rand)
         {
             bool success = false;
             double[] a, b;
@@ -66,10 +65,10 @@ namespace ClassLibrary
                 b = new double[size];
                 for (int i = 0; i < size; i++)
                 {
-                    a[i] = generator.GetIntValue(_distributionAB, _parametersAB);
+                    a[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, rand);
                     if (i < size - 1)
                     {
-                        b[i] = generator.GetIntValue(_distributionAB, _parametersAB);
+                        b[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, rand);
                     }
                 }
                 double value = a.Sum() - b.Sum();
@@ -82,12 +81,12 @@ namespace ClassLibrary
 
             return (a, b);
         }
-        public double[] GenerateL(int quantity)
+        public double[] GenerateL(int quantity, Random rand)
         {
             double[] l = new double[quantity];
             for (int i = 0; i < quantity; i++)
             {
-                l[i] = Math.Round(generator.GetDoubleValue(_distributionL, _parametersL));
+                l[i] = Math.Round(GeneratorValues.GetDoubleValue(_distributionL, _parametersL, rand));
             }
             return l;
         }
@@ -99,10 +98,6 @@ namespace ClassLibrary
                 alpha[i] = 1;
             }
             return alpha;
-        }
-        public GeneratorTaskCondition Copy()
-        {
-            return new GeneratorTaskCondition((_distributionC, _distributionAB, _distributionL), _parametersC, _parametersAB, _parametersL);
         }
     }
 }

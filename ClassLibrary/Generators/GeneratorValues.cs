@@ -2,40 +2,39 @@
 
 namespace ClassLibrary
 {
-    public class GeneratorValues
+    public static class GeneratorValues
     {
-        private readonly Random rand = new Random();
-        public int GetIntValue(string distr, (double, double) parameters)
+        public static int GetIntValue(string distr, (double, double) parameters, Random random)
         {
-            return (int)Math.Round(GetDoubleValue(distr, parameters));
+            return (int)Math.Round(GetDoubleValue(distr, parameters, random));
         }
-        public double GetDoubleValue(string distr, (double, double) parameters)
+        public static double GetDoubleValue(string distr, (double, double) parameters, Random random)
         {
             return distr switch
             {
-                "Exponential" => Exponential(parameters.Item1),
-                "Normal" => Normal(parameters.Item1, parameters.Item2),
-                "Uniform" => Uniform(parameters.Item1, parameters.Item2),
+                "Exponential" => Exponential(parameters.Item1, random),
+                "Normal" => Normal(parameters.Item1, parameters.Item2, random),
+                "Uniform" => Uniform(parameters.Item1, parameters.Item2, random),
                 _ => double.MinValue,
             };
         }
-        private double Exponential(double lambda)
+        private static double Exponential(double lambda, Random random)
         {
-            return -Math.Log(rand.NextDouble()) / lambda;
+            return -Math.Log(random.NextDouble()) / lambda;
         }
-        private double Normal(double mean, double deviation)
+        private static double Normal(double mean, double deviation, Random random)
         {
             double mu = 0;
             for (int j = 0; j < 12; j++)
             {
-                mu += rand.NextDouble();
+                mu += random.NextDouble();
             }
             mu -= 6;
             return deviation * mu + mean;
         }
-        private double Uniform(double min, double max)
+        private static double Uniform(double min, double max, Random random)
         {
-            return rand.NextDouble() * (max - min) + min;
+            return random.NextDouble() * (max - min) + min;
         }
     }
 }
