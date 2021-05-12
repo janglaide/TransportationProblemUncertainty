@@ -68,14 +68,11 @@ namespace ClassLibrary
             List<(int, double)> results = new List<(int, double)>();
             var random = new Random();
             var solver = new Solver();
-            var task = Task.Run(() =>
+
+            for (int i = startSize; i <= finishSize; i += step)
             {
-                for (int i = startSize; i <= finishSize; i += step)
-                {
-                    results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
-                }
-            });
-            task.Wait();
+                results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
+            }
 
             var service = new ExperimentService();
             service.AddExperimentResult(results, _generator, averChange);

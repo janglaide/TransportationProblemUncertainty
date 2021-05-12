@@ -2,10 +2,8 @@
 using ClassLibrary.Models;
 using DataAccess;
 using DataAccess.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ClassLibrary.Logic
 {
@@ -22,10 +20,10 @@ namespace ClassLibrary.Logic
             var ABDistributionId = _uow.DistributionRepository.GetAll().First(x => x.Name == generator.DistributionAB).Id;
             var LDistributionId = _uow.DistributionRepository.GetAll().First(x => x.Name == generator.DistributionL).Id;
 
-            var distrParameters = new DistributionParametersModel(CsDistributionId, ABDistributionId, LDistributionId, 
-                generator.ParametersC.Item1, generator.ParametersC.Item2, 
-                generator.ParametersAB.Item1, generator.ParametersAB.Item2,
-                generator.ParametersL.Item1, generator.ParametersL.Item2);
+            var distrParameters = new DistributionParametersModel(CsDistributionId, ABDistributionId, LDistributionId,
+                                                                  generator.ParametersC.Item1, generator.ParametersC.Item2,
+                                                                  generator.ParametersAB.Item1, generator.ParametersAB.Item2,
+                                                                  generator.ParametersL.Item1, generator.ParametersL.Item2);
 
             if (CsDistributionId == 1) //nice code
             {
@@ -35,7 +33,7 @@ namespace ClassLibrary.Logic
             {
                 distrParameters.DeviationAB = null;
             }
-            if(LDistributionId == 1)
+            if (LDistributionId == 1)
             {
                 distrParameters.DeviationL = null;
             }
@@ -44,7 +42,7 @@ namespace ClassLibrary.Logic
 
             var mapper = new MapperConfiguration(x => x.CreateMap<DistributionParametersModel, DistributionParameters>()).CreateMapper();
             var distributionParameters = mapper.Map<DistributionParametersModel, DistributionParameters>(distrParameters);
-            
+
             _uow.DistributionParametersRepository.Add(distributionParameters);
 
             var expModel = new ExperimentModel(distributionParamsId, accuracy);
@@ -55,7 +53,7 @@ namespace ClassLibrary.Logic
 
             _uow.ExperimentRepository.Add(experiment);
 
-            foreach(var result in results)
+            foreach (var result in results)
             {
                 var percentageModel = new PercentageModel(experimentId, result.Item1, result.Item2);
                 var mapperPercentage = new MapperConfiguration(x => x.CreateMap<PercentageModel, Percentage>()).CreateMapper();

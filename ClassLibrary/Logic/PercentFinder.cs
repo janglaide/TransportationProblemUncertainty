@@ -47,12 +47,12 @@ namespace ClassLibrary
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
             );
-            
+
             average += threadsSum;
             average /= runNumber;
             return average;
         }
-        
+
         public static int FindPercentOfChange(SearchParameters parameters, Solver solver, Random rand)
         {
             if (!(parameters is ParametersForDefined))

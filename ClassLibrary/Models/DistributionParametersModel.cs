@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ClassLibrary.Models
+﻿namespace ClassLibrary.Models
 {
     public class DistributionParametersModel
     {
-        public DistributionParametersModel(int CsId, int ABId, int LId, double dmC, double? devC, 
+        public DistributionParametersModel(int CsId, int ABId, int LId, double dmC, double? devC,
             double dmAB, double? devAB, double dmL, double? devL)
         {
             DistributionCsId = CsId;

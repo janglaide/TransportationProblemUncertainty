@@ -134,7 +134,7 @@ namespace ClassLibrary
             int constrNumber = constrVars.GetLength(0);
             for (int i = 0; i < yNumber; i++)
             {
-                for(int j = 0; j < xNumber; j++)
+                for (int j = 0; j < xNumber; j++)
                 {
                     constrVars[constrNumber - yNumber + i, j] = cs[i][j];
                 }
@@ -166,7 +166,7 @@ namespace ClassLibrary
         private void FillVarBoundsForSeveral(ref double[] varBoundL, ref double[] varBoundU, int yNumber)
         {
             int varNumber = varBoundL.Length;
-            for(int i = 0; i < yNumber; i++)
+            for (int i = 0; i < yNumber; i++)
             {
                 varBoundL[varNumber - yNumber - yNumber + i] = 1;
                 varBoundU[varNumber - yNumber - yNumber + i] = 1;
@@ -177,7 +177,7 @@ namespace ClassLibrary
             int solutionNumber = c.Length;
             double[][] varValues = new double[solutionNumber][];
             double[] funcValues = new double[solutionNumber];
-            for(int i = 0; i < solutionNumber; i++)
+            for (int i = 0; i < solutionNumber; i++)
             {
                 (varValues[i], funcValues[i]) = SolveOne(c[i], a, b);
             }
@@ -305,7 +305,7 @@ namespace ClassLibrary
             for (int i = 0; i < constrNumber; i++)
             {
                 double sum = 0;
-                for(int j = 0; j < xNumber; j++)
+                for (int j = 0; j < xNumber; j++)
                 {
                     sum += x[j] * constrVars[j, i];
                 }
@@ -322,7 +322,7 @@ namespace ClassLibrary
             int rows = matrix.GetLength(0);
             int columns = matrix.GetLength(1);
             double[,] newMatrix = new double[columns, rows];
-            for(int i = 0; i < columns; i++)
+            for (int i = 0; i < columns; i++)
             {
                 for (int j = 0; j < rows; j++)
                 {
