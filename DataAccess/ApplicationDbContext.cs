@@ -18,7 +18,8 @@ namespace DataAccess
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=transportationdb;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=transportationdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=tcp:transport-problem-research.database.windows.net,1433;Initial Catalog=support-system;Persist Security Info=False;User ID=coolresearcher;Password={your-password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
