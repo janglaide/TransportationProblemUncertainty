@@ -1,21 +1,14 @@
 ﻿using LiveCharts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Linq;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
 using ClassLibrary.ForWPF;
-using System.Drawing.Printing;
-using System.Drawing;
 using System.IO;
+using System.Windows.Controls;
 
 namespace Wpf
 {
@@ -24,7 +17,7 @@ namespace Wpf
     /// </summary>
     public partial class ExperimentResultWindow : Window
     {
-        private List<(int, double)> _list;
+        private readonly List<(int, double)> _list;
         public ExperimentResultWindow(List<(int, double)> list)
         {
             InitializeComponent();
@@ -68,12 +61,15 @@ namespace Wpf
         {
             try
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = $"experiment-results_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.txt"
+                };
 
-                if (saveFileDialog.ShowDialog() != true)
-                    throw new Exception("File save dialog does not open");
-
-                FileProcessing.WriteExperimentDataIntoFile(_list, saveFileDialog.FileName);
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    FileProcessing.WriteExperimentDataIntoFile(_list, saveFileDialog.FileName);
+                }
             }
             catch (Exception ex)
             {
@@ -83,27 +79,64 @@ namespace Wpf
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SaveDataButton.Margin = new Thickness(84, Height - 40, 0, 0);
-            SaveGraphButton.Margin = new Thickness(750, Height - 40, 0, 0);
+            SaveDataButton.Margin = new Thickness(84, Height - 80, 0, 0);
+            SaveGraphButton.Margin = new Thickness(750, Height - 80, 0, 0);
         }
 
         private void SaveGraphButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                /*SaveFileDialog saveFileDialog = new SaveFileDialog();
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = $"graph_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.jpg"
+                };
 
-                if (saveFileDialog.ShowDialog() != true)
-                    throw new Exception("File save dialog does not open");
-
-                */
-
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var ParentPanelCollection = (chart.Parent as Panel).Children;
+                    ParentPanelCollection.Remove(chart);
+                    if (chart != null)
+                    {
+                        TakeTheChart(saveFileDialog.FileName);
+                        ParentPanelCollection.Add(chart);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             
+        }
+        private void TakeTheChart(string filename)
+        {
+            var viewbox = new Viewbox
+            {
+                Child = chart
+            };
+            viewbox.Measure(chart.RenderSize);
+            viewbox.Arrange(new Rect(new Point(0, 0), chart.RenderSize));
+            viewbox.UpdateLayout();
+
+            SaveToPng(chart, filename);
+
+            viewbox.Child = null;
+        }
+        private void SaveToPng(FrameworkElement visual, string fileName)
+        {
+            var encoder = new PngBitmapEncoder();
+            EncodeVisual(visual, fileName, encoder);
+        }
+
+        private static void EncodeVisual(FrameworkElement visual, string fileName, BitmapEncoder encoder)
+        {
+            var bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            bitmap.Render(visual);
+            var frame = BitmapFrame.Create(bitmap);
+            encoder.Frames.Add(frame);
+            using var stream = File.Create(fileName); 
+            encoder.Save(stream);
         }
     }
 }

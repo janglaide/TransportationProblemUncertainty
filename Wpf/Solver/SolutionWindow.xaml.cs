@@ -405,12 +405,16 @@ namespace Wpf
         {
             try
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                
-                if (saveFileDialog.ShowDialog() != true)
-                    throw new Exception("File save dialog does not open");
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = $"condition_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.txt"
+                };
 
-                FileProcessing.WriteProblemIntoFile(_data, saveFileDialog.FileName);
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    //throw new Exception("File save dialog does not open");
+                    FileProcessing.WriteProblemIntoFile(_data, saveFileDialog.FileName);
+                }
             }
             catch (Exception ex)
             {
@@ -432,12 +436,16 @@ namespace Wpf
         {
             try
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = $"solution_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.txt"
+                };
 
-                if (saveFileDialog.ShowDialog() != true)
-                    throw new Exception("File save dialog does not open");
-
-                FileProcessing.WriteSolutionIntoFile(_fullSolution, saveFileDialog.FileName);
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    //throw new Exception("File save dialog does not open");
+                    FileProcessing.WriteSolutionIntoFile(_fullSolution, saveFileDialog.FileName);
+                }
             }
             catch (Exception ex)
             {
