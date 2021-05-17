@@ -72,6 +72,7 @@ namespace ClassLibrary
             for (int i = startSize; i <= finishSize; i += step)
             {
                 results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
+                
             }
 
             var service = new ExperimentService();

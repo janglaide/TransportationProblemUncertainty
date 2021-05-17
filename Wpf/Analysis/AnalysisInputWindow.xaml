@@ -95,5 +95,6 @@
         <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
         <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked"/>
+        <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
     </Grid>
 </Window>

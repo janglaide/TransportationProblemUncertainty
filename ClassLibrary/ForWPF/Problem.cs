@@ -58,7 +58,7 @@ namespace ClassLibrary
             double[] deltas = solver.CalculateDeltas(fsForX, fsForXs);
             double[] ys = solver.CalculateYs(deltas, L);
             double functionValue = solver.CalculateOptimanFunc(ys, newAlpha);
-            double[] distances = solver.CalculateDistances(Cs, optimalX);
+            double[] distances = solver.CalculateDistances(xs, optimalX);
 
             Solution solutionWithoutChange = new Solution(optimalX, functionValue, Alpha, newAlpha, Cs, fsForX, xs, fsForXs, deltas, ys, distances, B.Length);
 
@@ -77,7 +77,7 @@ namespace ClassLibrary
             double[] newDeltas = solver.CalculateDeltas(newfsForX, newFsForXs);
             double[] newYs = solver.CalculateYs(newDeltas, L);
             double newFunctionValue = solver.CalculateOptimanFunc(newYs, newNewAlpha);
-            double[] newDistances = solver.CalculateDistances(newCs, newX);
+            double[] newDistances = solver.CalculateDistances(newXs, newX);
             Solution solutionWithChange = new Solution(newX, newFunctionValue, newAlpha, newNewAlpha, newCs, newfsForX, newXs, newFsForXs, newDeltas, newYs, newDistances, B.Length);
 
             return new FullSolution(A, B, L, solutionWithoutChange, persentOfChange, solutionWithChange);

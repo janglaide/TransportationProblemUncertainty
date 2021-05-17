@@ -168,13 +168,17 @@ namespace Wpf
                 }
                 
                 ExceptionLabel.Content = "";
-
+                ProgressingBar.Visibility = Visibility.Visible;
+                ProgressingBar.Maximum = 100;
+                ProgressingBar.Minimum = 0;
+                ProgressingBar.Value = 0;
 
                 GeneratorTaskCondition generator = new GeneratorTaskCondition(distribuiton, paramsC, paramsAB, paramsL);
                 var experiment = new Experiment(generator);
                 var results = experiment.RunExperiment(startSize, finalSize, step, R, accuracy);
-
+                
                 var window = new ExperimentResultWindow(results);
+                ProgressingBar.Visibility = Visibility.Hidden;
                 window.Show();
             }
             catch(Exception ex)

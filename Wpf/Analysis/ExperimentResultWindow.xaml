@@ -7,7 +7,7 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="Wpf.ExperimentResultWindow"
         mc:Ignorable="d"
         Title="ExperimentResultWindow" Height="572" Width="1004" Loaded="ExperimentResult_Loaded"
-        WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged" FontSize="18">
+        WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="13*"/>
@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <Wpf:CartesianChart Name="chart" Grid.Column="1" HorizontalAlignment="Center" Height="470" VerticalAlignment="Center" Width="968"/>
-        <Button Name="SaveDataButton" Content="Save data" Grid.Column="1" HorizontalAlignment="Left" Margin="84,513,0,0" VerticalAlignment="Top" Width="152" Height="28" Click="SaveDataButton_Click"/>
-        <Button Name="SaveGraphButton" Content="Save graph" Grid.Column="1" HorizontalAlignment="Left" Margin="750,513,0,0" VerticalAlignment="Top" Height="28" Width="152" Click="SaveGraphButton_Click"/>
+        <Button Name="SaveDataButton" Content="Save data" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="84,513,0,0" VerticalAlignment="Top" Width="152" Height="28" Click="SaveDataButton_Click"/>
+        <Button Name="SaveGraphButton" Content="Save graph" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="750,513,0,0" VerticalAlignment="Top" Height="28" Width="152" Click="SaveGraphButton_Click"/>
 
     </Grid>
 </Window>

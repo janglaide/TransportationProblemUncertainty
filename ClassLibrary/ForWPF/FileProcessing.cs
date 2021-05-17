@@ -123,14 +123,19 @@ namespace ClassLibrary.ForWPF
                 text += "Alphas: " + solution.SolutionWithoutChange.AlphaChanged + V;
             }
             text += "\nOptimal X:\n";
-            text += solution.SolutionWithoutChange.OptimalX + V;
+            text += solution.SolutionWithoutChange.OptimalX + V + V;
 
             for (var i = 0; i < solution.SolutionWithoutChange.Cs.Length; i++)
             {
                 text += $"Matrix C[{i + 1}]:\n";
-                text += solution.SolutionWithoutChange.Cs[i] + V + V;
+                text += solution.SolutionWithoutChange.Cs[i] + V;
                 text += $"Solution for matrix C[{i + 1}]:\n";
-                text += solution.SolutionWithoutChange.Xs[i] + V + V + V;
+                text += solution.SolutionWithoutChange.Xs[i] + V;
+                text += "F = " + solution.SolutionWithoutChange.FsForX[i] + V;
+                text += "F (with optimal Xs) = " + solution.SolutionWithoutChange.FsForXs[i] + V;
+                text += "Delta = " + solution.SolutionWithoutChange.Deltas[i] + V;
+                text += "Y = " + solution.SolutionWithoutChange.Ys[i] + V;
+                text += "Distance = " + solution.SolutionWithoutChange.Distances[i] + V + V + V;
             }
 
             text += $"After changes ({solution.PersentOfChange}%) " +
@@ -145,9 +150,14 @@ namespace ClassLibrary.ForWPF
             for (var i = 0; i < solution.SolutionWithChange.Cs.Length; i++)
             {
                 text += $"Matrix C[{i + 1}] after changes:\n";
-                text += solution.SolutionWithChange.Cs[i] + V + V;
+                text += solution.SolutionWithChange.Cs[i] + V;
                 text += $"Solution for matrix C[{i + 1}] after changes:\n";
-                text += solution.SolutionWithChange.Xs[i] + V + V + V;
+                text += solution.SolutionWithChange.Xs[i] + V;
+                text += "F = " + solution.SolutionWithChange.FsForX[i] + V;
+                text += "F (with optimal Xs) = " + solution.SolutionWithChange.FsForXs[i] + V;
+                text += "Delta = " + solution.SolutionWithChange.Deltas[i] + V;
+                text += "Y = " + solution.SolutionWithChange.Ys[i] + V;
+                text += "Distance = " + solution.SolutionWithChange.Distances[i] + V + V + V;
             }
 
             File.WriteAllText(filename, text);

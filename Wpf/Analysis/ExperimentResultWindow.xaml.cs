@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using ClassLibrary.ForWPF;
 using System.IO;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace Wpf
 {
@@ -27,6 +28,7 @@ namespace Wpf
         private void ExperimentResult_Loaded(object sender, RoutedEventArgs e)
         {
             var series = new SeriesCollection();
+            Func<double, string> formatFunc = (x) => string.Format("{0:0.000}", x);
             var doubleValues = new ChartValues<double> ();
             var stringValues = new List<string> ();
 
@@ -45,7 +47,8 @@ namespace Wpf
             chart.AxisY.Add(new Axis
             {
                 Title = "Percentage of change by changing optimum",
-                FontSize = 14
+                FontSize = 14,
+                LabelFormatter = formatFunc
             });
             var line = new LineSeries
             {
