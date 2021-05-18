@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ClassLibrary
+namespace ClassLibrary.Generators
 {
     public class GeneratorTaskCondition
     {
@@ -44,18 +44,18 @@ namespace ClassLibrary
             _parametersAB = paramAB;
             _parametersL = paramL;
         }
-        public double[] GenerateMatrix(int size, Random rand)
+        public double[] GenerateMatrix(int size, Random random)
         {
             int fullSize = size * size;
             double[] matrix = new double[fullSize];
             for (int i = 0; i < fullSize; i++)
             {
-                matrix[i] = GeneratorValues.GetDoubleValue(_distributionC, _parametersC, rand);
+                matrix[i] = GeneratorValues.GetDoubleValue(_distributionC, _parametersC, random);
 
             }
             return matrix;
         }
-        public (double[], double[]) GenerateAB(int size, Random rand)
+        public (double[], double[]) GenerateAB(int size, Random random)
         {
             bool success = false;
             double[] a, b;
@@ -65,10 +65,10 @@ namespace ClassLibrary
                 b = new double[size];
                 for (int i = 0; i < size; i++)
                 {
-                    a[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, rand);
+                    a[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, random);
                     if (i < size - 1)
                     {
-                        b[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, rand);
+                        b[i] = GeneratorValues.GetIntValue(_distributionAB, _parametersAB, random);
                     }
                 }
                 double value = a.Sum() - b.Sum();
@@ -81,12 +81,12 @@ namespace ClassLibrary
 
             return (a, b);
         }
-        public double[] GenerateL(int quantity, Random rand)
+        public double[] GenerateL(int quantity, Random random)
         {
             double[] l = new double[quantity];
             for (int i = 0; i < quantity; i++)
             {
-                l[i] = Math.Round(GeneratorValues.GetDoubleValue(_distributionL, _parametersL, rand));
+                l[i] = Math.Round(GeneratorValues.GetDoubleValue(_distributionL, _parametersL, random));
             }
             return l;
         }

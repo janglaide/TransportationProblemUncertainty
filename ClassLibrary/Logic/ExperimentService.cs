@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClassLibrary.Generators;
 using ClassLibrary.Models;
 using DataAccess;
 using DataAccess.Entities;
@@ -9,7 +10,7 @@ namespace ClassLibrary.Logic
 {
     public class ExperimentService
     {
-        private UnitOfWork _uow;
+        private readonly UnitOfWork _uow;
         public ExperimentService()
         {
             _uow = new UnitOfWork();

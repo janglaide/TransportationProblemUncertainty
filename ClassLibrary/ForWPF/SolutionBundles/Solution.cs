@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary
+﻿namespace ClassLibrary.ForWPF.SolutionBundles
 {
     public class Solution
     {

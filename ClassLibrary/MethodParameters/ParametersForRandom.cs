@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using ClassLibrary.Enums;
+
+namespace ClassLibrary.MethodParameters
 {
     public class ParametersForRandom : SearchParameters
     {

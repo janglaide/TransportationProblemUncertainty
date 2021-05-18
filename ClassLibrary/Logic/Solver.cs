@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ClassLibrary
+namespace ClassLibrary.Logic
 {
     public class Solver
     {

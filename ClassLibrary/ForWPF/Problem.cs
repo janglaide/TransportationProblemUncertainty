@@ -1,6 +1,11 @@
-﻿using System;
+﻿using ClassLibrary.Enums;
+using ClassLibrary.ForWPF.SolutionBundles;
+using ClassLibrary.Generators;
+using ClassLibrary.Logic;
+using ClassLibrary.MethodParameters;
+using System;
 
-namespace ClassLibrary
+namespace ClassLibrary.ForWPF
 {
     public class Problem
     {

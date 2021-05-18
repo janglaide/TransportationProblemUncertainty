@@ -9,9 +9,8 @@ using Microsoft.Win32;
 using ClassLibrary.ForWPF;
 using System.IO;
 using System.Windows.Controls;
-using System.Linq;
 
-namespace Wpf
+namespace Wpf.Analysis
 {
     /// <summary>
     /// Логика взаимодействия для ExperimentResultWindow.xaml
@@ -28,7 +27,7 @@ namespace Wpf
         private void ExperimentResult_Loaded(object sender, RoutedEventArgs e)
         {
             var series = new SeriesCollection();
-            Func<double, string> formatFunc = (x) => string.Format("{0:0.000}", x);
+            static string formatFunc(double x) => string.Format("{0:0.000}", x);
             var doubleValues = new ChartValues<double> ();
             var stringValues = new List<string> ();
 

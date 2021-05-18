@@ -1,9 +1,10 @@
-﻿using ClassLibrary.Logic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using ClassLibrary.Enums;
+using ClassLibrary.Generators;
+using ClassLibrary.MethodParameters;
 
-namespace ClassLibrary
+namespace ClassLibrary.Logic
 {
     public class Experiment
     {

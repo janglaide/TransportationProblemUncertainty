@@ -1,12 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using ClassLibrary;
 using ClassLibrary.ForWPF;
+using ClassLibrary.ForWPF.SolutionBundles;
 using Microsoft.Win32;
 
-namespace Wpf
+namespace Wpf.Solver
 {
     /// <summary>
     /// Логика взаимодействия для SolutionWindow.xaml

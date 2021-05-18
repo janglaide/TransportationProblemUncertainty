@@ -2,8 +2,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ClassLibrary.Enums;
+using ClassLibrary.Generators;
+using ClassLibrary.MethodParameters;
 
-namespace ClassLibrary
+namespace ClassLibrary.Logic
 {
     public static class PercentFinder
     {

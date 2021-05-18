@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ClassLibrary.Enums;
+using ClassLibrary.ForWPF.SolutionBundles;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Linq;
 
 namespace ClassLibrary.ForWPF
 {

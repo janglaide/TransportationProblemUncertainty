@@ -1,15 +1,10 @@
 ﻿using DataAccess.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text;
-using DataAccess.Entities;
 
 namespace DataAccess
 {
     public class UnitOfWork
     {
-        private ApplicationContext _context;
+        private readonly ApplicationContext _context;
 
         private DistributionRepository _distributionRepository;
         private DistributionParametersRepository _distributionParametersRepository;

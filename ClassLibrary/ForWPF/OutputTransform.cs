@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using ClassLibrary.Logic;
+
+namespace ClassLibrary.ForWPF
 {
     public static class OutputTransform
     {

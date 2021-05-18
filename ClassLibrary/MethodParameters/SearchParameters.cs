@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using ClassLibrary.Enums;
+
+namespace ClassLibrary.MethodParameters
 {
     public abstract class SearchParameters
     {
