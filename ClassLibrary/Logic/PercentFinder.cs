@@ -55,7 +55,6 @@ namespace ClassLibrary.Logic
             average /= runNumber;
             return average;
         }
-
         public static int FindPercentOfChange(SearchParameters parameters, Solver solver, Random rand)
         {
             if (!(parameters is ParametersForDefined))
@@ -105,7 +104,6 @@ namespace ClassLibrary.Logic
             param.DefineXs(newX);
             return percent;
         }
-
         public static void CopyMultidimensional(double[][] from, ref double[][] to)
         {
             int size = from.Length;

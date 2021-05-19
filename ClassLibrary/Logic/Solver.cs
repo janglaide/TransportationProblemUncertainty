@@ -74,104 +74,6 @@ namespace ClassLibrary.Logic
             alglib.minlpresults(state, out variables, out rep);
             return (variables, rep.f);
         }
-        private void FillScale(ref double[] s)
-        {
-            for (int i = 0; i < s.Length; i++)
-            {
-                s[i] = 1;
-            }
-        }
-        private void FillVarBoundUForOne(ref double[] boundXU)
-        {
-            for (int i = 0; i < boundXU.Length; i++)
-            {
-                boundXU[i] = double.PositiveInfinity;
-            }
-        }
-        private void FillConstrBoundsForOne(ref double[] constrBound, double[] a, double[] b)
-        {
-            int aConstrNumber = a.Length;
-            int constrNumber = aConstrNumber + b.Length;
-            for (int i = 0; i < aConstrNumber; i++)
-            {
-                constrBound[i] = a[i];
-            }
-            for (int i = aConstrNumber; i < constrNumber; i++)
-            {
-                constrBound[i] = b[i - aConstrNumber];
-            }
-        }
-        private void FillConstrVarsForOne(ref double[,] constrVars, int rows, int columns)
-        {
-            int xNumber = rows * columns;
-            int constrNumber = rows + columns;
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < xNumber; j++)
-                {
-                    if (j >= columns * i && j < columns * (i + 1))
-                    {
-                        constrVars[i, j] = 1;
-                    }
-                }
-
-            }
-            for (int i = rows; i < constrNumber; i++)
-            {
-                for (int j = 0; j < xNumber; j++)
-                {
-                    if (j % columns == i - rows)
-                    {
-                        constrVars[i, j] = 1;
-                    }
-                }
-            }
-        }
-        private void FillConstrVarsForSeveral(ref double[,] constrVars, double[][] cs, double[] solutions)
-        {
-            int xNumber = cs[0].Length;
-            int yNumber = solutions.Length;
-            int constrNumber = constrVars.GetLength(0);
-            for (int i = 0; i < yNumber; i++)
-            {
-                for (int j = 0; j < xNumber; j++)
-                {
-                    constrVars[constrNumber - yNumber + i, j] = cs[i][j];
-                }
-                constrVars[constrNumber - yNumber + i, xNumber + i] = -solutions[i];
-                constrVars[constrNumber - yNumber + i, xNumber + yNumber + i] = -1;
-            }
-        }
-        private void FillConstrBoundLForSeveral(ref double[] constrBound, int yNumber)
-        {
-            int constNumber = constrBound.Length;
-            for (int i = yNumber; i > 0; i--)
-            {
-                constrBound[constNumber - i] = -double.PositiveInfinity;
-            }
-        }
-        private void FillConstrBoundUForSeveral(ref double[] constrBound, double[] l)
-        {
-            int constNumber = constrBound.Length;
-            int yNumber = l.Length;
-            for (int i = 0; i < yNumber; i++)
-            {
-                constrBound[constNumber - yNumber + i] = l[i];
-            }
-        }
-        private void FillZForSeveral(ref double[] z, double[] alpha)
-        {
-            FillConstrBoundUForSeveral(ref z, alpha);
-        }
-        private void FillVarBoundsForSeveral(ref double[] varBoundL, ref double[] varBoundU, int yNumber)
-        {
-            int varNumber = varBoundL.Length;
-            for (int i = 0; i < yNumber; i++)
-            {
-                varBoundL[varNumber - yNumber - yNumber + i] = 1;
-                varBoundU[varNumber - yNumber - yNumber + i] = 1;
-            }
-        }
         public (double[][], double[]) GetSolutions(double[][] c, double[] a, double[] b)
         {
             int solutionNumber = c.Length;
@@ -317,6 +219,123 @@ namespace ClassLibrary.Logic
             }
             return success;
         }
+        public double[] UpdateX(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
+        {
+            oldX = DivideX(oldX, cs.Length);
+            double[] newX = new double[oldX.Length];
+            RoundVector(oldX).CopyTo(newX, 0);
+            if (CheckABConstraints(newX, a, b))
+            {
+                return newX;
+            }
+            else
+            {
+                newX = IterativeProcedure(cs, a, b, l, ref alpha, solutions, oldX);
+                if (newX.Length == 0)
+                {
+                    newX = oldX;
+                }
+            }
+            return newX;
+        }
+        private void FillScale(ref double[] s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                s[i] = 1;
+            }
+        }
+        private void FillVarBoundUForOne(ref double[] boundXU)
+        {
+            for (int i = 0; i < boundXU.Length; i++)
+            {
+                boundXU[i] = double.PositiveInfinity;
+            }
+        }
+        private void FillConstrBoundsForOne(ref double[] constrBound, double[] a, double[] b)
+        {
+            int aConstrNumber = a.Length;
+            int constrNumber = aConstrNumber + b.Length;
+            for (int i = 0; i < aConstrNumber; i++)
+            {
+                constrBound[i] = a[i];
+            }
+            for (int i = aConstrNumber; i < constrNumber; i++)
+            {
+                constrBound[i] = b[i - aConstrNumber];
+            }
+        }
+        private void FillConstrVarsForOne(ref double[,] constrVars, int rows, int columns)
+        {
+            int xNumber = rows * columns;
+            int constrNumber = rows + columns;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < xNumber; j++)
+                {
+                    if (j >= columns * i && j < columns * (i + 1))
+                    {
+                        constrVars[i, j] = 1;
+                    }
+                }
+
+            }
+            for (int i = rows; i < constrNumber; i++)
+            {
+                for (int j = 0; j < xNumber; j++)
+                {
+                    if (j % columns == i - rows)
+                    {
+                        constrVars[i, j] = 1;
+                    }
+                }
+            }
+        }
+        private void FillConstrVarsForSeveral(ref double[,] constrVars, double[][] cs, double[] solutions)
+        {
+            int xNumber = cs[0].Length;
+            int yNumber = solutions.Length;
+            int constrNumber = constrVars.GetLength(0);
+            for (int i = 0; i < yNumber; i++)
+            {
+                for (int j = 0; j < xNumber; j++)
+                {
+                    constrVars[constrNumber - yNumber + i, j] = cs[i][j];
+                }
+                constrVars[constrNumber - yNumber + i, xNumber + i] = -solutions[i];
+                constrVars[constrNumber - yNumber + i, xNumber + yNumber + i] = -1;
+            }
+        }
+        private void FillConstrBoundLForSeveral(ref double[] constrBound, int yNumber)
+        {
+            int constNumber = constrBound.Length;
+            for (int i = yNumber; i > 0; i--)
+            {
+                constrBound[constNumber - i] = -double.PositiveInfinity;
+            }
+        }
+        private void FillConstrBoundUForSeveral(ref double[] constrBound, double[] l)
+        {
+            int constNumber = constrBound.Length;
+            int yNumber = l.Length;
+            for (int i = 0; i < yNumber; i++)
+            {
+                constrBound[constNumber - yNumber + i] = l[i];
+            }
+        }
+        private void FillZForSeveral(ref double[] z, double[] alpha)
+        {
+            FillConstrBoundUForSeveral(ref z, alpha);
+        }
+        private void FillVarBoundsForSeveral(ref double[] varBoundL, ref double[] varBoundU, int yNumber)
+        {
+            int varNumber = varBoundL.Length;
+            for (int i = 0; i < yNumber; i++)
+            {
+                varBoundL[varNumber - yNumber - yNumber + i] = 1;
+                varBoundU[varNumber - yNumber - yNumber + i] = 1;
+            }
+        }
         private void TransposeMatrix(ref double[,] matrix)
         {
             int rows = matrix.GetLength(0);
@@ -370,25 +389,6 @@ namespace ClassLibrary.Logic
                 {
                     newX = oldX;
                     break;
-                }
-            }
-            return newX;
-        }
-        public double[] UpdateX(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
-        {
-            oldX = DivideX(oldX, cs.Length);
-            double[] newX = new double[oldX.Length];
-            RoundVector(oldX).CopyTo(newX, 0);
-            if (CheckABConstraints(newX, a, b))
-            {
-                return newX;
-            }
-            else
-            {
-                newX = IterativeProcedure(cs, a, b, l, ref alpha, solutions, oldX);
-                if (newX.Length == 0)
-                {
-                    newX = oldX;
                 }
             }
             return newX;
