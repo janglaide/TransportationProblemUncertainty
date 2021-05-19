@@ -62,7 +62,7 @@ namespace ClassLibrary.ForWPF
             double[] fsForX = solver.CalculateFs(Cs, optimalX);
             double[] deltas = solver.CalculateDeltas(fsForX, fsForXs);
             double[] ys = solver.CalculateYs(deltas, L);
-            double functionValue = solver.CalculateOptimanFunc(ys, newAlpha);
+            double functionValue = solver.CalculateOptimalFunc(ys, newAlpha);
             double[] distances = solver.CalculateDistances(xs, optimalX);
 
             Solution solutionWithoutChange = new Solution(optimalX, functionValue, Alpha, newAlpha, Cs, fsForX, xs, fsForXs, deltas, ys, distances, B.Length);
@@ -73,6 +73,7 @@ namespace ClassLibrary.ForWPF
             ParametersForDefined parameters = new ParametersForDefined(optimalX, newCs, A, B, L, Alpha, _cChangeParameters);
 
             double persentOfChange = PercentFinder.FindPercentOfChange(parameters, solver, rand);
+            //double persentOfChange = PercentFinder.SearchMeanPercent(PercentFinder.FindPercentOfChange, parameters, 0.01, solver, rand);
             double[] newX = parameters.NewX;
             double[] newNewAlpha = new double[R];
             newAlpha.CopyTo(newNewAlpha, 0);
@@ -81,7 +82,7 @@ namespace ClassLibrary.ForWPF
             double[] newfsForX = solver.CalculateFs(newCs, newX);
             double[] newDeltas = solver.CalculateDeltas(newfsForX, newFsForXs);
             double[] newYs = solver.CalculateYs(newDeltas, L);
-            double newFunctionValue = solver.CalculateOptimanFunc(newYs, newNewAlpha);
+            double newFunctionValue = solver.CalculateOptimalFunc(newYs, newNewAlpha);
             double[] newDistances = solver.CalculateDistances(newXs, newX);
             Solution solutionWithChange = new Solution(newX, newFunctionValue, newAlpha, newNewAlpha, newCs, newfsForX, newXs, newFsForXs, newDeltas, newYs, newDistances, B.Length);
 

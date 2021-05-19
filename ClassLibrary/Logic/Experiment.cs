@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ClassLibrary.Enums;
 using ClassLibrary.Generators;
+using ClassLibrary.Logic.Services;
 using ClassLibrary.MethodParameters;
 
 namespace ClassLibrary.Logic

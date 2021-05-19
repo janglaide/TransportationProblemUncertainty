@@ -176,7 +176,7 @@ namespace ClassLibrary.Logic
             }
             return fs;
         }
-        public double CalculateOptimanFunc(double[] ys, double[] alpha)
+        public double CalculateOptimalFunc(double[] ys, double[] alpha)
         {
             return SumProduct(ys, alpha);
         }

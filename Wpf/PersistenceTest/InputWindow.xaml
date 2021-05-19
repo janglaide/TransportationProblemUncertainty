@@ -8,13 +8,31 @@
         Title="InputWindow" Height="450" Width="729" FontSize="22"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <Button Name="SelectFile" Content="Select file" HorizontalAlignment="Left" Margin="58,102,0,0" VerticalAlignment="Top" Height="50" Width="161" Click="SelectFile_Click"/>
+        <Button Name="SelectFile" Content="Select file" HorizontalAlignment="Left" Margin="58,124,0,0" VerticalAlignment="Top" Height="38" Width="161" Click="SelectFile_Click"/>
         <Button Name="Run" IsEnabled="False" Content="Run test" HorizontalAlignment="Left" Margin="58,259,0,0" VerticalAlignment="Top" Height="50" Width="161" Click="Run_Click"/>
         <Label Name="ExceptionLabel" Foreground="DarkRed" FontSize="16" Content="" HorizontalAlignment="Left" Margin="58,348,0,0" VerticalAlignment="Top" Height="38" Width="493"/>
         <TextBlock Name="Filename" HorizontalAlignment="Left" Foreground="Gray" Margin="58,175,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" FontSize="16" Width="402"/>
         <Button Name="Back" Content="Back" HorizontalAlignment="Left" Margin="551,259,0,0" VerticalAlignment="Top" Height="50" Width="106" Click="Back_Click"/>
-        <TextBlock Name="Description" HorizontalAlignment="Left" Margin="58,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="599"
-                   Text="Choose a file with your task and solution for test" />
+        <TextBlock Name="Description" HorizontalAlignment="Left" Margin="58,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="599"
+                   Text="Choose a file with your task and solution for test
+                   and accuracy for percentage search" />
+        <ComboBox Name="AccuracyComboBox" HorizontalAlignment="Left" Margin="551,124,0,0" VerticalAlignment="Top" Width="106" Height="38" SelectionChanged="SelectionChanged_Accuracy">
+            <ComboBoxItem Name="D01">
+                <TextBlock>0,1</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem Name="D001">
+                <TextBlock>0,01</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem Name="D0001">
+                <TextBlock>0,001</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem Name="D00001">
+                <TextBlock>0,0001</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem Name="D000001">
+                <TextBlock>0,00001</TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
 
     </Grid>
 </Window>

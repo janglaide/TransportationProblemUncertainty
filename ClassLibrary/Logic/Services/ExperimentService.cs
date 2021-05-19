@@ -6,7 +6,7 @@ using DataAccess.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClassLibrary.Logic
+namespace ClassLibrary.Logic.Services
 {
     public class ExperimentService
     {
