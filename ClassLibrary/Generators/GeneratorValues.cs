@@ -34,7 +34,7 @@ namespace ClassLibrary.Generators
                 }
                 mu -= 6;
                 result = deviation * mu + mean;
-            } while (result > (mean + deviation) || result < (mean - deviation));
+            } while (result > (mean * 2) || /*(result > (deviation * 3)) ||*/ result < 0);
 
             return result;
         }
