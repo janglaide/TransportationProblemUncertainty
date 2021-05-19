@@ -24,13 +24,19 @@ namespace ClassLibrary.Generators
         }
         private static double Normal(double mean, double deviation, Random random)
         {
-            double mu = 0;
-            for (int j = 0; j < 12; j++)
+            double result;
+            do
             {
-                mu += random.NextDouble();
-            }
-            mu -= 6;
-            return deviation * mu + mean;
+                double mu = 0;
+                for (int j = 0; j < 12; j++)
+                {
+                    mu += random.NextDouble();
+                }
+                mu -= 6;
+                result = deviation * mu + mean;
+            } while (result > (mean + deviation) || result < (mean - deviation));
+
+            return result;
         }
         private static double Uniform(double min, double max, Random random)
         {
