@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +21,11 @@ namespace Wpf.Analysis
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        private GeneratorTaskCondition _generator;
+        private Experiment _experiment;
+        private List<(int, double)> _results;
+        private int _startsize, _finalsize, _step, _R;
+        private double _accuracy;
         public AnalysisInputWindow()
         {
             InitializeComponent();
@@ -162,22 +169,59 @@ namespace Wpf.Analysis
                 
                 ExceptionLabel.Content = "";
                 ProgressingBar.Visibility = Visibility.Visible;
+                
                 ProgressingBar.Maximum = 100;
                 ProgressingBar.Minimum = 0;
                 ProgressingBar.Value = 0;
 
-                GeneratorTaskCondition generator = new GeneratorTaskCondition(distribuiton, paramsC, paramsAB, paramsL);
-                var experiment = new Experiment(generator);
-                var results = experiment.RunExperiment(startSize, finalSize, step, R, accuracy);
+                _generator = new GeneratorTaskCondition(distribuiton, paramsC, paramsAB, paramsL);
+                _experiment = new Experiment(_generator);
+                _startsize = startSize;
+                _finalsize = finalSize;
+                _step = step;
+                _accuracy = accuracy;
+                _R = R;
                 
-                var window = new ExperimentResultWindow(results);
-                ProgressingBar.Visibility = Visibility.Hidden;
-                window.Show();
+
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.RunWorkerCompleted += Completed;
+                worker.WorkerReportsProgress = true;
+                worker.DoWork += Run;
+                worker.ProgressChanged += ProgressChanged;
+                worker.RunWorkerAsync();
+
+                RunButton.IsEnabled = false;
+                
             }
             catch(Exception ex)
             {
                 ExceptionLabel.Content = ex.Message;
             }
+        }
+
+        private void ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            ProgressingBar.Value = e.ProgressPercentage;
+            ProgressTextBlock.Text = (string)e.UserState;
+        }
+
+        private void Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            
+            var window = new ExperimentResultWindow(_results);
+            ProgressingBar.Value = 0;
+            ProgressingBar.Visibility = Visibility.Hidden;
+            ProgressTextBlock.Text = "";
+            RunButton.IsEnabled = true;
+            window.Show();
+        }
+
+        private void Run(object sender, DoWorkEventArgs e)
+        {
+            var worker = sender as BackgroundWorker;
+            //worker.ReportProgress(0);
+            _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker);
+            worker.ReportProgress(100, "Experiment done!");
         }
 
         private void Accuracy_SelectionChanged(object sender, SelectionChangedEventArgs e)

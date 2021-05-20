@@ -96,5 +96,6 @@
         <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked"/>
         <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
+        <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
     </Grid>
 </Window>
