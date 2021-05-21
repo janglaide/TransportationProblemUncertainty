@@ -2,6 +2,10 @@
 {
     public class DistributionParametersModel
     {
+        public DistributionParametersModel()
+        {
+
+        }
         public DistributionParametersModel(int CsId, int ABId, int LId, double dmC, double? devC,
             double dmAB, double? devAB, double dmL, double? devL)
         {
@@ -15,6 +19,7 @@
             DelayMeanL = dmL;
             DeviationL = devL;
         }
+        public int Id { get; set; }
         public int DistributionCsId { get; set; }
         public double DelayMeanCs { get; set; }
         public double? DeviationCs { get; set; }

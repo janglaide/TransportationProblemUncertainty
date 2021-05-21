@@ -2,6 +2,10 @@
 {
     public class ExperimentModel
     {
+        public ExperimentModel()
+        {
+
+        }
         public ExperimentModel(int distrId, double accuracy)
         {
             DistributionId = distrId;

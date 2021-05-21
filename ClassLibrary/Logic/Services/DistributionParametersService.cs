@@ -44,18 +44,16 @@ namespace ClassLibrary.Logic.Services
                 (x.DeviationL <= (lParameters.Item2 + (lParameters.Item2 / 2)) &&
                 x.DeviationL >= (lParameters.Item2 - (lParameters.Item2 / 2)))
             );
-
-            var list = new List<int>();
             
-            return list;
+            return checkedL.Select(x => x.Id).ToList();
         }
 
         
-        private List<DistributionParametersModel> GetAll()
+        private IEnumerable<DistributionParametersModel> GetAll()
         {
             var distributionParametersAll = _uow.DistributionParametersRepository.GetAll();
             var mapper = new MapperConfiguration(x => x.CreateMap<DistributionParameters, DistributionParametersModel>()).CreateMapper();
-            return mapper.Map<IEnumerable<DistributionParameters>, IEnumerable<DistributionParametersModel>>(distributionParametersAll).ToList();
+            return mapper.Map<IEnumerable<DistributionParameters>, IEnumerable<DistributionParametersModel>>(distributionParametersAll);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.ForWPF;
 using ClassLibrary.Logic;
+using ClassLibrary.Logic.Services;
 using ClassLibrary.MethodParameters;
 using Microsoft.Win32;
 using System;
@@ -40,6 +41,7 @@ namespace Wpf.PersistenceTest
         {
             try
             {
+                ExceptionLabel.Foreground = Brushes.DarkRed;
                 if (AccuracyComboBox.SelectedItem == null) throw new Exception("Choose an accuracy");
 
                 var random = new Random();
@@ -50,6 +52,20 @@ namespace Wpf.PersistenceTest
                 (double, double) cParameters = GetCsRange(parametersForDefined);
                 (double, double) abParameters = GetABRange(parametersForDefined);
                 (double, double) lParameters = GetLRange(parametersForDefined);
+
+                DistributionParametersService distributionParameters = new DistributionParametersService();
+                var distributionParametersIds = distributionParameters.GetAppropriateIds(
+                    cParameters, abParameters, lParameters);
+                if (distributionParametersIds.Count < 5)
+                    throw new Exception("There is not enough data for this task");
+
+                PercentageService percentageService = new PercentageService();
+                var percentages = percentageService.GetAppropriate(parametersForDefined.A.Length, distributionParametersIds);
+
+                if(percentages.Count < 4)
+                    throw new Exception("There is not enough data for this size of matrix (N)");
+
+                var valueFromDB = percentages.Average();
 
                 var percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
             }

@@ -2,6 +2,10 @@
 {
     public class PercentageModel
     {
+        public PercentageModel()
+        {
+
+        }
         public PercentageModel(int expId, int n, double value)
         {
             ExperimentId = expId;
