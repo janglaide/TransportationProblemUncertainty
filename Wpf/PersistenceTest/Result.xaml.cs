@@ -17,9 +17,27 @@ namespace Wpf.PersistenceTest
     /// </summary>
     public partial class Result : Window
     {
-        public Result()
+        
+        public Result(double dbPercentage, double countedPercentage, List<double> percentages)
         {
             InitializeComponent();
+            
+            CountedPercentageLabel.Content = countedPercentage.ToString();
+            DBPercentageLabel.Content = dbPercentage.ToString();
+            if(countedPercentage >= dbPercentage){
+                ResultDescriptionBlock.Text = "The percentage of change of input data is acceptable " +
+                    "for the given parameters. The compromise solution is stable enough";
+                CountedPercentageLabel.BorderBrush = Brushes.ForestGreen;
+            }
+            else
+            {
+                ResultDescriptionBlock.Text = "The percentage of change of input data is not acceptable. " +
+                    "This means that the given compromise solution is not stable enough";
+                CountedPercentageLabel.BorderBrush = Brushes.Red;
+            }
+
+            PercentagesList.ItemsSource = percentages;
+
         }
     }
 }

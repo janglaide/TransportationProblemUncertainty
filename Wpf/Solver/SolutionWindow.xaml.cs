@@ -459,6 +459,7 @@ namespace Wpf.Solver
         private void FindPercentButton_Click(object sender, RoutedEventArgs e)
         {
             var accuracy = double.Parse(AccuracyComboBox.Text);
+
         }
 
         private void Accuracy_SelectionChanged(object sender, SelectionChangedEventArgs e)
