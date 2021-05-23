@@ -49,9 +49,9 @@ namespace Wpf.PersistenceTest
                 var accuracy = double.Parse(AccuracyComboBox.Text);
                 var parametersForDefined = FileProcessing.ReadSolutionForPersistenceTest(_filename);
 
-                (double, double) cParameters = GetCsRange(parametersForDefined);
-                (double, double) abParameters = GetABRange(parametersForDefined);
-                (double, double) lParameters = GetLRange(parametersForDefined);
+                (double, double) cParameters = PercentFinder.GetCsRange(parametersForDefined);
+                (double, double) abParameters = PercentFinder.GetABRange(parametersForDefined);
+                (double, double) lParameters = PercentFinder.GetLRange(parametersForDefined);
 
                 DistributionParametersService distributionParameters = new DistributionParametersService();
                 var distributionParametersIds = distributionParameters.GetAppropriateIds(
@@ -79,63 +79,7 @@ namespace Wpf.PersistenceTest
                 ExceptionLabel.Content = ex.Message;
             }
         }
-        private (double, double) GetCsRange(ParametersForDefined parameters)
-        {
-            double averMin = 0.0, averMax = 0.0;
-            foreach(var c in parameters.Cs)
-            {
-                var min = double.MaxValue;
-                var max = double.MinValue;
-                foreach(var x in c)
-                {
-                    if (x < min)
-                        min = x;
-
-                    if (x > max)
-                        max = x;
-                }
-                averMin += min;
-                averMax += max;
-            }
-            return ((averMin / parameters.Cs.Length), (averMax / parameters.Cs.Length));
-        }
-        private (double, double) GetABRange(ParametersForDefined parameters)
-        {
-            double minA = double.MaxValue, maxA = double.MinValue, minB = double.MaxValue, maxB = double.MinValue;
-            
-            for(var i = 0; i < parameters.A.Length; i++)
-            {
-                if (parameters.A[i] < minA)
-                    minA = parameters.A[i];
-
-                if (parameters.A[i] > maxA)
-                    maxA = parameters.A[i];
-
-                if (parameters.B[i] < minB)
-                    minB = parameters.B[i];
-
-                if (parameters.B[i] > maxB)
-                    maxB = parameters.B[i];
-            }
-
-            return (((minA + minB) / 2), ((maxA + maxB) / 2));
-        }
-
-        private (double, double) GetLRange(ParametersForDefined parameters)
-        {
-            double min = double.MaxValue, max = double.MinValue;
-
-            foreach (var l in parameters.L)
-            {
-                if (l < min)
-                    min = l;
-
-                if (l > max)
-                    max = l;
-            }
-
-            return (min, max);
-        }
+        
         private void SelectFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

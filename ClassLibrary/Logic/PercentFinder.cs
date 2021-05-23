@@ -155,5 +155,62 @@ namespace ClassLibrary.Logic
             }
             return all;
         }
+        public static (double, double) GetCsRange(ParametersForDefined parameters)
+        {
+            double averMin = 0.0, averMax = 0.0;
+            foreach (var c in parameters.Cs)
+            {
+                var min = double.MaxValue;
+                var max = double.MinValue;
+                foreach (var x in c)
+                {
+                    if (x < min)
+                        min = x;
+
+                    if (x > max)
+                        max = x;
+                }
+                averMin += min;
+                averMax += max;
+            }
+            return ((averMin / parameters.Cs.Length), (averMax / parameters.Cs.Length));
+        }
+        public static (double, double) GetABRange(ParametersForDefined parameters)
+        {
+            double minA = double.MaxValue, maxA = double.MinValue, minB = double.MaxValue, maxB = double.MinValue;
+
+            for (var i = 0; i < parameters.A.Length; i++)
+            {
+                if (parameters.A[i] < minA)
+                    minA = parameters.A[i];
+
+                if (parameters.A[i] > maxA)
+                    maxA = parameters.A[i];
+
+                if (parameters.B[i] < minB)
+                    minB = parameters.B[i];
+
+                if (parameters.B[i] > maxB)
+                    maxB = parameters.B[i];
+            }
+
+            return (((minA + minB) / 2), ((maxA + maxB) / 2));
+        }
+
+        public static (double, double) GetLRange(ParametersForDefined parameters)
+        {
+            double min = double.MaxValue, max = double.MinValue;
+
+            foreach (var l in parameters.L)
+            {
+                if (l < min)
+                    min = l;
+
+                if (l > max)
+                    max = l;
+            }
+
+            return (min, max);
+        }
     }
 }

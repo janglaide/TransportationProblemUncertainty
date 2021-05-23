@@ -7,13 +7,41 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="Wpf.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" FontSize="22"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+    
     <Grid Loaded="Loaded_MainWindow">
-        <Label Content="Transportation problem under uncertainty solver and analysis" HorizontalAlignment="Left" Margin="82,42,0,0" VerticalAlignment="Top" Height="71" Width="672"/>
-        <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="SolverButton_Click"/>
-        <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="82,217,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="AnalysisButton_Click"/>
-        <Button x:Name="PersistenceButton" Content="Persistence test" HorizontalAlignment="Left" Margin="82,293,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="PersistenceButton_Click"/>
-        <Button Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="584,293,0,0" VerticalAlignment="Top" Height="51" Width="115" Click="Exit_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/src/background-mosaic.png"></ImageBrush>
+        </Grid.Background>
+        <Label HorizontalAlignment="Left" Margin="82,42,0,0" VerticalAlignment="Top" Height="71" Width="672">
+
+            <TextBlock TextAlignment="Center" Width="662">Research process support system for transport problem <LineBreak/>
+             under uncertainty</TextBlock>
+            
+            <Label.Background>
+                <SolidColorBrush Color="AliceBlue" Opacity="0.5" ></SolidColorBrush>
+            </Label.Background>
+        </Label>
+        <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="SolverButton_Click">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
+            </Button.Background> 
+        </Button>
+        <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="82,217,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="AnalysisButton_Click">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="PersistenceButton" Content="Persistence test" HorizontalAlignment="Left" Margin="82,293,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="PersistenceButton_Click">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="584,293,0,0" VerticalAlignment="Top" Height="51" Width="115" Click="Exit_Click">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.1" Color="DimGray"></SolidColorBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

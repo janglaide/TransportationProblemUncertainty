@@ -18,6 +18,7 @@ namespace ClassLibrary.ForWPF
         public double[] L;
         public double[] Alpha;
         public double[][] Cs;
+        public ParametersForDefined ParametersForDefined { get; set; }
         public Problem(int N, int R, GeneratorTaskCondition generator, CChangeParameters cChangeParameters)
         {
             this.N = N;
@@ -71,6 +72,7 @@ namespace ClassLibrary.ForWPF
             PercentFinder.CopyMultidimensional(Cs, ref newCs);
 
             ParametersForDefined parameters = new ParametersForDefined(optimalX, newCs, A, B, L, Alpha, _cChangeParameters);
+            ParametersForDefined = parameters;
 
             double persentOfChange = PercentFinder.FindPercentOfChange(parameters, solver, rand);
             //double persentOfChange = PercentFinder.SearchMeanPercent(PercentFinder.FindPercentOfChange, parameters, 0.01, solver, rand);

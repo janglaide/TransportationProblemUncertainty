@@ -12,13 +12,16 @@
             <ColumnDefinition Width="383*"/>
             <ColumnDefinition Width="78*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,189,0,0" VerticalAlignment="Top" Width="671" Height="112"/>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,310,0,0" VerticalAlignment="Top" Width="671" Height="104"/>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,425,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/src/background-mosaic.png"></ImageBrush>
+        </Grid.Background>
+        <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,189,0,0" VerticalAlignment="Top" Width="671" Height="112"/>
+        <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,310,0,0" VerticalAlignment="Top" Width="671" Height="104"/>
+        <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,425,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
 
         <Label Content="Choose accuracy (e):" HorizontalAlignment="Left" Margin="43,18,0,0" VerticalAlignment="Top"/>
         <Label Content="Range of changing size of matrix C:" HorizontalAlignment="Left" Margin="43,68,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="AccuracyComboBox" HorizontalAlignment="Left" Margin="442,24,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="Accuracy_SelectionChanged">
+        <ComboBox Name="AccuracyComboBox" Background="White" HorizontalAlignment="Left" Margin="442,24,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="Accuracy_SelectionChanged">
             <ComboBoxItem Name="D01">
                 <TextBlock>0,1</TextBlock>
             </ComboBoxItem>
@@ -35,15 +38,15 @@
                 <TextBlock>0,00001</TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="StartSizeBox" HorizontalAlignment="Left" Margin="442,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
-        <TextBox x:Name="FinalSizeBox" HorizontalAlignment="Left" Margin="594,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
+        <TextBox x:Name="StartSizeBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="FinalSizeBox" Opacity="0.8" HorizontalAlignment="Left" Margin="594,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
         <Label Content="Step in changing size of matrix C:" HorizontalAlignment="Left" Margin="43,109,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="StepBox" HorizontalAlignment="Left" Margin="442,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
+        <TextBox x:Name="StepBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
         <Label Content="Quantity of matrixes (R):" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RBox" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
+        <TextBox x:Name="RBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
         <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="92,222,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="DistributionComboBox" HorizontalAlignment="Left" Margin="443,220,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="Distribution_SelectionChanged">
+        <ComboBox Name="DistributionComboBox" Background="White" HorizontalAlignment="Left" Margin="443,220,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="Distribution_SelectionChanged">
             <ComboBoxItem Name="exp">
                 <TextBlock>Exponential</TextBlock>
             </ComboBoxItem>
@@ -93,8 +96,16 @@
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="595,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
         <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
-        <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked"/>
+        <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.1" Color="DimGray"></SolidColorBrush>
+            </Button.Background>
+        </Button>
         <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
         <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
     </Grid>

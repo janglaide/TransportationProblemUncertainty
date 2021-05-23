@@ -8,18 +8,22 @@
         Title="SolverRandomInputWindow" Height="609" Width="826" FontSize="16"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid Height="570">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/src/background-mosaic.png"></ImageBrush>
+        </Grid.Background>
+        
         <Label Content="Size of matrix (n):" HorizontalAlignment="Left" Margin="58,23,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SizeBox" HorizontalAlignment="Left" Margin="526,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,365,0,0" VerticalAlignment="Top" Width="671" Height="123"/>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,230,0,0" VerticalAlignment="Top" Width="671" Height="119"/>
-        <Label Content="" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
+        <TextBox x:Name="SizeBox" HorizontalAlignment="Left" Opacity="0.8" Margin="526,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
+        <Label Content="" Background="White" Opacity="0.7" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,365,0,0" VerticalAlignment="Top" Width="671" Height="123"/>
+        <Label Content="" Background="White" Opacity="0.7" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,230,0,0" VerticalAlignment="Top" Width="671" Height="119"/>
+        <Label Content="" Background="White" Opacity="0.7" BorderThickness="1" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
 
-        <Label Content="Quantity of cost matrixes (R):" HorizontalAlignment="Left" Margin="58,61,0,0" VerticalAlignment="Top"/>
+        <Label Content="Quantity of cost matrixes (R):"  HorizontalAlignment="Left" Margin="58,61,0,0" VerticalAlignment="Top"/>
         <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="58,101,0,0" VerticalAlignment="Top"/>
         <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="107,135,0,0" VerticalAlignment="Top" Width="373"/>
         <Label Name="ParametersLabel" Content="Delay mean and deviation:" HorizontalAlignment="Left" Margin="107,175,0,0" VerticalAlignment="Top" Width="373"/>
         <Label Name="ExceptionLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Left" Margin="58,493,0,0" VerticalAlignment="Top" Width="373" Height="52"/>
-        <TextBox x:Name="RBox" HorizontalAlignment="Left" Margin="526,65,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
+        <TextBox x:Name="RBox" HorizontalAlignment="Left" Opacity="0.8" Margin="526,65,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
         <ComboBox Name="DistributionComboBox" HorizontalAlignment="Left" Margin="526,137,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="Distribution_SelectionChanged">
             <ComboBoxItem Name="exp">
                 <TextBlock>Exponential</TextBlock>
@@ -68,7 +72,16 @@
         <TextBox x:Name="DelayMeanBoxL" HorizontalAlignment="Left" Margin="526,450,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="82"/>
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="638,450,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
 
-        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,517,0,0" VerticalAlignment="Top" Width="195" Click="RunButton_Click"/>
-        <Button Name="Back" Content="Back" HorizontalAlignment="Left" Margin="746,517,0,0" VerticalAlignment="Top" Width="58" Click="Back_Clicked"/>
+        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="526,517,0,0" VerticalAlignment="Top" FontSize="20" Width="195" Click="RunButton_Click" Height="34">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="Back" FontSize="20" Content="Back" HorizontalAlignment="Left" Margin="746,517,0,0" VerticalAlignment="Top" Width="58" Click="Back_Clicked" Height="34">
+            <Button.Background>
+                <SolidColorBrush Opacity="0.1" Color="DimGray"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+
     </Grid>
 </Window>

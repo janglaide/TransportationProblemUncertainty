@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ClassLibrary.ForWPF;
 using ClassLibrary.ForWPF.SolutionBundles;
+using ClassLibrary.Logic;
+using ClassLibrary.Logic.Services;
+using ClassLibrary.MethodParameters;
 using Microsoft.Win32;
+using Wpf.PersistenceTest;
 
 namespace Wpf.Solver
 {
@@ -458,7 +463,42 @@ namespace Wpf.Solver
 
         private void FindPercentButton_Click(object sender, RoutedEventArgs e)
         {
-            var accuracy = double.Parse(AccuracyComboBox.Text);
+            try
+            {
+                var accuracy = double.Parse(AccuracyComboBox.Text);
+                var random = new Random();
+                var solver = new ClassLibrary.Logic.Solver();
+                //var parametersForDefined = FileProcessing.ReadSolutionForPersistenceTest(_filename);
+                
+
+                (double, double) cParameters = PercentFinder.GetCsRange(_data.ParametersForDefined);
+                (double, double) abParameters = PercentFinder.GetABRange(_data.ParametersForDefined);
+                (double, double) lParameters = PercentFinder.GetLRange(_data.ParametersForDefined);
+
+                DistributionParametersService distributionParameters = new DistributionParametersService();
+                var distributionParametersIds = distributionParameters.GetAppropriateIds(
+                    cParameters, abParameters, lParameters);
+                if (distributionParametersIds.Count < 5)
+                    throw new Exception("There is not enough data for this task");
+
+                PercentageService percentageService = new PercentageService();
+                var percentages = percentageService.GetAppropriate(_data.ParametersForDefined.A.Length, distributionParametersIds);
+
+                if (percentages.Count < 4)
+                    throw new Exception("There is not enough data for this size of matrix (N)");
+
+                var valueFromDB = percentages.Average();
+
+                //var percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
+                var percent = PercentFinder.SearchMeanPercent(PercentFinder.FindPercentOfChange, _data.ParametersForDefined, accuracy, solver, random);
+
+                var window = new Result(valueFromDB, percent, percentages);
+                window.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
