@@ -219,7 +219,6 @@ namespace Wpf.Analysis
         private void Run(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
-            //worker.ReportProgress(0);
             _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker);
             worker.ReportProgress(100, "Experiment done!");
         }

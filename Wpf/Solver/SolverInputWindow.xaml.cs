@@ -64,6 +64,12 @@ namespace Wpf.Solver
         private void RunFromFile_Click(object sender, RoutedEventArgs e)
         {
             var problem = FileProcessing.ReadProblemFromFile(_filename);
+            if(problem == null)
+            {
+                ExceptionLabel.Foreground = Brushes.DarkRed;
+                ExceptionLabel.Content = "Incorrect format of input file";
+                return;
+            }
             ExceptionLabel.Content = "";
             var solution = problem.Run();
             var window = new SolutionWindow(solution, problem);

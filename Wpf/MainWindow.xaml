@@ -25,7 +25,8 @@
         <Button x:Name="SolverButton" Content="Solver" HorizontalAlignment="Left" Margin="82,137,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="SolverButton_Click">
             <Button.Background>
                 <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
-            </Button.Background> 
+            </Button.Background>
+
         </Button>
         <Button x:Name="AnalysisButton" Content="Analysis" HorizontalAlignment="Left" Margin="82,217,0,0" VerticalAlignment="Top" Height="51" Width="225" Click="AnalysisButton_Click">
             <Button.Background>

@@ -12,74 +12,92 @@ namespace ClassLibrary.ForWPF
         private const char V = '\n';
         public static Problem ReadProblemFromFile(string filename)
         {
-            using StreamReader stream = new StreamReader(filename);
-            var N = Convert.ToInt32(stream.ReadLine());
-            stream.ReadLine();
-            var R = Convert.ToInt32(stream.ReadLine());
-            stream.ReadLine();
-
-            double[][] Cs = new double[R][];
-            var size = N * N;
-            for (var r = 0; r < R; r++)
+            try
             {
-                Cs[r] = new double[size];
-                string matrix = "";
-                for (var c = 0; c < N; c++)
+                using StreamReader stream = new StreamReader(filename);
+                var N = Convert.ToInt32(stream.ReadLine());
+                stream.ReadLine();
+                var R = Convert.ToInt32(stream.ReadLine());
+                stream.ReadLine();
+
+                double[][] Cs = new double[R][];
+                var size = N * N;
+                for (var r = 0; r < R; r++)
                 {
-                    matrix += stream.ReadLine();
+                    Cs[r] = new double[size];
+                    string matrix = "";
+                    for (var c = 0; c < N; c++)
+                    {
+                        matrix += stream.ReadLine();
+                    }
+                    var i = 0;
+                    foreach (var col in matrix.Trim().Split(' '))
+                    {
+                        Cs[r][i] = double.Parse(col);
+                        i++;
+                    }
+                    stream.ReadLine();
                 }
-                var i = 0;
-                foreach (var col in matrix.Trim().Split(' '))
+
+                double[] a = new double[N];
+                string text = stream.ReadLine();
+
+                var j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+
+                foreach (var col in text.Trim().Split())
                 {
-                    Cs[r][i] = double.Parse(col);
-                    i++;
+                    a[j] = double.Parse(col);
+                    j++;
                 }
                 stream.ReadLine();
+
+                double[] b = new double[N];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+                foreach (var col in text.Trim().Split())
+                {
+                    b[j] = double.Parse(col);
+                    j++;
+                }
+                stream.ReadLine();
+
+                double[] l = new double[R];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+                foreach (var col in text.Trim().Split())
+                {
+                    l[j] = double.Parse(col);
+                    j++;
+                }
+                stream.ReadLine();
+
+                double[] alpha = new double[R];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+                foreach (var col in text.Trim().Split())
+                {
+                    alpha[j] = double.Parse(col);
+                    j++;
+                }
+                return new Problem(a, b, l, alpha, Cs, CChangeParameters.Default);
             }
-
-            double[] a = new double[N];
-            string text = stream.ReadLine();
-
-            var j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                a[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] b = new double[N];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                b[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] l = new double[R];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                l[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] alpha = new double[R];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                alpha[j] = double.Parse(col);
-                j++;
-            }
-            return new Problem(a, b, l, alpha, Cs, CChangeParameters.Default);
+            catch (Exception) { }
+            return null;
         }
         public static void WriteProblemIntoFile(Problem data, string filename)
         {
@@ -171,88 +189,109 @@ namespace ClassLibrary.ForWPF
         }
         public static ParametersForDefined ReadSolutionForPersistenceTest(string filename)
         {
-            using StreamReader stream = new StreamReader(filename);
-            var N = Convert.ToInt32(stream.ReadLine());
-            stream.ReadLine();
-            var R = Convert.ToInt32(stream.ReadLine());
-            stream.ReadLine();
+            try
+            {
+                using StreamReader stream = new StreamReader(filename);
+                var N = Convert.ToInt32(stream.ReadLine());
+                stream.ReadLine();
+                var R = Convert.ToInt32(stream.ReadLine());
+                stream.ReadLine();
 
-            var size = N * N;
-            double[] xs = new double[size];
-            string matrix = "";
-            for (var c = 0; c < N; c++)
-            {
-                matrix += stream.ReadLine();
-            }
-            var i = 0;
-            foreach (var col in matrix.Trim().Split(' '))
-            {
-                xs[i] = double.Parse(col);
-                i++;
-            }
-            stream.ReadLine();
-
-            double[][] Cs = new double[R][];
-            for (var r = 0; r < R; r++)
-            {
-                Cs[r] = new double[size];
-                matrix = "";
+                var size = N * N;
+                double[] xs = new double[size];
+                string matrix = "";
                 for (var c = 0; c < N; c++)
                 {
                     matrix += stream.ReadLine();
                 }
-                i = 0;
+                var i = 0;
                 foreach (var col in matrix.Trim().Split(' '))
                 {
-                    Cs[r][i] = double.Parse(col);
+                    xs[i] = double.Parse(col);
                     i++;
                 }
                 stream.ReadLine();
+
+                double[][] Cs = new double[R][];
+                for (var r = 0; r < R; r++)
+                {
+                    Cs[r] = new double[size];
+                    matrix = "";
+                    for (var c = 0; c < N; c++)
+                    {
+                        matrix += stream.ReadLine();
+                    }
+                    i = 0;
+                    foreach (var col in matrix.Trim().Split(' '))
+                    {
+                        Cs[r][i] = double.Parse(col);
+                        i++;
+                    }
+                    stream.ReadLine();
+                }
+
+                double[] a = new double[N];
+                string text = stream.ReadLine();
+
+                var j = 0;
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+
+                foreach (var col in text.Trim().Split())
+                {
+                    a[j] = double.Parse(col);
+                    j++;
+                }
+                stream.ReadLine();
+
+                double[] b = new double[N];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+
+                foreach (var col in text.Trim().Split())
+                {
+                    b[j] = double.Parse(col);
+                    j++;
+                }
+                stream.ReadLine();
+
+                double[] l = new double[R];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+
+                foreach (var col in text.Trim().Split())
+                {
+                    l[j] = double.Parse(col);
+                    j++;
+                }
+                stream.ReadLine();
+
+                double[] alpha = new double[R];
+                text = stream.ReadLine();
+
+                j = 0;
+
+                if (text.Trim().Split() == null)
+                    throw new Exception("Incorrect format of input file");
+
+                foreach (var col in text.Trim().Split())
+                {
+                    alpha[j] = double.Parse(col);
+                    j++;
+                }
+                return new ParametersForDefined(xs, Cs, a, b, l, alpha, CChangeParameters.Default);
             }
+            catch(Exception ex) {  }
+            return null;
 
-            double[] a = new double[N];
-            string text = stream.ReadLine();
-
-            var j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                a[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] b = new double[N];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                b[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] l = new double[R];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                l[j] = double.Parse(col);
-                j++;
-            }
-            stream.ReadLine();
-
-            double[] alpha = new double[R];
-            text = stream.ReadLine();
-
-            j = 0;
-            foreach (var col in text.Trim().Split())
-            {
-                alpha[j] = double.Parse(col);
-                j++;
-            }
-            return new ParametersForDefined(xs, Cs, a, b, l, alpha, CChangeParameters.Default);
         }
     }
 }

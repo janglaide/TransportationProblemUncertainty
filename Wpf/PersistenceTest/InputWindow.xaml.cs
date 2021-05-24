@@ -49,6 +49,9 @@ namespace Wpf.PersistenceTest
                 var accuracy = double.Parse(AccuracyComboBox.Text);
                 var parametersForDefined = FileProcessing.ReadSolutionForPersistenceTest(_filename);
 
+                if (parametersForDefined == null)
+                    throw new Exception("Incorrect format of input file");
+
                 (double, double) cParameters = PercentFinder.GetCsRange(parametersForDefined);
                 (double, double) abParameters = PercentFinder.GetABRange(parametersForDefined);
                 (double, double) lParameters = PercentFinder.GetLRange(parametersForDefined);
