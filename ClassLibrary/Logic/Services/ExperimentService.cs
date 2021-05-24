@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClassLibrary.Enums;
 using ClassLibrary.Generators;
 using ClassLibrary.Models;
 using DataAccess;
@@ -15,7 +16,8 @@ namespace ClassLibrary.Logic.Services
         {
             _uow = new UnitOfWork();
         }
-        public void AddExperimentResult(List<(int, double)> results, GeneratorTaskCondition generator, double accuracy)
+        public void AddExperimentResult(List<(int, double)> results, GeneratorTaskCondition generator, 
+            double accuracy, int R, CChangeParameters parameters)
         {
             var CsDistributionId = _uow.DistributionRepository.GetAll().First(x => x.Name == generator.DistributionC).Id;
             var ABDistributionId = _uow.DistributionRepository.GetAll().First(x => x.Name == generator.DistributionAB).Id;
@@ -54,9 +56,23 @@ namespace ClassLibrary.Logic.Services
 
             _uow.ExperimentRepository.Add(experiment);
 
+            int paramId;
+            switch (parameters)
+            {
+                case CChangeParameters.Default:
+                    paramId = 1;
+                    break;
+                case CChangeParameters.Basic:
+                    paramId = 2;
+                    break;
+                default:
+                    paramId = 3;
+                    break;
+            }
+
             foreach (var result in results)
             {
-                var percentageModel = new PercentageModel(experimentId, result.Item1, result.Item2);
+                var percentageModel = new PercentageModel(experimentId, result.Item1, result.Item2, R, paramId);
                 var mapperPercentage = new MapperConfiguration(x => x.CreateMap<PercentageModel, Percentage>()).CreateMapper();
                 var percentage = mapperPercentage.Map<PercentageModel, Percentage>(percentageModel);
                 _uow.PercentageRepository.Add(percentage);

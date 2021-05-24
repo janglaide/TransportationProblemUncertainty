@@ -136,13 +136,13 @@ namespace ClassLibrary.Logic
             }
             return Math.Sqrt(result);
         }
-        public double[] CalculateDistances(double[][] cs, double[] x)
+        public double[] CalculateDistances(double[][] xs, double[] x)
         {
-            int distNumber = cs.Length;
+            int distNumber = xs.Length;
             double[] distances = new double[distNumber];
             for (int i = 0; i < distNumber; i++)
             {
-                distances[i] = CalculateDistance(cs[i], x);
+                distances[i] = CalculateDistance(xs[i], x);
             }
             return distances;
         }

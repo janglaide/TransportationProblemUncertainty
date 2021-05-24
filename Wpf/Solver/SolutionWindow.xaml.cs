@@ -42,14 +42,23 @@ namespace Wpf.Solver
             OutputBlock.Text = solution.SolutionWithoutChange.OptimalX;
             OutputBlock.VerticalAlignment = VerticalAlignment.Top;
             OutputBlock.HorizontalAlignment = HorizontalAlignment.Left;
-            OutputBlock.Margin = new Thickness(23, 199, 0, 0);
+
+            SaveInputButton.Margin = new Thickness(275, 77, 0, 0);
+            SaveResult.Margin = new Thickness(275, 135, 0, 0);
+            AccuracyLabel.Margin = new Thickness(23, 199, 0, 0);
+            AccuracyComboBox.Margin = new Thickness(275, 204, 0, 0);
+            FindPercentButton.Margin = new Thickness(275, 261, 0, 0);
+
+            var startHeight = 80;
+            OptimalXsLabel.Margin = new Thickness(23, FindPercentButton.Margin.Top + 40, 0, 0);
+            OutputBlock.Margin = new Thickness(23, FindPercentButton.Margin.Top + startHeight, 0, 0);
 
             //OutputBlock.Width = 65 * solution.SolutionWithoutChange.N;
             //OutputBlock.Height = 35 * solution.SolutionWithoutChange.N;
 
             MatrixesCLabel.VerticalAlignment = VerticalAlignment.Top;
             MatrixesCLabel.HorizontalAlignment = HorizontalAlignment.Left;
-            var labelsHeight = 199 + 24 * solution.SolutionWithoutChange.N + 20;
+            var labelsHeight = FindPercentButton.Margin.Top + startHeight + 24 * solution.SolutionWithoutChange.N + 20;
             MatrixesCLabel.Margin = new Thickness(23, labelsHeight, 0, 0);
 
             var XsLabel = new Label
@@ -430,16 +439,6 @@ namespace Wpf.Solver
             }
             
         }
-
-        private void Resized(object sender, SizeChangedEventArgs e)
-        {
-            SaveInputButton.Margin = new Thickness(Width - 200, 77, 0, 0);
-            SaveResult.Margin = new Thickness(Width - 200, 135, 0, 0);
-            AccuracyLabel.Margin = new Thickness(Width - 435, 199, 0, 0);
-            AccuracyComboBox.Margin = new Thickness(Width - 200, 204, 0, 0);
-            FindPercentButton.Margin = new Thickness(Width - 200, 261, 0, 0);
-        }
-
         private void SaveResult_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -482,10 +481,10 @@ namespace Wpf.Solver
                     throw new Exception("There is not enough data for this task");
 
                 PercentageService percentageService = new PercentageService();
-                var percentages = percentageService.GetAppropriate(_data.ParametersForDefined.A.Length, distributionParametersIds);
+                var percentages = percentageService.GetAppropriate(_data.ParametersForDefined.A.Length, distributionParametersIds, _data.R);
 
-                if (percentages.Count < 4)
-                    throw new Exception("There is not enough data for this size of matrix (N)");
+                if (percentages.Count < 5)
+                    throw new Exception("There is not enough data for this size of matrix (N) and experts quantity (R)");
 
                 var valueFromDB = percentages.Average();
 

@@ -6,25 +6,25 @@
         xmlns:local="clr-namespace:Wpf.Solver"
         mc:Ignorable="d"
         Title="SolutionWindow" Height="550" Width="826" FontSize="16"
-        WindowStartupLocation="CenterScreen" SizeChanged="Resized">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="CoolGrid">
                 <Label x:Name="ValueLabel" Content="Optimal Value:" Margin="23,8,628,484"/>
                 <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Margin="181,13,471,499"/>
-                <Label Content="Optimal X:" Margin="23,117,524,370"/>
+                <Label Name="OptimalXsLabel" Content="Optimal X:" Margin="23,117,524,370"/>
                 <Label Name="MatrixesCLabel" Content="Matrixes C:" Margin="23,318,601,163"/>
                 <TextBlock x:Name="OutputBlock" Text="" TextWrapping="Wrap" Margin="23,164,417,176"/>
-                <Label Content="Alpha:" Margin="404,109,300,373" />
-                <Label x:Name="AlphaBlockChangedLable" Content="Alpha changed:"  Margin="404,152,272,335" />
-                <Label Content="a:"  Margin="404,8,353,484" />
-                <Label Content="b:"  Margin="404,40,353,447" />
-                <Label Content="l:"  Margin="404,77,353,410" />
-                <TextBlock Name="AlphaBlock" HorizontalAlignment="Left"  Margin="461,114,0,397" Text="" TextWrapping="Wrap"  />
-                <TextBlock x:Name="AlphaBlockChanged"  HorizontalAlignment="Left" Margin="550,158,0,353" Text="" TextWrapping="Wrap"  />
-                <TextBlock x:Name="ABlock"  HorizontalAlignment="Left" Margin="461,13,0,499" Text="" TextWrapping="Wrap"  />
-                <TextBlock x:Name="BBlock"  HorizontalAlignment="Left" Margin="461,45,0,467" Text="" TextWrapping="Wrap"  />
-                <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="461,81,0,431" Text="" TextWrapping="Wrap"  />
+                <Label Content="Alpha:" Margin="434,109,300,373" />
+                <Label x:Name="AlphaBlockChangedLable" Content="Alpha changed:"  Margin="434,152,272,335" />
+                <Label Content="a:"  Margin="434,8,353,484" />
+                <Label Content="b:"  Margin="434,40,353,447" />
+                <Label Content="l:"  Margin="434,77,353,410" />
+                <TextBlock Name="AlphaBlock" HorizontalAlignment="Left"  Margin="491,114,0,397" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="AlphaBlockChanged"  HorizontalAlignment="Left" Margin="580,158,0,353" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="ABlock"  HorizontalAlignment="Left" Margin="491,13,0,499" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="BBlock"  HorizontalAlignment="Left" Margin="491,45,0,467" Text="" TextWrapping="Wrap"  />
+                <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="491,81,0,431" Text="" TextWrapping="Wrap"  />
                 <Button Name="SaveInputButton" Content="Save input data" HorizontalAlignment="Left" Margin="673,77,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveInputButton_Click"/>
                 <Button Name="SaveResult" Content="Save result" HorizontalAlignment="Left" Margin="673,135,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveResult_Click"/>
                 <Label Name="AccuracyLabel" Content="Accuracy for percent search:" HorizontalAlignment="Left" Margin="404,199,0,0" VerticalAlignment="Top" Height="37" Width="238"/>

@@ -63,10 +63,10 @@ namespace Wpf.PersistenceTest
                     throw new Exception("There is not enough data for this task");
 
                 PercentageService percentageService = new PercentageService();
-                var percentages = percentageService.GetAppropriate(parametersForDefined.A.Length, distributionParametersIds);
+                var percentages = percentageService.GetAppropriate(parametersForDefined.A.Length, distributionParametersIds, parametersForDefined.Alpha.Length);
 
-                if(percentages.Count < 4)
-                    throw new Exception("There is not enough data for this size of matrix (N)");
+                if(percentages.Count < 5)
+                    throw new Exception("There is not enough data for this size of matrix (N) \nand experts quantity (R)");
 
                 var valueFromDB = percentages.Average();
 

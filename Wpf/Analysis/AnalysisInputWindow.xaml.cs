@@ -39,11 +39,10 @@ namespace Wpf.Analysis
                 var accuracy = double.Parse(AccuracyComboBox.Text);
                 if (!int.TryParse(StartSizeBox.Text, out int startSize) ||
                     !int.TryParse(FinalSizeBox.Text, out int finalSize)) throw new Exception("The range must consist of integers");
-                if (finalSize - startSize <= 0) throw new Exception("Invalid range of sizing");
+                if (finalSize - startSize < 0) throw new Exception("Invalid range of sizing");
                 if (startSize <= 0) throw new Exception("Sizes of matrixes must be positive");
                 if (!int.TryParse(StepBox.Text, out int step)) throw new Exception("The step must be integer");
                 if (step <= 0) throw new Exception("The step must be positive");
-                if (finalSize - startSize < step) throw new Exception("Incorrect step for the sizing range");
                 if (!int.TryParse(RBox.Text, out int R)) throw new Exception("The 'R' must be integer");
                 if (R <= 0) throw new Exception("The 'R' must be positive");
                 if (DistributionComboBox.SelectedItem == null) throw new Exception("The distribution is not chosen yet");

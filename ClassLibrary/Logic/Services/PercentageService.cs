@@ -16,11 +16,11 @@ namespace ClassLibrary.Logic.Services
         {
             _uow = new UnitOfWork();
         }
-        public List<double> GetAppropriate(int N, List<int> appropriateIds)
+        public List<double> GetAppropriate(int N, List<int> appropriateIds, int R)
         {
             var percentages = GetAll();
             return percentages
-                .Where(p => p.N == N)
+                .Where(p => p.N == N && p.R == R)
                 .Where(p => appropriateIds.Contains(p.ExperimentId))
                 .Select(p => p.Value).ToList();
         }

@@ -10,6 +10,7 @@ namespace DataAccess
         public DbSet<DistributionParameters> DistributionParameters { get; set; }
         public DbSet<Experiment> Experiments { get; set; }
         public DbSet<Percentage> Percentages { get; set; }
+        public DbSet<ChangeParameter> ChangeParameters { get; set; }
         public ApplicationContext()
         {
             //Database.EnsureCreated();

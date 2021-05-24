@@ -85,7 +85,7 @@ namespace ClassLibrary.Logic
             }
 
             var service = new ExperimentService();
-            service.AddExperimentResult(results, _generator, averChange);
+            service.AddExperimentResult(results, _generator, averChange, matrixQuantity, _cChangeParameters);
 
             return results;
         }
