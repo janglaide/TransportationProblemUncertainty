@@ -113,7 +113,7 @@ namespace ClassLibrary.Logic
                 from[i].CopyTo(to[i], 0);
             }
         }
-        private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected, Random rand)
+        private static void ChangeMatrixs(ref double[][] cs, double percent, double[] selected, Random random)
         {
             for (int k = 0; k < cs.Length; k++)
             {
@@ -121,7 +121,7 @@ namespace ClassLibrary.Logic
                 for (int i = 0; i < size; i++)
                 {
                     double e = cs[k][i] * (percent / 100);
-                    cs[k][i] += GeneratorValues.GetDoubleValue("Uniform", (-e, e), rand) * selected[i];
+                    cs[k][i] += GeneratorValues.GetDoubleValue("Uniform", (-e, e), random) * selected[i];
                 }
             }
         }

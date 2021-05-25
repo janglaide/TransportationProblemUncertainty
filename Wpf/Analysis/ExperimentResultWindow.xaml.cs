@@ -91,7 +91,7 @@ namespace Wpf.Analysis
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
-                    FileName = $"graph_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.jpg"
+                    FileName = $"graph_{DateTime.Now:MM-dd-yyyy_HH-mm-ss}.png"
                 };
 
                 if (saveFileDialog.ShowDialog() == true)
@@ -125,19 +125,19 @@ namespace Wpf.Analysis
 
             viewbox.Child = null;
         }
-        private void SaveToPng(FrameworkElement visual, string fileName)
+        private void SaveToPng(FrameworkElement visual, string filename)
         {
             var encoder = new PngBitmapEncoder();
-            EncodeVisual(visual, fileName, encoder);
+            EncodeVisual(visual, filename, encoder);
         }
 
-        private static void EncodeVisual(FrameworkElement visual, string fileName, BitmapEncoder encoder)
+        private static void EncodeVisual(FrameworkElement visual, string filename, BitmapEncoder encoder)
         {
             var bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
             bitmap.Render(visual);
             var frame = BitmapFrame.Create(bitmap);
             encoder.Frames.Add(frame);
-            using var stream = File.Create(fileName); 
+            using var stream = File.Create(filename); 
             encoder.Save(stream);
         }
     }

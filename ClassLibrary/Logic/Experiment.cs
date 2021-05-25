@@ -89,10 +89,10 @@ namespace ClassLibrary.Logic
 
             return results;
         }
-        public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, double averChange, BackgroundWorker worker)
+        public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, int stepMatrixQuantity, double averChange, BackgroundWorker worker)
         {
             List<List<(int, double)>> results = new List<List<(int, double)>>();
-            for (int i = startMatrixQuantity; i <= finishMatrixQuantity; i += step)
+            for (int i = startMatrixQuantity; i <= finishMatrixQuantity; i += stepMatrixQuantity)
             {
                 results.Add(RunExperiment(startSize, finishSize, step, i, averChange, worker));
             }

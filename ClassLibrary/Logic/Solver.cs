@@ -160,9 +160,20 @@ namespace ClassLibrary.Logic
         {
             int deltNumber = deltas.Length;
             double[] ys = new double[deltNumber];
+            double[] dirtyYs = new double[deltNumber];
             for (int i = 0; i < deltNumber; i++)
             {
-                ys[i] = Math.Max(deltas[i] - l[i], 0);
+                ys[i] = Math.Max(dirtyYs[i], 0);
+            }
+            return ys;
+        }
+        private double[] CalculateYsDirty(double[] deltas, double[] l)
+        {
+            int deltNumber = deltas.Length;
+            double[] ys = new double[deltNumber];
+            for (int i = 0; i < deltNumber; i++)
+            {
+                ys[i] = deltas[i] - l[i];
             }
             return ys;
         }
@@ -186,7 +197,7 @@ namespace ClassLibrary.Logic
             double[] result = new double[valueNumber];
             for (int i = 0; i < valueNumber; i++)
             {
-                result[i] = Math.Round(x[i]);
+                result[i] = RoundValue(x[i]);
             }
             return result;
         }
@@ -360,7 +371,7 @@ namespace ClassLibrary.Logic
             {
                 double step = 0.1;
                 double[] deltas = CalculateDeltas(CalculateFs(cs, newX), solutions);
-                double[] ys = CalculateYs(deltas, l);
+                double[] ys = RoundVector(CalculateYsDirty(deltas, l));
                 if (!ys.Any(x => RoundValue(x) == 0) || ys.All(x => RoundValue(x) == 0))
                 {
                     break;
@@ -368,11 +379,11 @@ namespace ClassLibrary.Logic
                 int ysNumber = ys.Length;
                 for (int i = 0; i < ysNumber; i++)
                 {
-                    if (ys[i] <= 0)
+                    if (ys[i] < 0)
                     {
                         newAlpha[i] -= step;
                     }
-                    else
+                    else if(ys[i] > 0)
                     {
                         newAlpha[i] += step;
                     }
@@ -384,7 +395,6 @@ namespace ClassLibrary.Logic
                     alpha = newAlpha;
                     break;
                 }
-
                 if (newAlpha.Any(x => x <= 0))
                 {
                     newX = oldX;
