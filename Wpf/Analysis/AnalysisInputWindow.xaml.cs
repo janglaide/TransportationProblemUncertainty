@@ -35,19 +35,19 @@ namespace Wpf.Analysis
         {
             try
             {
-                if (AccuracyComboBox.SelectedItem == null) throw new Exception("Choose an accuracy");
+                if (AccuracyComboBox.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelAccuracyNOTChosen);
                 var accuracy = double.Parse(AccuracyComboBox.Text);
                 if (!int.TryParse(StartSizeBox.Text, out int startSize) ||
-                    !int.TryParse(FinalSizeBox.Text, out int finalSize)) throw new Exception("The range must consist of integers");
-                if (finalSize - startSize < 0) throw new Exception("Invalid range of sizing");
-                if (startSize <= 0) throw new Exception("Sizes of matrixes must be positive");
-                if (!int.TryParse(StepBox.Text, out int step)) throw new Exception("The step must be integer");
-                if (step <= 0) throw new Exception("The step must be positive");
-                if (!int.TryParse(RBox.Text, out int R)) throw new Exception("The 'R' must be integer");
-                if (R <= 0) throw new Exception("The 'R' must be positive");
-                if (DistributionComboBox.SelectedItem == null) throw new Exception("The distribution is not chosen yet");
-                if (DistributionComboBoxAB.SelectedItem == null) throw new Exception("The distribution for a and b \nis not chosen yet");
-                if (DistributionComboBoxL.SelectedItem == null) throw new Exception("The distribution for l \nis not chosen yet");
+                    !int.TryParse(FinalSizeBox.Text, out int finalSize)) throw new Exception(Properties.Resources.ExceptionLabelNRangeIntegers);
+                if (finalSize - startSize < 0) throw new Exception(Properties.Resources.ExceptionLabelInvalidRangeSizing);
+                if (startSize <= 0) throw new Exception(Properties.Resources.ExceptionLabelSizesMatrixesPositive);
+                if (!int.TryParse(StepBox.Text, out int step)) throw new Exception(Properties.Resources.ExceptionLabelStepInteger);
+                if (step <= 0) throw new Exception(Properties.Resources.ExceptionLabelStepPositive);
+                if (!int.TryParse(RBox.Text, out int R)) throw new Exception(Properties.Resources.ExceptionLabelIntegerR);
+                if (R <= 0) throw new Exception(Properties.Resources.ExceptionLabelPositiveR);
+                if (DistributionComboBox.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionCNOTChosen);
+                if (DistributionComboBoxAB.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionABNOTChosen);
+                if (DistributionComboBoxL.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionLNOTChosen);
 
                 double delay, deviation, a, b;
 
@@ -60,8 +60,8 @@ namespace Wpf.Analysis
                 switch (item.Name)
                 {
                     case "exp":
-                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
+                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
@@ -70,10 +70,10 @@ namespace Wpf.Analysis
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm":
-                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
-                        if (!double.TryParse(DeviationBox.Text, out deviation)) throw new Exception("The deviation must be numeric");
-                        if (deviation <= 0) throw new Exception("The deviation must be positive");
+                        if (!double.TryParse(DelayBox.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
+                        if (!double.TryParse(DeviationBox.Text, out deviation)) throw new Exception(Properties.Resources.ExceptionLabelDeviationNumeric);
+                        if (deviation <= 0) throw new Exception(Properties.Resources.ExceptionLabelDeviationPositive);
                         a = -1.0;
                         b = -1.0;
                         paramsC = (delay, deviation);
@@ -82,9 +82,9 @@ namespace Wpf.Analysis
                         break;
                     default:
                         if (!double.TryParse(DelayBox.Text, out a) || !double.TryParse(DeviationBox.Text, out b))
-                            throw new Exception("The range must consist of numbers");
-                        if (b - a < 0) throw new Exception("The range must be positive");
-                        if (a < 0) throw new Exception("The range must be of positive");
+                            throw new Exception(Properties.Resources.ExceptionLabelRangeNumbers);
+                        if (b - a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangePositive);
+                        if (a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangeStartsInPositive);
                         delay = -1.0;
                         deviation = -1.0;
                         paramsC = (a, b);
@@ -97,8 +97,8 @@ namespace Wpf.Analysis
                 switch (itemAB.Name)
                 {
                     case "exp1":
-                        if (!double.TryParse(DelayBoxAB.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
+                        if (!double.TryParse(DelayBoxAB.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
@@ -107,10 +107,10 @@ namespace Wpf.Analysis
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm1":
-                        if (!double.TryParse(DelayBoxAB.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
-                        if (!double.TryParse(DeviationBoxAB.Text, out deviation)) throw new Exception("The deviation must be numeric");
-                        if (deviation <= 0) throw new Exception("The deviation must be positive");
+                        if (!double.TryParse(DelayBoxAB.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
+                        if (!double.TryParse(DeviationBoxAB.Text, out deviation)) throw new Exception(Properties.Resources.ExceptionLabelDeviationNumeric);
+                        if (deviation <= 0) throw new Exception(Properties.Resources.ExceptionLabelDeviationPositive);
                         a = -1.0;
                         b = -1.0;
                         paramsAB = (delay, deviation);
@@ -119,9 +119,9 @@ namespace Wpf.Analysis
                         break;
                     default:
                         if (!double.TryParse(DelayBoxAB.Text, out a) || !double.TryParse(DeviationBoxAB.Text, out b))
-                            throw new Exception("The range must consist of numbers");
-                        if (b - a < 0) throw new Exception("The range must be positive");
-                        if (a < 0) throw new Exception("The range must be of positive");
+                            throw new Exception(Properties.Resources.ExceptionLabelRangeNumbers);
+                        if (b - a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangePositive);
+                        if (a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangeStartsInPositive);
                         delay = -1.0;
                         deviation = -1.0;
                         paramsAB = (a, b);
@@ -134,8 +134,8 @@ namespace Wpf.Analysis
                 switch (itemL.Name)
                 {
                     case "exp2":
-                        if (!double.TryParse(DelayBoxL.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
+                        if (!double.TryParse(DelayBoxL.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
                         deviation = -1.0;
                         a = -1.0;
                         b = -1.0;
@@ -144,10 +144,10 @@ namespace Wpf.Analysis
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm2":
-                        if (!double.TryParse(DelayBoxL.Text, out delay)) throw new Exception("The delay must be numeric");
-                        if (delay <= 0) throw new Exception("The delay must be positive");
-                        if (!double.TryParse(DeviationBoxL.Text, out deviation)) throw new Exception("The deviation must be numeric");
-                        if (deviation <= 0) throw new Exception("The deviation must be positive");
+                        if (!double.TryParse(DelayBoxL.Text, out delay)) throw new Exception(Properties.Resources.ExceptionLabelDelayNumeric);
+                        if (delay <= 0) throw new Exception(Properties.Resources.ExceptionLabelDelayPositive);
+                        if (!double.TryParse(DeviationBoxL.Text, out deviation)) throw new Exception(Properties.Resources.ExceptionLabelDeviationNumeric);
+                        if (deviation <= 0) throw new Exception(Properties.Resources.ExceptionLabelDeviationPositive);
                         a = -1.0;
                         b = -1.0;
                         paramsL = (delay, deviation);
@@ -156,9 +156,9 @@ namespace Wpf.Analysis
                         break;
                     default:
                         if (!double.TryParse(DelayBoxL.Text, out a) || !double.TryParse(DeviationBoxL.Text, out b))
-                            throw new Exception("The range must consist of numbers");
-                        if (b - a < 0) throw new Exception("The range must be positive");
-                        if (a < 0) throw new Exception("The range must be of positive");
+                            throw new Exception(Properties.Resources.ExceptionLabelRangeNumbers);
+                        if (b - a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangePositive);
+                        if (a < 0) throw new Exception(Properties.Resources.ExceptionLabelRangeStartsInPositive);
                         delay = -1.0;
                         deviation = -1.0;
                         paramsL = (a, b);
@@ -218,8 +218,8 @@ namespace Wpf.Analysis
         private void Run(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
-            _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker);
-            worker.ReportProgress(100, "Experiment done!");
+            _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize);
+            worker.ReportProgress(100, Properties.Resources.ProgressTextBlockCompleted);
         }
 
         private void Accuracy_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -237,15 +237,15 @@ namespace Wpf.Analysis
             switch (x.Name)
             {
                 case "exp":
-                    ParametersLabel.Content = "Delay mean:";
+                    ParametersLabel.Content = Properties.Resources.ParametersExpLabel;
                     DeviationBox.IsEnabled = false;
                     break;
                 case "norm":
-                    ParametersLabel.Content = "Delay mean and deviation:";
+                    ParametersLabel.Content = Properties.Resources.ParametersNormalLabel;
                     DeviationBox.IsEnabled = true;
                     break;
                 default:
-                    ParametersLabel.Content = "Range for generator:";
+                    ParametersLabel.Content = Properties.Resources.ParametersUniformLabel;
                     DeviationBox.IsEnabled = true;
                     break;
             }
@@ -261,15 +261,15 @@ namespace Wpf.Analysis
             switch (x.Name)
             {
                 case "exp1":
-                    ParametersABLabel.Content = "Delay mean:";
+                    ParametersABLabel.Content = Properties.Resources.ParametersExpLabel;
                     DeviationBoxAB.IsEnabled = false;
                     break;
                 case "norm1":
-                    ParametersABLabel.Content = "Delay mean and deviation:";
+                    ParametersABLabel.Content = Properties.Resources.ParametersNormalLabel;
                     DeviationBoxAB.IsEnabled = true;
                     break;
                 default:
-                    ParametersABLabel.Content = "Range for generator:";
+                    ParametersABLabel.Content = Properties.Resources.ParametersUniformLabel;
                     DeviationBoxAB.IsEnabled = true;
                     break;
             }
@@ -285,15 +285,15 @@ namespace Wpf.Analysis
             switch (x.Name)
             {
                 case "exp2":
-                    ParametersLLabel.Content = "Delay mean:";
+                    ParametersLLabel.Content = Properties.Resources.ParametersExpLabel;
                     DeviationBoxL.IsEnabled = false;
                     break;
                 case "norm2":
-                    ParametersLLabel.Content = "Delay mean and deviation:";
+                    ParametersLLabel.Content = Properties.Resources.ParametersNormalLabel;
                     DeviationBoxL.IsEnabled = true;
                     break;
                 default:
-                    ParametersLLabel.Content = "Range for generator:";
+                    ParametersLLabel.Content = Properties.Resources.ParametersUniformLabel;
                     DeviationBoxL.IsEnabled = true;
                     break;
             }

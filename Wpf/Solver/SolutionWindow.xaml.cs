@@ -27,6 +27,7 @@ namespace Wpf.Solver
             SaveInputButton.Margin = new Thickness(Width - 100, 77, 0, 0);
 
             OptimalValueBlock.Text = solution.SolutionWithoutChange.FunctionValue;
+            OptimalValueBlock.Margin = new Thickness(13 + ValueLabel.Content.ToString().Length * 9, 13, 0, 0);
             AlphaBlock.Text = solution.SolutionWithoutChange.Alpha;
             if(solution.SolutionWithoutChange.Alpha != solution.SolutionWithoutChange.AlphaChanged)
             {
@@ -43,11 +44,13 @@ namespace Wpf.Solver
             OutputBlock.VerticalAlignment = VerticalAlignment.Top;
             OutputBlock.HorizontalAlignment = HorizontalAlignment.Left;
 
-            SaveInputButton.Margin = new Thickness(275, 77, 0, 0);
-            SaveResult.Margin = new Thickness(275, 135, 0, 0);
+            SaveInputButton.Margin = new Thickness(23, 77, 0, 0);
+            SaveInputButton.Width = 200;
+            SaveResult.Margin = new Thickness(23, 135, 0, 0);
+            SaveResult.Width = 200;
             AccuracyLabel.Margin = new Thickness(23, 199, 0, 0);
             AccuracyComboBox.Margin = new Thickness(275, 204, 0, 0);
-            FindPercentButton.Margin = new Thickness(275, 261, 0, 0);
+            FindPercentButton.Margin = new Thickness(275, 241, 0, 0);
 
             var startHeight = 80;
             OptimalXsLabel.Margin = new Thickness(23, FindPercentButton.Margin.Top + 40, 0, 0);
@@ -67,7 +70,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(50 + 65 * solution.SolutionWithoutChange.N, 
                     labelsHeight, 0, 0),
-                Content = "Solutions X:"
+                Content = Properties.Resources.SolutionsXLabel
             };
 
 
@@ -140,7 +143,7 @@ namespace Wpf.Solver
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
                         labelsHeight + 85 +
                         (i * 24 * (solution.SolutionWithoutChange.N)), 0, 0),
-                    Content = "Delta:"
+                    Content = "Δ:"
                 };
                 var DeltasValues = new TextBlock
                 {
@@ -176,7 +179,7 @@ namespace Wpf.Solver
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithoutChange.N,
                         labelsHeight + 125 +
                         (i * 24 * (solution.SolutionWithoutChange.N)), 0, 0),
-                    Content = "Distance:"
+                    Content = Properties.Resources.DistanceLabel
                 };
                 var DistancesValues = new TextBlock
                 {
@@ -212,7 +215,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(23, height
                         , 0, 0),
-                Content = $"After changes ({solution.PersentOfChange}%) Optimal Value:\t{solution.SolutionWithChange.FunctionValue}"
+                Content = $"{Properties.Resources.AfterChanges} ({solution.PersentOfChange}%) {Properties.Resources.OptimalValueLabel}\t{solution.SolutionWithChange.FunctionValue}"
             };
             CoolGrid.Children.Add(ChangesLabel);
 
@@ -223,7 +226,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 24 * solution.SolutionWithChange.N,
                 Width = 65 * solution.SolutionWithChange.N,
-                Content = "Optimal X:",
+                Content = Properties.Resources.OptimalXLabel,
                 Margin = new Thickness(23, height + 45, 0, 0)
             };
             CoolGrid.Children.Add(optimalXLabel);
@@ -233,7 +236,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 24 * solution.SolutionWithChange.N,
                 Width = 65 * solution.SolutionWithChange.N,
-                Content = "Alpha Changed:",
+                Content = Properties.Resources.AlphaChangedLabel,
                 Margin = new Thickness(50 + 65 * solution.SolutionWithChange.N,
                          height + 45, 0, 0)
             };
@@ -273,7 +276,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(23,
                     height + 50 + 24 * solution.SolutionWithChange.N, 0, 0),
-                Content = "Matrixes C:"
+                Content = Properties.Resources.MatrixesCLabel
             };
             CoolGrid.Children.Add(CsMatrixesChanged);
             var XsChangedLabel = new Label
@@ -282,7 +285,7 @@ namespace Wpf.Solver
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(50 + 65 * solution.SolutionWithoutChange.N,
                     height + 50 + 24 * solution.SolutionWithChange.N, 0, 0),
-                Content = "Solutions X:"
+                Content = Properties.Resources.OptimalXLabel
             };
             CoolGrid.Children.Add(XsChangedLabel);
 
@@ -355,7 +358,7 @@ namespace Wpf.Solver
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
                          height + 135 + 24 * solution.SolutionWithChange.N +
                         (i * 24 * (solution.SolutionWithChange.N)), 0, 0),
-                    Content = "Delta:"
+                    Content = "Δ:"
                 };
                 var DeltasValues = new TextBlock
                 {
@@ -391,7 +394,7 @@ namespace Wpf.Solver
                     Margin = new Thickness(75 + 2 * 65 * solution.SolutionWithChange.N,
                          height + 175 + 24 * solution.SolutionWithChange.N +
                         (i * 24 * (solution.SolutionWithChange.N)), 0, 0),
-                    Content = "Distance:"
+                    Content = Properties.Resources.DistanceLabel
                 };
                 var DistancesValues = new TextBlock
                 {
@@ -478,13 +481,13 @@ namespace Wpf.Solver
                 var distributionParametersIds = distributionParameters.GetAppropriateIds(
                     cParameters, abParameters, lParameters);
                 if (distributionParametersIds.Count < 5)
-                    throw new Exception("There is not enough data for this task");
+                    throw new Exception(Properties.Resources.ExceptionLabelNOTEnoughData);
 
                 PercentageService percentageService = new PercentageService();
                 var percentages = percentageService.GetAppropriate(_data.ParametersForDefined.A.Length, distributionParametersIds, _data.R);
 
                 if (percentages.Count < 5)
-                    throw new Exception("There is not enough data for this size of matrix (N) and experts quantity (R)");
+                    throw new Exception(Properties.Resources.ExceptionLabelNOTEnoughDataForParameters);
 
                 var valueFromDB = percentages.Average();
 

@@ -42,7 +42,7 @@ namespace Wpf.PersistenceTest
             try
             {
                 ExceptionLabel.Foreground = Brushes.DarkRed;
-                if (AccuracyComboBox.SelectedItem == null) throw new Exception("Choose an accuracy");
+                if (AccuracyComboBox.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelAccuracyNOTChosen);
 
                 var random = new Random();
                 var solver = new ClassLibrary.Logic.Solver();
@@ -50,7 +50,7 @@ namespace Wpf.PersistenceTest
                 var parametersForDefined = FileProcessing.ReadSolutionForPersistenceTest(_filename);
 
                 if (parametersForDefined == null)
-                    throw new Exception("Incorrect format of input file");
+                    throw new Exception(Properties.Resources.ExceptionLabelIncorrectFileFormat);
 
                 (double, double) cParameters = PercentFinder.GetCsRange(parametersForDefined);
                 (double, double) abParameters = PercentFinder.GetABRange(parametersForDefined);
@@ -60,13 +60,13 @@ namespace Wpf.PersistenceTest
                 var distributionParametersIds = distributionParameters.GetAppropriateIds(
                     cParameters, abParameters, lParameters);
                 if (distributionParametersIds.Count < 5)
-                    throw new Exception("There is not enough data for this task");
+                    throw new Exception(Properties.Resources.ExceptionLabelNOTEnoughData);
 
                 PercentageService percentageService = new PercentageService();
                 var percentages = percentageService.GetAppropriate(parametersForDefined.A.Length, distributionParametersIds, parametersForDefined.Alpha.Length);
 
                 if(percentages.Count < 5)
-                    throw new Exception("There is not enough data for this size of matrix (N) \nand experts quantity (R)");
+                    throw new Exception(Properties.Resources.ExceptionLabelNOTEnoughDataForParameters);
 
                 var valueFromDB = percentages.Average();
 
@@ -88,14 +88,14 @@ namespace Wpf.PersistenceTest
             OpenFileDialog openFileDialog = new OpenFileDialog();
             try
             {
-                if (openFileDialog.ShowDialog() != true) throw new Exception("The file is not chosen");
+                if (openFileDialog.ShowDialog() != true) throw new Exception(Properties.Resources.ExceptionLabelFileIsNOTChosen);
                 
 
                 _filename = openFileDialog.FileName;
                 Filename.Text = _filename.Split("\\").Last();
                 Run.IsEnabled = true;
                 ExceptionLabel.Foreground = Brushes.DarkGreen;
-                ExceptionLabel.Content = "File chosen successfully";
+                ExceptionLabel.Content = Properties.Resources.ExceptionLabelFileChosenSuccesslully;
             }
             catch (Exception ex)
             {

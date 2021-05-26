@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccuracyPercentSearchLabel" xml:space="preserve">
+    <value>Accuracy for percent search:</value>
+  </data>
+  <data name="AfterChanges" xml:space="preserve">
+    <value>After changes</value>
+  </data>
+  <data name="AlphaChangedLabel" xml:space="preserve">
+    <value>Alpha changed:</value>
+  </data>
+  <data name="AlphaLabel" xml:space="preserve">
+    <value>Alpha:</value>
+  </data>
+  <data name="AnalysisButton" xml:space="preserve">
+    <value>Analysis</value>
+  </data>
+  <data name="AnalysisDataSaveButton" xml:space="preserve">
+    <value>Save data</value>
+  </data>
+  <data name="BackButton" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ChooseAccuracyLabel" xml:space="preserve">
+    <value>Choose accuracy (e):</value>
+  </data>
+  <data name="CountedPercentageForTaskTextBlock" xml:space="preserve">
+    <value>Counted average percentage for your task</value>
+  </data>
+  <data name="DistanceLabel" xml:space="preserve">
+    <value>Distance:</value>
+  </data>
+  <data name="DistributionLabel" xml:space="preserve">
+    <value>Choose distribution:</value>
+  </data>
+  <data name="ExceptionLabelAccuracyNOTChosen" xml:space="preserve">
+    <value>Choose an accuracy</value>
+  </data>
+  <data name="ExceptionLabelDelayNumeric" xml:space="preserve">
+    <value>The delay must be numeric</value>
+  </data>
+  <data name="ExceptionLabelDelayPositive" xml:space="preserve">
+    <value>The delay must be positive</value>
+  </data>
+  <data name="ExceptionLabelDeviationNumeric" xml:space="preserve">
+    <value>The deviation must be numeric</value>
+  </data>
+  <data name="ExceptionLabelDeviationPositive" xml:space="preserve">
+    <value>The deviation must be positive</value>
+  </data>
+  <data name="ExceptionLabelDistributionABNOTChosen" xml:space="preserve">
+    <value>The distribution for a and b 
+is not chosen yet</value>
+  </data>
+  <data name="ExceptionLabelDistributionCNOTChosen" xml:space="preserve">
+    <value>The distribution for matrixes 
+is not chosen yet</value>
+  </data>
+  <data name="ExceptionLabelDistributionLNOTChosen" xml:space="preserve">
+    <value>The distribution for l 
+is not chosen yet</value>
+  </data>
+  <data name="ExceptionLabelFileChosenSuccesslully" xml:space="preserve">
+    <value>File chosen successfully</value>
+  </data>
+  <data name="ExceptionLabelFileIsNOTChosen" xml:space="preserve">
+    <value>The file is not chosen</value>
+  </data>
+  <data name="ExceptionLabelIncorrectFileFormat" xml:space="preserve">
+    <value>Incorrect format of input file</value>
+  </data>
+  <data name="ExceptionLabelIntegerN" xml:space="preserve">
+    <value>The 'n' must be integer</value>
+  </data>
+  <data name="ExceptionLabelIntegerR" xml:space="preserve">
+    <value>The 'R' must be integer</value>
+  </data>
+  <data name="ExceptionLabelInvalidRangeSizing" xml:space="preserve">
+    <value>Invalid range of sizing</value>
+  </data>
+  <data name="ExceptionLabelNOTEnoughData" xml:space="preserve">
+    <value>There is not enough data for this task</value>
+  </data>
+  <data name="ExceptionLabelNOTEnoughDataForParameters" xml:space="preserve">
+    <value>There is not enough data for this size of matrix (n) 
+and experts quantity (R)</value>
+  </data>
+  <data name="ExceptionLabelNRangeIntegers" xml:space="preserve">
+    <value>The range must consist of integers</value>
+  </data>
+  <data name="ExceptionLabelPositiveN" xml:space="preserve">
+    <value>The 'n' must be positive</value>
+  </data>
+  <data name="ExceptionLabelPositiveR" xml:space="preserve">
+    <value>The 'R' must be positive</value>
+  </data>
+  <data name="ExceptionLabelRangeNumbers" xml:space="preserve">
+    <value>The range must consist of numbers</value>
+  </data>
+  <data name="ExceptionLabelRangePositive" xml:space="preserve">
+    <value>The range must be positive</value>
+  </data>
+  <data name="ExceptionLabelRangeStartsInPositive" xml:space="preserve">
+    <value>The range must be in positive numbers</value>
+  </data>
+  <data name="ExceptionLabelSizesMatrixesPositive" xml:space="preserve">
+    <value>Sizes of matrixes must be positive</value>
+  </data>
+  <data name="ExceptionLabelStepInteger" xml:space="preserve">
+    <value>The step must be integer</value>
+  </data>
+  <data name="ExceptionLabelStepPositive" xml:space="preserve">
+    <value>The step must be positive</value>
+  </data>
+  <data name="ExitButton" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Exponential" xml:space="preserve">
+    <value>Exponential</value>
+  </data>
+  <data name="FailedPersistenceTestTextBlock" xml:space="preserve">
+    <value>The percentage of change of input data is not acceptable. This means that the given compromise solution is not stable enough</value>
+  </data>
+  <data name="FindPercentButton" xml:space="preserve">
+    <value>Find percent</value>
+  </data>
+  <data name="GeneratorABLabel" xml:space="preserve">
+    <value>Generator for vectors a and b:</value>
+  </data>
+  <data name="GeneratorCLabel" xml:space="preserve">
+    <value>Generator for matrixes C:</value>
+  </data>
+  <data name="GeneratorLLabel" xml:space="preserve">
+    <value>Generator for vector l:</value>
+  </data>
+  <data name="GraphPercentageLine" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="GraphPercentageY" xml:space="preserve">
+    <value>Percentage of change by changing optimum</value>
+  </data>
+  <data name="GraphSizeOfMatrixX" xml:space="preserve">
+    <value>Size of matrix</value>
+  </data>
+  <data name="ListOfPercentagesDBTextBlock" xml:space="preserve">
+    <value>List of percentages from the base for given size of matrixes:</value>
+  </data>
+  <data name="MainTextBlock" xml:space="preserve">
+    <value>Research process support system for transport problem 
+under uncertainty</value>
+  </data>
+  <data name="MatrixesCLabel" xml:space="preserve">
+    <value>Matrixes C:</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="OptimalValueLabel" xml:space="preserve">
+    <value>Optimal Value:</value>
+  </data>
+  <data name="OptimalXLabel" xml:space="preserve">
+    <value>Optimal X:</value>
+  </data>
+  <data name="ParametersExpLabel" xml:space="preserve">
+    <value>Delay mean:</value>
+  </data>
+  <data name="ParametersNormalLabel" xml:space="preserve">
+    <value>Delay mean and deviation:</value>
+  </data>
+  <data name="ParametersUniformLabel" xml:space="preserve">
+    <value>Range for generator:</value>
+  </data>
+  <data name="PercentageFromDBTextBlock" xml:space="preserve">
+    <value>Average percentage based on data after performed experiments</value>
+  </data>
+  <data name="PersistenceButton" xml:space="preserve">
+    <value>Persistence Test</value>
+  </data>
+  <data name="PersistenceInputTextBlock" xml:space="preserve">
+    <value>Choose a file with your task and solution for test and accuracy for percentage search</value>
+  </data>
+  <data name="PersistenceSelectFileButton" xml:space="preserve">
+    <value>Select file</value>
+  </data>
+  <data name="ProcessingSize" xml:space="preserve">
+    <value>Working on </value>
+  </data>
+  <data name="ProgressTextBlockCompleted" xml:space="preserve">
+    <value>Experiment done!</value>
+  </data>
+  <data name="QuantityOfMatrixesLabel" xml:space="preserve">
+    <value>Quantity of cost matrixes (R):</value>
+  </data>
+  <data name="RangeChangingSizeMatrixLabel" xml:space="preserve">
+    <value>Range of changing size of matrix C:</value>
+  </data>
+  <data name="RunButton" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="SaveGraphButton" xml:space="preserve">
+    <value>Save graph</value>
+  </data>
+  <data name="SaveInputDataButton" xml:space="preserve">
+    <value>Save input data</value>
+  </data>
+  <data name="SaveResultButton" xml:space="preserve">
+    <value>Save result</value>
+  </data>
+  <data name="SizeOfMatrixLabel" xml:space="preserve">
+    <value>Size of matrix (n):</value>
+  </data>
+  <data name="SolutionsXLabel" xml:space="preserve">
+    <value>Solutions X:</value>
+  </data>
+  <data name="SolverButton" xml:space="preserve">
+    <value>Solver</value>
+  </data>
+  <data name="SolverFromFileButton" xml:space="preserve">
+    <value>From file</value>
+  </data>
+  <data name="SolverInputLabel" xml:space="preserve">
+    <value>Choose a type of input</value>
+  </data>
+  <data name="SolverRandomButton" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="SolverRunFromFileButton" xml:space="preserve">
+    <value>Run from file</value>
+  </data>
+  <data name="StepChangingSizeMatrixLabel" xml:space="preserve">
+    <value>Step in changing size of matrix C:</value>
+  </data>
+  <data name="SuccesfulPersistenceTestTextBlock" xml:space="preserve">
+    <value>The percentage of change of input data is acceptable for the given parameters. The compromise solution is stable enough</value>
+  </data>
+  <data name="Uniform" xml:space="preserve">
+    <value>Uniform</value>
+  </data>
+</root>

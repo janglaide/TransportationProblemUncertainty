@@ -67,7 +67,7 @@ namespace ClassLibrary.Logic
             percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
             return percent;
         }
-        public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange, BackgroundWorker worker)
+        public List<(int, double)> RunExperiment(int startSize, int finishSize, int step, int matrixQuantity, double averChange, BackgroundWorker worker, string processingMessage)
         {
             List<(int, double)> results = new List<(int, double)>();
             var random = new Random();
@@ -75,12 +75,12 @@ namespace ClassLibrary.Logic
             var quantity = Math.Floor((double)((finishSize - startSize) / step) + 1);
             var progress = 1;
             var interval = (int)(100 / (quantity));
-            worker.ReportProgress(0, string.Format("Working on N = {0}", startSize));
+            worker.ReportProgress(0, string.Format("{0}N = {1}", processingMessage, startSize));
             for (int i = startSize; i <= finishSize; i += step)
             {
                 results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
                 if((i + step) <= finishSize)
-                    worker.ReportProgress(progress * interval, string.Format("Working on N = {0}", i + step));
+                    worker.ReportProgress(progress * interval, string.Format("{0}N = {1}", processingMessage, i + step));
                 progress++;
             }
 
@@ -89,12 +89,12 @@ namespace ClassLibrary.Logic
 
             return results;
         }
-        public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, int stepMatrixQuantity, double averChange, BackgroundWorker worker)
+        public List<List<(int, double)>> RunExperiment(int startSize, int finishSize, int step, int startMatrixQuantity, int finishMatrixQuantity, int stepMatrixQuantity, double averChange, BackgroundWorker worker, string processingMessage)
         {
             List<List<(int, double)>> results = new List<List<(int, double)>>();
             for (int i = startMatrixQuantity; i <= finishMatrixQuantity; i += stepMatrixQuantity)
             {
-                results.Add(RunExperiment(startSize, finishSize, step, i, averChange, worker));
+                results.Add(RunExperiment(startSize, finishSize, step, i, averChange, worker, processingMessage));
             }
             return results;
         }

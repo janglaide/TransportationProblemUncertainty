@@ -25,14 +25,12 @@ namespace Wpf.PersistenceTest
             CountedPercentageLabel.Content = countedPercentage.ToString();
             DBPercentageLabel.Content = dbPercentage.ToString();
             if(countedPercentage >= dbPercentage){
-                ResultDescriptionBlock.Text = "The percentage of change of input data is acceptable " +
-                    "for the given parameters. The compromise solution is stable enough";
+                ResultDescriptionBlock.Text = Properties.Resources.SuccesfulPersistenceTestTextBlock;
                 CountedPercentageLabel.BorderBrush = Brushes.ForestGreen;
             }
             else
             {
-                ResultDescriptionBlock.Text = "The percentage of change of input data is not acceptable. " +
-                    "This means that the given compromise solution is not stable enough";
+                ResultDescriptionBlock.Text = Properties.Resources.FailedPersistenceTestTextBlock;
                 CountedPercentageLabel.BorderBrush = Brushes.Red;
             }
 

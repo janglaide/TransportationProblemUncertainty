@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:Wpf.Properties"
         xmlns:local="clr-namespace:Wpf.PersistenceTest"
         mc:Ignorable="d"
         Title="Result" Height="473" Width="800">
@@ -14,15 +15,15 @@
         <Rectangle Fill="White" Opacity="0.7" HorizontalAlignment="Left" Height="394" Margin="399,0,0,0" StrokeThickness="2" Stroke="LightBlue" VerticalAlignment="Center" Width="357"/>
 
         <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="68,58,0,0" 
-                   Text="Counted average percentage for your task" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="65" Width="287"/>
+                   Text="{x:Static res:Resources.CountedPercentageForTaskTextBlock}" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="65" Width="287"/>
         <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="434,58,0,0" 
-            Text="Average percentage based on data after performed experiments" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="95" Width="287"/>
+            Text="{x:Static res:Resources.PercentageFromDBTextBlock}" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="95" Width="287"/>
         <Label Name="CountedPercentageLabel" BorderThickness="1" BorderBrush="Black" HorizontalContentAlignment="Center" FontSize="18" Content="Label" HorizontalAlignment="Left" Margin="160,183,0,0" VerticalAlignment="Top" Height="34" Width="112"/>
         <Label Name="DBPercentageLabel" BorderThickness="1" BorderBrush="Black" HorizontalContentAlignment="Center" FontSize="18" Content="Label" HorizontalAlignment="Left" Margin="522,183,0,0" VerticalAlignment="Top" Height="34" Width="112"/>
         <TextBlock FontFamily="Courier New" Name="ResultDescriptionBlock" FontSize="16" TextAlignment="Center" HorizontalAlignment="Left" Margin="68,240,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" Width="287"/>
 
         <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="420,234,0,0" 
-            Text="List of percentages from the base for given size of matrixes:" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="318"/>
+            Text="{x:Static res:Resources.ListOfPercentagesDBTextBlock}" TextWrapping="Wrap" VerticalAlignment="Top" Height="43" Width="318"/>
         <ListBox Name="PercentagesList" Margin="434,282,78,48" Background="White">
 
         </ListBox>

@@ -2,6 +2,8 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Wpf.Analysis;
 using Wpf.Solver;
 
@@ -18,10 +20,18 @@ namespace Wpf
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private string _culture = "uk-UA";
         public MainWindow()
-        {     
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(_culture);
             InitializeComponent();
+            if (_culture == "uk-EN")
+                ButtonImage.Source = new BitmapImage(new Uri("pack://application:,,,/src/ukr.png"));
+            else
+                ButtonImage.Source = new BitmapImage(new Uri("pack://application:,,,/src/eng.png"));
         }
+        
 
         private void Loaded_MainWindow(object sender, RoutedEventArgs e)
         {
@@ -53,6 +63,11 @@ namespace Wpf
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void ChangeLanguageButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

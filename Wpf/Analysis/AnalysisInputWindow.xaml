@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:Wpf.Properties"
         xmlns:local="clr-namespace:Wpf.Analysis"
         mc:Ignorable="d"
         Title="AnalysisInputWindow" Height="665" Width="921" FontSize="16"
@@ -19,8 +20,8 @@
         <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,310,0,0" VerticalAlignment="Top" Width="671" Height="104"/>
         <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="43,425,0,0" VerticalAlignment="Top" Width="671" Height="115"/>
 
-        <Label Content="Choose accuracy (e):" HorizontalAlignment="Left" Margin="43,18,0,0" VerticalAlignment="Top"/>
-        <Label Content="Range of changing size of matrix C:" HorizontalAlignment="Left" Margin="43,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.ChooseAccuracyLabel}" HorizontalAlignment="Left" Margin="43,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.RangeChangingSizeMatrixLabel}" HorizontalAlignment="Left" Margin="43,68,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="AccuracyComboBox" Background="White" HorizontalAlignment="Left" Margin="442,24,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="Accuracy_SelectionChanged">
             <ComboBoxItem Name="D01">
                 <TextBlock>0,1</TextBlock>
@@ -40,68 +41,68 @@
         </ComboBox>
         <TextBox x:Name="StartSizeBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="FinalSizeBox" Opacity="0.8" HorizontalAlignment="Left" Margin="594,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
-        <Label Content="Step in changing size of matrix C:" HorizontalAlignment="Left" Margin="43,109,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.StepChangingSizeMatrixLabel}" HorizontalAlignment="Left" Margin="43,109,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="StepBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Quantity of matrixes (R):" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.QuantityOfMatrixesLabel}" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="RBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Generator for matrixes C:" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
-        <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="92,222,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.GeneratorCLabel}" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.DistributionLabel}" HorizontalAlignment="Left" Margin="92,222,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="DistributionComboBox" Background="White" HorizontalAlignment="Left" Margin="443,220,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="Distribution_SelectionChanged">
             <ComboBoxItem Name="exp">
-                <TextBlock>Exponential</TextBlock>
+                <TextBlock Text="{x:Static res:Resources.Exponential}"></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem Name="norm">
-                <TextBlock>Normal</TextBlock>
+                <TextBlock Text="{x:Static res:Resources.Normal}"></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem Name="unif">
-                <TextBlock>Uniform</TextBlock>
+                <TextBlock Text="{x:Static res:Resources.Uniform}"></TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Label Name="ParametersLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="92,258,0,0" VerticalAlignment="Top"/>
+        <Label Name="ParametersLabel" Content="{x:Static res:Resources.ParametersExpLabel}" HorizontalAlignment="Left" Margin="92,258,0,0" VerticalAlignment="Top"/>
         <TextBox Name="DelayBox" HorizontalAlignment="Left" Margin="443,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBox" IsEnabled="False" HorizontalAlignment="Left" Margin="597,269,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
-        <Label Content="Generator for vectors a and b:" HorizontalAlignment="Left" Margin="47,306,0,0" VerticalAlignment="Top"/>
-        <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,336,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.GeneratorABLabel}" HorizontalAlignment="Left" Margin="47,306,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.DistributionLabel}" HorizontalAlignment="Left" Margin="91,336,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxAB" HorizontalAlignment="Left" Margin="442,333,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionAB_SelectionChanged">
             <ComboBoxItem x:Name="exp1">
-                <TextBlock><Run Text="Exponential"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Exponential}"/></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem x:Name="norm1">
-                <TextBlock><Run Text="Normal"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Normal}"/></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem x:Name="unif1">
-                <TextBlock><Run Text="Uniform"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Uniform}"/></TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Label x:Name="ParametersABLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="91,374,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ParametersABLabel" Content="{x:Static res:Resources.ParametersExpLabel}" HorizontalAlignment="Left" Margin="91,374,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DelayBoxAB" HorizontalAlignment="Left" Margin="442,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBoxAB" IsEnabled="False" HorizontalAlignment="Left" Margin="594,378,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
-        <Label Content="Generator for vector l:" HorizontalAlignment="Left" Margin="43,421,0,0" VerticalAlignment="Top"/>
-        <Label Content="Choose distribution:" HorizontalAlignment="Left" Margin="91,461,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.GeneratorLLabel}" HorizontalAlignment="Left" Margin="43,421,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static res:Resources.DistributionLabel}" HorizontalAlignment="Left" Margin="91,461,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DistributionComboBoxL" HorizontalAlignment="Left" Margin="442,459,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DistributionL_SelectionChanged">
             <ComboBoxItem x:Name="exp2">
-                <TextBlock><Run Text="Exponential"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Exponential}"/></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem x:Name="norm2">
-                <TextBlock><Run Text="Normal"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Normal}"/></TextBlock>
             </ComboBoxItem>
             <ComboBoxItem x:Name="unif2">
-                <TextBlock><Run Text="Uniform"/></TextBlock>
+                <TextBlock><Run Text="{x:Static res:Resources.Uniform}"/></TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Label x:Name="ParametersLLabel" Content="Delay mean:" HorizontalAlignment="Left" Margin="92,500,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ParametersLLabel" Content="{x:Static res:Resources.ParametersExpLabel}" HorizontalAlignment="Left" Margin="92,500,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DelayBoxL" HorizontalAlignment="Left" Margin="443,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="595,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
         <Label Name="ExceptionLabel" Foreground="DarkRed" Content="" HorizontalAlignment="Left" Margin="43,551,0,0" VerticalAlignment="Top" Width="352" Height="58"/>
-        <Button Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39">
+        <Button Name="RunButton" Content="{x:Static res:Resources.RunButton}" HorizontalAlignment="Left" Margin="440,570,0,0" VerticalAlignment="Top" Width="252" Click="RunButton_Clicked" Height="39">
             <Button.Background>
                 <SolidColorBrush Opacity="0.4" Color="WhiteSmoke"></SolidColorBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked">
+        <Button x:Name="Back" Content="{x:Static res:Resources.BackButton}" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.Column="1" Click="Back_Clicked">
             <Button.Background>
                 <SolidColorBrush Opacity="0.1" Color="DimGray"></SolidColorBrush>
             </Button.Background>

@@ -40,13 +40,13 @@ namespace Wpf.Solver
             try
             {
                 if (openFileDialog.ShowDialog() != true)
-                    throw new Exception("The file is not chosen");
+                    throw new Exception(Properties.Resources.ExceptionLabelFileIsNOTChosen);
 
                 _filename = openFileDialog.FileName;
                 Filename.Text = _filename.Split("\\").Last();
                 RunFromFile.IsEnabled = true;
                 ExceptionLabel.Foreground = Brushes.DarkGreen;
-                ExceptionLabel.Content = "File chosen successfully";
+                ExceptionLabel.Content = Properties.Resources.ExceptionLabelFileChosenSuccesslully;
             }
             catch(Exception ex)
             {
@@ -67,7 +67,7 @@ namespace Wpf.Solver
             if(problem == null)
             {
                 ExceptionLabel.Foreground = Brushes.DarkRed;
-                ExceptionLabel.Content = "Incorrect format of input file";
+                ExceptionLabel.Content = Properties.Resources.ExceptionLabelIncorrectFileFormat;
                 return;
             }
             ExceptionLabel.Content = "";

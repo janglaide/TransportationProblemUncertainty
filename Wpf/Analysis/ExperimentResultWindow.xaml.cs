@@ -39,19 +39,19 @@ namespace Wpf.Analysis
 
             chart.AxisX.Add(new Axis
             {
-                Title = "Size of matrix",
+                Title = Properties.Resources.GraphSizeOfMatrixX,
                 Labels = stringValues, 
                 FontSize = 14
             });
             chart.AxisY.Add(new Axis
             {
-                Title = "Percentage of change by changing optimum",
+                Title = Properties.Resources.GraphPercentageY,
                 FontSize = 14,
                 LabelFormatter = formatFunc
             });
             var line = new LineSeries
             {
-                Title = "Percentage",
+                Title = Properties.Resources.GraphPercentageLine,
                 Values = doubleValues
             };
             series.Add(line);

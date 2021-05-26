@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:Wpf.Properties"
         xmlns:local="clr-namespace:Wpf.Solver"
         mc:Ignorable="d"
         Title="SolutionWindow" Height="550" Width="826" FontSize="16"
@@ -10,13 +11,13 @@
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="CoolGrid">
-                <Label x:Name="ValueLabel" Content="Optimal Value:" Margin="23,8,628,484"/>
+                <Label x:Name="ValueLabel" Content="{x:Static res:Resources.OptimalValueLabel}" Margin="23,8,628,484"/>
                 <TextBlock x:Name="OptimalValueBlock" Text="" TextWrapping="Wrap" Margin="181,13,471,499"/>
-                <Label Name="OptimalXsLabel" Content="Optimal X:" Margin="23,117,524,370"/>
-                <Label Name="MatrixesCLabel" Content="Matrixes C:" Margin="23,318,601,163"/>
+                <Label Name="OptimalXsLabel" Content="{x:Static res:Resources.OptimalXLabel}" Margin="23,117,524,370"/>
+                <Label Name="MatrixesCLabel" Content="{x:Static res:Resources.MatrixesCLabel}" Margin="23,318,601,163"/>
                 <TextBlock x:Name="OutputBlock" Text="" TextWrapping="Wrap" Margin="23,164,417,176"/>
-                <Label Content="Alpha:" Margin="434,109,300,373" />
-                <Label x:Name="AlphaBlockChangedLable" Content="Alpha changed:"  Margin="434,152,272,335" />
+                <Label Content="{x:Static res:Resources.AlphaLabel}" Margin="434,109,300,373" />
+                <Label x:Name="AlphaBlockChangedLable" Content="{x:Static res:Resources.AlphaChangedLabel}"  Margin="434,152,272,335" />
                 <Label Content="a:"  Margin="434,8,353,484" />
                 <Label Content="b:"  Margin="434,40,353,447" />
                 <Label Content="l:"  Margin="434,77,353,410" />
@@ -25,9 +26,9 @@
                 <TextBlock x:Name="ABlock"  HorizontalAlignment="Left" Margin="491,13,0,499" Text="" TextWrapping="Wrap"  />
                 <TextBlock x:Name="BBlock"  HorizontalAlignment="Left" Margin="491,45,0,467" Text="" TextWrapping="Wrap"  />
                 <TextBlock x:Name="LBlock"  HorizontalAlignment="Left" Margin="491,81,0,431" Text="" TextWrapping="Wrap"  />
-                <Button Name="SaveInputButton" Content="Save input data" HorizontalAlignment="Left" Margin="673,77,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveInputButton_Click"/>
-                <Button Name="SaveResult" Content="Save result" HorizontalAlignment="Left" Margin="673,135,0,0" VerticalAlignment="Top" Height="34" Width="127" Click="SaveResult_Click"/>
-                <Label Name="AccuracyLabel" Content="Accuracy for percent search:" HorizontalAlignment="Left" Margin="404,199,0,0" VerticalAlignment="Top" Height="37" Width="238"/>
+                <Button Name="SaveInputButton" FontSize="15" Content="{x:Static res:Resources.SaveInputDataButton}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="673,81,0,0" VerticalAlignment="Top" Height="35" Width="127" Click="SaveInputButton_Click"/>
+                <Button Name="SaveResult" FontSize="15" Content="{x:Static res:Resources.SaveResultButton}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="673,135,0,0" VerticalAlignment="Top" Height="35" Width="127" Click="SaveResult_Click"/>
+                <Label Name="AccuracyLabel" Content="{x:Static res:Resources.AccuracyPercentSearchLabel}" HorizontalAlignment="Left" Margin="404,199,0,0" VerticalAlignment="Top" Height="37" Width="238"/>
                 <ComboBox Name="AccuracyComboBox" HorizontalAlignment="Left" Margin="673,204,0,0" VerticalAlignment="Top" Width="127" SelectionChanged="Accuracy_SelectionChanged">
                     <ComboBoxItem Name="D01">
                         <TextBlock>0,1</TextBlock>
@@ -45,7 +46,7 @@
                         <TextBlock>0,00001</TextBlock>
                     </ComboBoxItem>
                 </ComboBox>
-                <Button Name="FindPercentButton" Content="Find percent" IsEnabled="False" HorizontalAlignment="Left" Margin="673,261,0,0" VerticalAlignment="Top" Width="127" Height="31" Click="FindPercentButton_Click"/>
+                <Button Name="FindPercentButton" HorizontalContentAlignment="Center" FontSize="15" Content="{x:Static res:Resources.FindPercentButton}" IsEnabled="False" HorizontalAlignment="Left" Margin="673,261,0,0" VerticalAlignment="Top" Width="127" Height="45" Click="FindPercentButton_Click"/>
             </Grid>
         </ScrollViewer>
 
