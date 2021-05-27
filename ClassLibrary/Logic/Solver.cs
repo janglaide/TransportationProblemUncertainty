@@ -85,9 +85,8 @@ namespace ClassLibrary.Logic
             }
             return (varValues, funcValues);
         }
-        public double RoundValue(double value)
+        public double RoundValue(double value, double eps = 0.0000000001)
         {
-            double eps = 0.0000000001;
             double roundedValue = Math.Round(value, 0);
             if (Math.Abs(roundedValue - value) < eps)
             {
@@ -191,13 +190,23 @@ namespace ClassLibrary.Logic
         {
             return SumProduct(ys, alpha);
         }
+        public double[] RoundVectorValues(double[] x)
+        {
+            int valueNumber = x.Length;
+            double[] result = new double[valueNumber];
+            for (int i = 0; i < valueNumber; i++)
+            {
+                result[i] = RoundValue(x[i], 0.00001);
+            }
+            return result;
+        }        
         public double[] RoundVector(double[] x)
         {
             int valueNumber = x.Length;
             double[] result = new double[valueNumber];
             for (int i = 0; i < valueNumber; i++)
             {
-                result[i] = RoundValue(x[i]);
+                result[i] = Math.Round(x[i]);
             }
             return result;
         }
@@ -371,8 +380,8 @@ namespace ClassLibrary.Logic
             {
                 double step = 0.1;
                 double[] deltas = CalculateDeltas(CalculateFs(cs, newX), solutions);
-                double[] ys = RoundVector(CalculateYsDirty(deltas, l));
-                if (!ys.Any(x => RoundValue(x) == 0) || ys.All(x => RoundValue(x) == 0))
+                double[] ys = RoundVectorValues(CalculateYsDirty(deltas, l));
+                if (!ys.Any(x => x == 0) || ys.All(x => x == 0))
                 {
                     break;
                 }
