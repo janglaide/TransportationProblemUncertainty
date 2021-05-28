@@ -311,5 +311,37 @@ namespace Wpf.Analysis
             var hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
+        private void RangeR_Selected(object sender, RoutedEventArgs e)
+        {
+            QualityRLabel.Visibility = Visibility.Hidden;
+            RBox.Visibility = Visibility.Hidden;
+            checkboxForCDefault.Visibility = Visibility.Hidden;
+            checkboxForCBasic.Visibility = Visibility.Hidden;
+            checkboxForCNonbasic.Visibility = Visibility.Hidden;
+
+            RangeRLabel.Visibility = Visibility.Visible;
+            StartQuantityOfMatrixes.Visibility = Visibility.Visible;
+            FinalQuantityOfMatrixes.Visibility = Visibility.Visible;
+            radioButtonForCDefault.Visibility = Visibility.Visible;
+            radioButtonForCBasic.Visibility = Visibility.Visible;
+            radioButtonForCNonbasic.Visibility = Visibility.Visible;
+
+        }
+        private void RangeR_Unselected(object sender, RoutedEventArgs e)
+        {
+            QualityRLabel.Visibility = Visibility.Visible;
+            RBox.Visibility = Visibility.Visible;
+            checkboxForCDefault.Visibility = Visibility.Visible;
+            checkboxForCBasic.Visibility = Visibility.Visible;
+            checkboxForCNonbasic.Visibility = Visibility.Visible;
+
+            RangeRLabel.Visibility = Visibility.Hidden;
+            StartQuantityOfMatrixes.Visibility = Visibility.Hidden;
+            FinalQuantityOfMatrixes.Visibility = Visibility.Hidden;
+            radioButtonForCDefault.Visibility = Visibility.Hidden;
+            radioButtonForCBasic.Visibility = Visibility.Hidden;
+            radioButtonForCNonbasic.Visibility = Visibility.Hidden;
+
+        }
     }
 }

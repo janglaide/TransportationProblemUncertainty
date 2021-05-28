@@ -43,7 +43,7 @@
         <TextBox x:Name="FinalSizeBox" Opacity="0.8" HorizontalAlignment="Left" Margin="594,76,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
         <Label Content="{x:Static res:Resources.StepChangingSizeMatrixLabel}" HorizontalAlignment="Left" Margin="43,109,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="StepBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,117,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
-        <Label Content="{x:Static res:Resources.QuantityOfMatrixesLabel}" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="QualityRLabel" Content="{x:Static res:Resources.QuantityOfMatrixesLabel}" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="RBox" Opacity="0.8" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
         <Label Content="{x:Static res:Resources.GeneratorCLabel}" HorizontalAlignment="Left" Margin="46,189,0,0" VerticalAlignment="Top"/>
         <Label Content="{x:Static res:Resources.DistributionLabel}" HorizontalAlignment="Left" Margin="92,222,0,0" VerticalAlignment="Top"/>
@@ -109,5 +109,19 @@
         </Button>
         <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
         <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
+        <Label BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,153,0,0" VerticalAlignment="Top" Width="170" Height="34" Grid.ColumnSpan="2"/>
+        <Label Content="Діапазон для R:" HorizontalAlignment="Left" Margin="736,153,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <CheckBox Name="checkboxForR" Margin="105,162,20,444" Grid.Column="1" Checked="RangeR_Selected" Unchecked="RangeR_Unselected"/>
+        <Label x:Name ="RangeRLabel" Content="Діапазон зміни кількості матриць (R):" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top" Width="287" Visibility="Hidden"/>
+        <TextBox x:Name="StartQuantityOfMatrixes" Opacity="0.8" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Visibility="Hidden"/>
+        <TextBox x:Name="FinalQuantityOfMatrixes" Opacity="0.8" HorizontalAlignment="Left" Margin="595,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Visibility="Hidden"/>
+        <Label Name="checkboxCbinder" Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,189,0,0" VerticalAlignment="Top" Width="170" Height="112" Grid.ColumnSpan="2"/>
+        <Label Content="Зміна значень (C):" HorizontalAlignment="Left" Margin="735,191,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <CheckBox Name="checkboxForCDefault" Content="Всі" Margin="736,227,78,379" Grid.ColumnSpan="2" IsChecked="True"/>
+        <CheckBox Name="checkboxForCBasic" Content="Базисні" Margin="736,251,78,355" Grid.ColumnSpan="2"/>
+        <CheckBox Name="checkboxForCNonbasic" Content="Небазисні" Margin="736,275,44,331" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="radioButtonForCDefault" Content="Всі" HorizontalAlignment="Left" Margin="738,226,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <RadioButton x:Name="radioButtonForCBasic" Content="Базисні" HorizontalAlignment="Left" Margin="738,251,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <RadioButton x:Name="radioButtonForCNonbasic" Content="Небазисні" HorizontalAlignment="Left" Margin="738,276,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2" Visibility="Hidden"/>
     </Grid>
 </Window>
