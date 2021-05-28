@@ -326,6 +326,10 @@ namespace Wpf.Analysis
             radioButtonForCBasic.Visibility = Visibility.Visible;
             radioButtonForCNonbasic.Visibility = Visibility.Visible;
 
+            RStepBackgroundLabel.Visibility = Visibility.Visible;
+            RStepLabel.Visibility = Visibility.Visible;
+            RStepTextBox.Visibility = Visibility.Visible;
+
         }
         private void RangeR_Unselected(object sender, RoutedEventArgs e)
         {
@@ -342,6 +346,9 @@ namespace Wpf.Analysis
             radioButtonForCBasic.Visibility = Visibility.Hidden;
             radioButtonForCNonbasic.Visibility = Visibility.Hidden;
 
+            RStepBackgroundLabel.Visibility = Visibility.Hidden;
+            RStepLabel.Visibility = Visibility.Hidden;
+            RStepTextBox.Visibility = Visibility.Hidden;
         }
     }
 }

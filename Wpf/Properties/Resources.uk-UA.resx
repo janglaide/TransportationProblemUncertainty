@@ -148,7 +148,7 @@
     <value>Відстань:</value>
   </data>
   <data name="DistributionLabel" xml:space="preserve">
-    <value>Оберіть закон розподілу</value>
+    <value>Оберіть закон розподілу:</value>
   </data>
   <data name="ExceptionLabelAccuracyNOTChosen" xml:space="preserve">
     <value>Оберіть точність перехідного періоду 
