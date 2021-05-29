@@ -28,7 +28,8 @@ namespace Wpf.Analysis
         private double _accuracy;
         private bool _isRangeRSelected = false;
         private bool? _isCheckedCDefault, _isCheckedCBasic, _isCheckedCNonbasic;
-        private List<string> _messages = new List<string>();
+        private List<string> _messages;
+        private ClassLibrary.Enums.CChangeParameters _parametersForChecked;
         public AnalysisInputWindow()
         {
             InitializeComponent();
@@ -55,10 +56,10 @@ namespace Wpf.Analysis
                     if (R <= 0) throw new Exception(Properties.Resources.ExceptionLabelPositiveR);
                     if (checkboxForCDefault.IsChecked != true &&
                         checkboxForCBasic.IsChecked != true &&
-                        checkboxForCBasic.IsChecked != true) throw new Exception(Properties.Resources.ExceptionCheckboxesC);
+                        checkboxForCNonbasic.IsChecked != true) throw new Exception(Properties.Resources.ExceptionCheckboxesC);
                     _isCheckedCDefault = checkboxForCDefault.IsChecked;
                     _isCheckedCBasic = checkboxForCBasic.IsChecked;
-                    _isCheckedCNonbasic = checkboxForCBasic.IsChecked;
+                    _isCheckedCNonbasic = checkboxForCNonbasic.IsChecked;
                     _R = R;
                 }
                 if (_isRangeRSelected)
@@ -72,6 +73,13 @@ namespace Wpf.Analysis
                     _stepR = stepR;
                     _startR = startR;
                     _finalR = finalR;
+
+                    if (radioButtonForCBasic.IsChecked == true)
+                        _parametersForChecked = ClassLibrary.Enums.CChangeParameters.Basic;
+                    else if (radioButtonForCDefault.IsChecked == true)
+                        _parametersForChecked = ClassLibrary.Enums.CChangeParameters.Default;
+                    else
+                        _parametersForChecked = ClassLibrary.Enums.CChangeParameters.NonBasic;
                 }                
 
                 double delay, deviation, a, b;
@@ -240,30 +248,38 @@ namespace Wpf.Analysis
         private void Run(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
+            _messages = new List<string>();
             if (!_isRangeRSelected)
             {
                 if (_isCheckedCDefault == true)
                 {
                     _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Default);
-                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize, $", {Properties.Resources.Variables}{Properties.Resources.CDefault}"));
                     _messages.Add(Properties.Resources.CDefault);
                 }
                 if (_isCheckedCBasic == true)
                 {
                     _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Basic);
-                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize, $", {Properties.Resources.Variables}{Properties.Resources.CBasic}"));
                     _messages.Add(Properties.Resources.CBasic);
                 }
                 if (_isCheckedCNonbasic == true)
                 {
                     _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.NonBasic);
-                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize, $", {Properties.Resources.Variables}{Properties.Resources.CNonbasic}"));
                     _messages.Add(Properties.Resources.CNonbasic);
                 }
             }
             else
             {
-                _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _startR, _finalR, _stepR, _accuracy, worker, Properties.Resources.ProcessingSize);
+                //if (radioButtonForCBasic.IsChecked == true)
+                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Basic);
+                //else if (radioButtonForCDefault.IsChecked == true)
+                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Default);
+                //else
+                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.NonBasic);
+                _experiment.SetChangeParameters(_parametersForChecked);
+                _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _startR, _finalR, _stepR, _accuracy, worker, Properties.Resources.ProcessingSize, ", R = ");
                 for (int r = _startR; r <= _finalR; r += _stepR)
                 {
                     _messages.Add($"{Properties.Resources.Matrixs} {r}");

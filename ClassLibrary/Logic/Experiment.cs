@@ -66,7 +66,7 @@ namespace ClassLibrary.Logic
             percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
             return percent;
         }
-        public List<(int, double)> RunExperiment(int startSize, int finalSize, int step, int matrixQuantity, double averChange, BackgroundWorker worker, string processingMessage)
+        public List<(int, double)> RunExperiment(int startSize, int finalSize, int step, int matrixQuantity, double averChange, BackgroundWorker worker, string processingMessage, string additionalMessage)
         {
             List<(int, double)> results = new List<(int, double)>();
             var random = new Random();
@@ -74,12 +74,23 @@ namespace ClassLibrary.Logic
             var quantity = Math.Floor((double)((finalSize - startSize) / step) + 1);
             var progress = 1;
             var interval = (int)(100 / (quantity));
-            worker.ReportProgress(0, string.Format("{0}N = {1}", processingMessage, startSize));
+
+            if (additionalMessage != ", R = ")
+                worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}", processingMessage, startSize, additionalMessage));
+            else
+                worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}{3}", processingMessage, startSize, additionalMessage, matrixQuantity));
+
             for (int i = startSize; i <= finalSize; i += step)
             {
                 results.Add((i, SearchMeanPercentForSize(i, matrixQuantity, averChange, solver, random)));
-                if((i + step) <= finalSize)
-                    worker.ReportProgress(progress * interval, string.Format("{0}N = {1}", processingMessage, i + step));
+                if ((i + step) <= finalSize) 
+                { 
+                    if(additionalMessage != ", R = ")
+                        worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}", processingMessage, i + step, additionalMessage));
+                    else
+                        worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}{3}", processingMessage, i + step, additionalMessage, matrixQuantity));
+                }
+                    
                 progress++;
             }
 
@@ -88,12 +99,12 @@ namespace ClassLibrary.Logic
 
             return results;
         }
-        public List<List<(int, double)>> RunExperiment(int startSize, int finalSize, int step, int startMatrixQuantity, int finalMatrixQuantity, int stepMatrixQuantity, double averChange, BackgroundWorker worker, string processingMessage)
+        public List<List<(int, double)>> RunExperiment(int startSize, int finalSize, int step, int startMatrixQuantity, int finalMatrixQuantity, int stepMatrixQuantity, double averChange, BackgroundWorker worker, string processingMessage, string additionalMessage)
         {
             List<List<(int, double)>> results = new List<List<(int, double)>>();
             for (int r = startMatrixQuantity; r <= finalMatrixQuantity; r += stepMatrixQuantity)
             {
-                results.Add(RunExperiment(startSize, finalSize, step, r, averChange, worker, processingMessage));
+                results.Add(RunExperiment(startSize, finalSize, step, r, averChange, worker, processingMessage, additionalMessage));
             }
             return results;
         }

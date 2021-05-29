@@ -418,4 +418,7 @@ a та b не обраний</value>
   <data name="Uniform" xml:space="preserve">
     <value>Рівномірний</value>
   </data>
+  <data name="Variables" xml:space="preserve">
+    <value>Змінні: </value>
+  </data>
 </root>

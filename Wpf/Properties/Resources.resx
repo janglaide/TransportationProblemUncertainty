@@ -395,4 +395,7 @@ under uncertainty</value>
   <data name="Uniform" xml:space="preserve">
     <value>Uniform</value>
   </data>
+  <data name="Variables" xml:space="preserve">
+    <value>Variables: </value>
+  </data>
 </root>

@@ -106,15 +106,15 @@
         <TextBox x:Name="DeviationBoxL" IsEnabled="False" HorizontalAlignment="Left" Margin="595,504,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
         <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
-        <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
+        <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="308"/>
         <Label Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,189,0,0" VerticalAlignment="Top" Width="170" Height="112" Grid.ColumnSpan="2"/>
         <Label Content="{x:Static res:Resources.ChangeC}" HorizontalAlignment="Left" Margin="735,191,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox Name="checkboxForCDefault" Margin="736,227,78,379" Grid.ColumnSpan="2" IsChecked="True"/>
         <CheckBox Name="checkboxForCBasic" Margin="736,251,78,355" Grid.ColumnSpan="2"/>
         <CheckBox Name="checkboxForCNonbasic" Margin="736,275,44,331" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButtonForCDefault" HorizontalAlignment="Left" Margin="738,226,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Visibility="Hidden" IsChecked="True"/>
-        <RadioButton x:Name="radioButtonForCBasic" HorizontalAlignment="Left" Margin="738,251,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2" Visibility="Hidden"/>
-        <RadioButton x:Name="radioButtonForCNonbasic" HorizontalAlignment="Left" Margin="738,276,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <RadioButton Name="radioButtonForCDefault" HorizontalAlignment="Left" Margin="738,226,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Visibility="Hidden" IsChecked="True"/>
+        <RadioButton Name="radioButtonForCBasic" HorizontalAlignment="Left" Margin="738,251,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <RadioButton Name="radioButtonForCNonbasic" HorizontalAlignment="Left" Margin="738,276,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Label Content="{x:Static res:Resources.CDefault}" HorizontalAlignment="Left" Margin="756,218,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="93" Height="30"/>
         <Label Content="{x:Static res:Resources.CBasic}" Margin="758,243,70,0" VerticalAlignment="Top" Width="93" Grid.ColumnSpan="2"/>
         <Label Content="{x:Static res:Resources.CNonbasic}" HorizontalAlignment="Left" Margin="756,267,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="93"/>

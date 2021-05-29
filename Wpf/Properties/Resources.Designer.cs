@@ -883,5 +883,14 @@ namespace Wpf.Properties {
                 return ResourceManager.GetString("Uniform", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables: .
+        /// </summary>
+        public static string Variables {
+            get {
+                return ResourceManager.GetString("Variables", resourceCulture);
+            }
+        }
     }
 }
