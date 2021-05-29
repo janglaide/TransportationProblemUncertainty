@@ -23,7 +23,7 @@ namespace Wpf.Analysis
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         private GeneratorTaskCondition _generator;
         private Experiment _experiment;
-        private List<List<(int, double)>> _results = new List<List<(int, double)>>();
+        private List<List<(int, double)>> _results;
         private int _startsize, _finalsize, _step, _R, _startR, _finalR, _stepR;
         private double _accuracy;
         private bool _isRangeRSelected = false;
@@ -248,6 +248,7 @@ namespace Wpf.Analysis
         private void Run(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
+            _results = new List<List<(int, double)>>();
             _messages = new List<string>();
             if (!_isRangeRSelected)
             {
