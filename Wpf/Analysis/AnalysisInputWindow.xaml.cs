@@ -23,9 +23,12 @@ namespace Wpf.Analysis
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         private GeneratorTaskCondition _generator;
         private Experiment _experiment;
-        private List<(int, double)> _results;
-        private int _startsize, _finalsize, _step, _R;
+        private List<List<(int, double)>> _results = new List<List<(int, double)>>();
+        private int _startsize, _finalsize, _step, _R, _startR, _finalR, _stepR;
         private double _accuracy;
+        private bool _isRangeRSelected = false;
+        private bool? _isCheckedCDefault, _isCheckedCBasic, _isCheckedCNonbasic;
+        private List<string> _messages = new List<string>();
         public AnalysisInputWindow()
         {
             InitializeComponent();
@@ -43,18 +46,40 @@ namespace Wpf.Analysis
                 if (startSize <= 0) throw new Exception(Properties.Resources.ExceptionLabelSizesMatrixesPositive);
                 if (!int.TryParse(StepBox.Text, out int step)) throw new Exception(Properties.Resources.ExceptionLabelStepInteger);
                 if (step <= 0) throw new Exception(Properties.Resources.ExceptionLabelStepPositive);
-                if (!int.TryParse(RBox.Text, out int R)) throw new Exception(Properties.Resources.ExceptionLabelIntegerR);
-                if (R <= 0) throw new Exception(Properties.Resources.ExceptionLabelPositiveR);
                 if (DistributionComboBox.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionCNOTChosen);
                 if (DistributionComboBoxAB.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionABNOTChosen);
                 if (DistributionComboBoxL.SelectedItem == null) throw new Exception(Properties.Resources.ExceptionLabelDistributionLNOTChosen);
+                if (!_isRangeRSelected)
+                {
+                    if (!int.TryParse(RBox.Text, out int R)) throw new Exception(Properties.Resources.ExceptionLabelIntegerR);
+                    if (R <= 0) throw new Exception(Properties.Resources.ExceptionLabelPositiveR);
+                    if (checkboxForCDefault.IsChecked != true &&
+                        checkboxForCBasic.IsChecked != true &&
+                        checkboxForCBasic.IsChecked != true) throw new Exception(Properties.Resources.ExceptionCheckboxesC);
+                    _isCheckedCDefault = checkboxForCDefault.IsChecked;
+                    _isCheckedCBasic = checkboxForCBasic.IsChecked;
+                    _isCheckedCNonbasic = checkboxForCBasic.IsChecked;
+                    _R = R;
+                }
+                if (_isRangeRSelected)
+                {
+                    if (!int.TryParse(RStepTextBox.Text, out int stepR)) throw new Exception(Properties.Resources.ExceptionLabelRStepInteger);
+                    if (stepR <= 0) throw new Exception(Properties.Resources.ExceptionLabelRStepPositive);
+                    if (!int.TryParse(StartQuantityOfMatrixes.Text, out int startR) ||
+                        !int.TryParse(FinalQuantityOfMatrixes.Text, out int finalR)) throw new Exception(Properties.Resources.ExceptionLabelRRangeIntegers);
+                    if (finalR - startR < 0) throw new Exception(Properties.Resources.ExceptionLabelRInvalidQuatitySizing);
+                    if (startR <= 0) throw new Exception(Properties.Resources.ExceptionLabelRRangePositive);
+                    _stepR = stepR;
+                    _startR = startR;
+                    _finalR = finalR;
+                }                
 
                 double delay, deviation, a, b;
 
                 (double, double) paramsC;
                 (double, double) paramsAB;
                 (double, double) paramsL;
-                (string, string, string) distribuiton;
+                (string, string, string) distribution;
 
                 var item = (ComboBoxItem)DistributionComboBox.SelectedItem;
                 switch (item.Name)
@@ -66,7 +91,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsC = (delay, delay);
-                        distribuiton.Item1 = "Exponential";
+                        distribution.Item1 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm":
@@ -77,7 +102,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsC = (delay, deviation);
-                        distribuiton.Item1 = "Normal";
+                        distribution.Item1 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -88,7 +113,7 @@ namespace Wpf.Analysis
                         delay = -1.0;
                         deviation = -1.0;
                         paramsC = (a, b);
-                        distribuiton.Item1 = "Uniform";
+                        distribution.Item1 = "Uniform";
                         //experiment = new Experiment(item.Name, (a, b), (a, b), (a, b));
                         break;
                 }
@@ -103,7 +128,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsAB = (delay, delay);
-                        distribuiton.Item2 = "Exponential";
+                        distribution.Item2 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm1":
@@ -114,7 +139,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsAB = (delay, deviation);
-                        distribuiton.Item2 = "Normal";
+                        distribution.Item2 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -125,7 +150,7 @@ namespace Wpf.Analysis
                         delay = -1.0;
                         deviation = -1.0;
                         paramsAB = (a, b);
-                        distribuiton.Item2 = "Uniform";
+                        distribution.Item2 = "Uniform";
                         //experiment = new Experiment(item.Name, (a, b), (a, b), (a, b));
                         break;
                 }
@@ -140,7 +165,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsL = (delay, delay);
-                        distribuiton.Item3 = "Exponential";
+                        distribution.Item3 = "Exponential";
                         //experiment = new Experiment(item.Name, (delay, delay), (delay, delay), (delay, delay));
                         break;
                     case "norm2":
@@ -151,7 +176,7 @@ namespace Wpf.Analysis
                         a = -1.0;
                         b = -1.0;
                         paramsL = (delay, deviation);
-                        distribuiton.Item3 = "Normal";
+                        distribution.Item3 = "Normal";
                         //experiment = new Experiment(item.Name, (delay, deviation), (delay, deviation), (delay, deviation));
                         break;
                     default:
@@ -162,7 +187,7 @@ namespace Wpf.Analysis
                         delay = -1.0;
                         deviation = -1.0;
                         paramsL = (a, b);
-                        distribuiton.Item3 = "Uniform";
+                        distribution.Item3 = "Uniform";
                         break;
                 }
                 
@@ -173,14 +198,12 @@ namespace Wpf.Analysis
                 ProgressingBar.Minimum = 0;
                 ProgressingBar.Value = 0;
 
-                _generator = new GeneratorTaskCondition(distribuiton, paramsC, paramsAB, paramsL);
+                _generator = new GeneratorTaskCondition(distribution, paramsC, paramsAB, paramsL);
                 _experiment = new Experiment(_generator);
                 _startsize = startSize;
                 _finalsize = finalSize;
                 _step = step;
-                _accuracy = accuracy;
-                _R = R;
-                
+                _accuracy = accuracy;                
 
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.RunWorkerCompleted += Completed;
@@ -206,8 +229,7 @@ namespace Wpf.Analysis
 
         private void Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            
-            var window = new ExperimentResultWindow(_results);
+            var window = new ExperimentResultWindow(_results, _messages);
             ProgressingBar.Value = 0;
             ProgressingBar.Visibility = Visibility.Hidden;
             ProgressTextBlock.Text = "";
@@ -218,7 +240,35 @@ namespace Wpf.Analysis
         private void Run(object sender, DoWorkEventArgs e)
         {
             var worker = sender as BackgroundWorker;
-            _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize);
+            if (!_isRangeRSelected)
+            {
+                if (_isCheckedCDefault == true)
+                {
+                    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Default);
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _messages.Add(Properties.Resources.CDefault);
+                }
+                if (_isCheckedCBasic == true)
+                {
+                    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Basic);
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _messages.Add(Properties.Resources.CBasic);
+                }
+                if (_isCheckedCNonbasic == true)
+                {
+                    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.NonBasic);
+                    _results.Add(_experiment.RunExperiment(_startsize, _finalsize, _step, _R, _accuracy, worker, Properties.Resources.ProcessingSize));
+                    _messages.Add(Properties.Resources.CNonbasic);
+                }
+            }
+            else
+            {
+                _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _startR, _finalR, _stepR, _accuracy, worker, Properties.Resources.ProcessingSize);
+                for (int r = _startR; r <= _finalR; r += _stepR)
+                {
+                    _messages.Add($"{Properties.Resources.Matrixs} {r}");
+                }
+            }
             worker.ReportProgress(100, Properties.Resources.ProgressTextBlockCompleted);
         }
 
@@ -313,6 +363,11 @@ namespace Wpf.Analysis
         }
         private void RangeR_Selected(object sender, RoutedEventArgs e)
         {
+            if (_isRangeRSelected)
+            {
+                return;
+            }
+            _isRangeRSelected = true;
             QualityRLabel.Visibility = Visibility.Hidden;
             RBox.Visibility = Visibility.Hidden;
             checkboxForCDefault.Visibility = Visibility.Hidden;
@@ -333,6 +388,11 @@ namespace Wpf.Analysis
         }
         private void RangeR_Unselected(object sender, RoutedEventArgs e)
         {
+            if (!_isRangeRSelected)
+            {
+                return;
+            }
+            _isRangeRSelected = false;
             QualityRLabel.Visibility = Visibility.Visible;
             RBox.Visibility = Visibility.Visible;
             checkboxForCDefault.Visibility = Visibility.Visible;

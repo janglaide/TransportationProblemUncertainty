@@ -110,21 +110,24 @@
         <ProgressBar x:Name="ProgressingBar" Visibility="Hidden" HorizontalAlignment="Left" Height="10" Margin="46,590,0,0" VerticalAlignment="Top" Width="332"/>
         <TextBlock Name="ProgressTextBlock" Foreground="DarkOliveGreen" TextAlignment="Center" HorizontalAlignment="Left" Margin="92,559,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
         <Label BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,69,0,0" VerticalAlignment="Top" Width="170" Height="34" Grid.ColumnSpan="2"/>
-        <Label Content="Діапазон для R:" HorizontalAlignment="Left" Margin="736,69,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="{x:Static res:Resources.RangeR}" HorizontalAlignment="Left" Margin="736,69,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <CheckBox Name="checkboxForR" Margin="105,78,10,532" Grid.Column="1" Checked="RangeR_Selected" Unchecked="RangeR_Unselected"/>
-        <Label x:Name ="RangeRLabel" Content="Діапазон зміни кількості матриць (R):" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top" Width="287" Visibility="Hidden"/>
+        <Label x:Name ="RangeRLabel" Content="{x:Static res:Resources.RangeChangingQuantityMatrixLabel}" HorizontalAlignment="Left" Margin="43,150,0,0" VerticalAlignment="Top" Width="287" Visibility="Hidden"/>
         <TextBox x:Name="StartQuantityOfMatrixes" Opacity="0.8" HorizontalAlignment="Left" Margin="442,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Visibility="Hidden"/>
         <TextBox x:Name="FinalQuantityOfMatrixes" Opacity="0.8" HorizontalAlignment="Left" Margin="595,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Visibility="Hidden"/>
         <Label Name="checkboxCbinder" Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,189,0,0" VerticalAlignment="Top" Width="170" Height="112" Grid.ColumnSpan="2"/>
-        <Label Content="Зміна значень (C):" HorizontalAlignment="Left" Margin="735,191,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <CheckBox Name="checkboxForCDefault" Content="Всі" Margin="736,227,78,379" Grid.ColumnSpan="2" IsChecked="True"/>
-        <CheckBox Name="checkboxForCBasic" Content="Базисні" Margin="736,251,78,355" Grid.ColumnSpan="2"/>
-        <CheckBox Name="checkboxForCNonbasic" Content="Небазисні" Margin="736,275,44,331" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButtonForCDefault" Content="Всі" HorizontalAlignment="Left" Margin="738,226,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Visibility="Hidden"/>
-        <RadioButton x:Name="radioButtonForCBasic" Content="Базисні" HorizontalAlignment="Left" Margin="738,251,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2" Visibility="Hidden"/>
-        <RadioButton x:Name="radioButtonForCNonbasic" Content="Небазисні" HorizontalAlignment="Left" Margin="738,276,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Label Content="{x:Static res:Resources.ChangeC}" HorizontalAlignment="Left" Margin="735,191,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <CheckBox Name="checkboxForCDefault" Margin="736,227,78,379" Grid.ColumnSpan="2" IsChecked="True"/>
+        <CheckBox Name="checkboxForCBasic" Margin="736,251,78,355" Grid.ColumnSpan="2"/>
+        <CheckBox Name="checkboxForCNonbasic" Margin="736,275,44,331" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="radioButtonForCDefault" HorizontalAlignment="Left" Margin="738,226,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Visibility="Hidden" IsChecked="True"/>
+        <RadioButton x:Name="radioButtonForCBasic" HorizontalAlignment="Left" Margin="738,251,0,0" VerticalAlignment="Top" Width="108" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <RadioButton x:Name="radioButtonForCNonbasic" HorizontalAlignment="Left" Margin="738,276,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Label Content="{x:Static res:Resources.CDefault}" HorizontalAlignment="Left" Margin="756,218,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="93" Height="30"/>
+        <Label Content="{x:Static res:Resources.CBasic}" Margin="758,243,70,0" VerticalAlignment="Top" Width="93" Grid.ColumnSpan="2"/>
+        <Label Content="{x:Static res:Resources.CNonbasic}" HorizontalAlignment="Left" Margin="756,267,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="93"/>
         <Label Name="RStepBackgroundLabel" Visibility="Hidden" Content="" BorderThickness="1" Background="White" Opacity="0.7" BorderBrush="LightBlue" HorizontalAlignment="Left" Margin="728,117,0,0" VerticalAlignment="Top" Width="170" Height="64" Grid.ColumnSpan="2"/>
-        <Label Name="RStepLabel" Visibility="Hidden" Content="Крок зміни R:" HorizontalAlignment="Left" Margin="737,118,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Name="RStepLabel" Visibility="Hidden" Content="{x:Static res:Resources.StepR}" HorizontalAlignment="Left" Margin="737,118,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBox x:Name="RStepTextBox" Opacity="0.8" Visibility="Hidden" HorizontalAlignment="Left" Margin="742,149,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

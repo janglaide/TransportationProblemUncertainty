@@ -138,8 +138,20 @@
   <data name="BackButton" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="CBasic" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="CDefault" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ChangeC" xml:space="preserve">
+    <value>Change C values:</value>
+  </data>
   <data name="ChooseAccuracyLabel" xml:space="preserve">
     <value>Choose accuracy (e):</value>
+  </data>
+  <data name="CNonbasic" xml:space="preserve">
+    <value>Nonbasic</value>
   </data>
   <data name="CountedPercentageForTaskTextBlock" xml:space="preserve">
     <value>Counted average percentage for your task</value>
@@ -149,6 +161,9 @@
   </data>
   <data name="DistributionLabel" xml:space="preserve">
     <value>Choose distribution:</value>
+  </data>
+  <data name="ExceptionCheckboxesC" xml:space="preserve">
+    <value>The C values change parameter must be selected</value>
   </data>
   <data name="ExceptionLabelAccuracyNOTChosen" xml:space="preserve">
     <value>Choose an accuracy</value>
@@ -212,22 +227,37 @@ and experts quantity (R)</value>
     <value>The 'R' must be positive</value>
   </data>
   <data name="ExceptionLabelRangeNumbers" xml:space="preserve">
-    <value>The range must consist of numbers</value>
+    <value>The range C must consist of numbers</value>
   </data>
   <data name="ExceptionLabelRangePositive" xml:space="preserve">
-    <value>The range must be positive</value>
+    <value>The range C must be positive</value>
   </data>
   <data name="ExceptionLabelRangeStartsInPositive" xml:space="preserve">
-    <value>The range must be in positive numbers</value>
+    <value>The range C must be in positive numbers</value>
+  </data>
+  <data name="ExceptionLabelRInvalidQuatitySizing" xml:space="preserve">
+    <value>Invalid range of quantities</value>
+  </data>
+  <data name="ExceptionLabelRRangeIntegers" xml:space="preserve">
+    <value>The range R must consist of numbers</value>
+  </data>
+  <data name="ExceptionLabelRRangePositive" xml:space="preserve">
+    <value>The range R must be positive</value>
+  </data>
+  <data name="ExceptionLabelRStepInteger" xml:space="preserve">
+    <value>The step R must be integer</value>
+  </data>
+  <data name="ExceptionLabelRStepPositive" xml:space="preserve">
+    <value>The step R must be positive</value>
   </data>
   <data name="ExceptionLabelSizesMatrixesPositive" xml:space="preserve">
     <value>Sizes of matrixes must be positive</value>
   </data>
   <data name="ExceptionLabelStepInteger" xml:space="preserve">
-    <value>The step must be integer</value>
+    <value>The step C must be integer</value>
   </data>
   <data name="ExceptionLabelStepPositive" xml:space="preserve">
-    <value>The step must be positive</value>
+    <value>The step C must be positive</value>
   </data>
   <data name="ExitButton" xml:space="preserve">
     <value>Exit</value>
@@ -269,6 +299,9 @@ under uncertainty</value>
   <data name="MatrixesCLabel" xml:space="preserve">
     <value>Matrixes C:</value>
   </data>
+  <data name="Matrixs" xml:space="preserve">
+    <value>Matrixes</value>
+  </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
   </data>
@@ -308,8 +341,14 @@ under uncertainty</value>
   <data name="QuantityOfMatrixesLabel" xml:space="preserve">
     <value>Quantity of cost matrixes (R):</value>
   </data>
+  <data name="RangeChangingQuantityMatrixLabel" xml:space="preserve">
+    <value>Range of changing quantity of matrix C:</value>
+  </data>
   <data name="RangeChangingSizeMatrixLabel" xml:space="preserve">
     <value>Range of changing size of matrix C:</value>
+  </data>
+  <data name="RangeR" xml:space="preserve">
+    <value>R range:</value>
   </data>
   <data name="RunButton" xml:space="preserve">
     <value>Run</value>
@@ -346,6 +385,9 @@ under uncertainty</value>
   </data>
   <data name="StepChangingSizeMatrixLabel" xml:space="preserve">
     <value>Step in changing size of matrix C:</value>
+  </data>
+  <data name="StepR" xml:space="preserve">
+    <value>Step for R change:</value>
   </data>
   <data name="SuccesfulPersistenceTestTextBlock" xml:space="preserve">
     <value>The percentage of change of input data is acceptable for the given parameters. The compromise solution is stable enough</value>

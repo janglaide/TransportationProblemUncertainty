@@ -159,7 +159,7 @@ namespace ClassLibrary.Logic
         {
             int deltNumber = deltas.Length;
             double[] ys = new double[deltNumber];
-            double[] dirtyYs = new double[deltNumber];
+            double[] dirtyYs = CalculateYsDirty(deltas, l);
             for (int i = 0; i < deltNumber; i++)
             {
                 ys[i] = Math.Max(dirtyYs[i], 0);
@@ -196,7 +196,7 @@ namespace ClassLibrary.Logic
             double[] result = new double[valueNumber];
             for (int i = 0; i < valueNumber; i++)
             {
-                result[i] = RoundValue(x[i], 0.00001);
+                result[i] = RoundValue(x[i]);
             }
             return result;
         }        
@@ -370,7 +370,7 @@ namespace ClassLibrary.Logic
             }
             matrix = newMatrix;
         }
-        private double[] IterativeProcedure(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX)
+        private double[] IterativeProcedure(double[][] cs, double[] a, double[] b, double[] l, ref double[] alpha, double[] solutions, double[] oldX, double step = 0.1)
         {
             double[] newX = new double[oldX.Length];
             double[] newAlpha = new double[alpha.Length];
@@ -378,7 +378,6 @@ namespace ClassLibrary.Logic
             alpha.CopyTo(newAlpha, 0);
             while (true)
             {
-                double step = 0.1;
                 double[] deltas = CalculateDeltas(CalculateFs(cs, newX), solutions);
                 double[] ys = RoundVectorValues(CalculateYsDirty(deltas, l));
                 if (!ys.Any(x => x == 0) || ys.All(x => x == 0))
@@ -404,7 +403,7 @@ namespace ClassLibrary.Logic
                     alpha = newAlpha;
                     break;
                 }
-                if (newAlpha.Any(x => x <= 0))
+                if (newAlpha.Any(x => x <= 0) || newAlpha.Max() / newAlpha.Min() > 100)
                 {
                     newX = oldX;
                     break;

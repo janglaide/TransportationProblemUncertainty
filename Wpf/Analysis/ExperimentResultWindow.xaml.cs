@@ -17,30 +17,29 @@ namespace Wpf.Analysis
     /// </summary>
     public partial class ExperimentResultWindow : Window
     {
-        private readonly List<(int, double)> _list;
-        public ExperimentResultWindow(List<(int, double)> list)
+        private readonly List<List<(int, double)>> _list;
+        private readonly List<string> _messages;
+        public ExperimentResultWindow(List<List<(int, double)>> list, List<string> messages)
         {
             InitializeComponent();
             _list = list;
+            _messages = messages;
         }
 
         private void ExperimentResult_Loaded(object sender, RoutedEventArgs e)
         {
             var series = new SeriesCollection();
             static string formatFunc(double x) => string.Format("{0:0.000}", x);
-            var doubleValues = new ChartValues<double> ();
+            
             var stringValues = new List<string> ();
-
-            foreach(var x in _list)
+            foreach (var x in _list[0])
             {
                 stringValues.Add(x.Item1.ToString());
-                doubleValues.Add(x.Item2);
             }
-
             chart.AxisX.Add(new Axis
             {
                 Title = Properties.Resources.GraphSizeOfMatrixX,
-                Labels = stringValues, 
+                Labels = stringValues,
                 FontSize = 14
             });
             chart.AxisY.Add(new Axis
@@ -49,14 +48,23 @@ namespace Wpf.Analysis
                 FontSize = 14,
                 LabelFormatter = formatFunc
             });
-            var line = new LineSeries
+
+            for (int i = 0; i < _list.Count; i++)
             {
-                Title = Properties.Resources.GraphPercentageLine,
-                Values = doubleValues
-            };
-            series.Add(line);
+                var doubleValues = new ChartValues<double>();
+                foreach (var x in _list[i])
+                {
+                    doubleValues.Add(x.Item2);
+                }
+                var line = new LineSeries
+                {
+                    Title = $"{_messages[i]}: {Properties.Resources.GraphPercentageLine}",
+                    Values = doubleValues
+                };
+
+                series.Add(line);
+            }
             chart.Series = series;
-            
         }
 
         private void SaveDataButton_Click(object sender, RoutedEventArgs e)

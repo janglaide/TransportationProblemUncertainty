@@ -138,8 +138,20 @@
   <data name="BackButton" xml:space="preserve">
     <value>Назад</value>
   </data>
+  <data name="CBasic" xml:space="preserve">
+    <value>Базисні</value>
+  </data>
+  <data name="CDefault" xml:space="preserve">
+    <value>Всі</value>
+  </data>
+  <data name="ChangeC" xml:space="preserve">
+    <value>Зміна значень (C):</value>
+  </data>
   <data name="ChooseAccuracyLabel" xml:space="preserve">
     <value>Оберіть точність</value>
+  </data>
+  <data name="CNonbasic" xml:space="preserve">
+    <value>Небазисні</value>
   </data>
   <data name="CountedPercentageForTaskTextBlock" xml:space="preserve">
     <value>Знайдений середній відсоток для вашої задачі</value>
@@ -149,6 +161,9 @@
   </data>
   <data name="DistributionLabel" xml:space="preserve">
     <value>Оберіть закон розподілу:</value>
+  </data>
+  <data name="ExceptionCheckboxesC" xml:space="preserve">
+    <value>Оберіть параметр зміни значень матриць С</value>
   </data>
   <data name="ExceptionLabelAccuracyNOTChosen" xml:space="preserve">
     <value>Оберіть точність перехідного періоду 
@@ -234,6 +249,26 @@ a та b не обраний</value>
     <value>Числа діапазону мають бути
 додатніми</value>
   </data>
+  <data name="ExceptionLabelRInvalidQuatitySizing" xml:space="preserve">
+    <value>Некоректний діапазон зміни
+кількостей матриць</value>
+  </data>
+  <data name="ExceptionLabelRRangeIntegers" xml:space="preserve">
+    <value>Діапазон зміни кількостей матриць
+має бути цілим числом</value>
+  </data>
+  <data name="ExceptionLabelRRangePositive" xml:space="preserve">
+    <value>Числа діапазону мають бути
+додатніми</value>
+  </data>
+  <data name="ExceptionLabelRStepInteger" xml:space="preserve">
+    <value>Крок зміни кількостей матриць
+має бути натуральним числом</value>
+  </data>
+  <data name="ExceptionLabelRStepPositive" xml:space="preserve">
+    <value>Крок зміни кількостей матриць
+має бути натуральним числом</value>
+  </data>
   <data name="ExceptionLabelSizesMatrixesPositive" xml:space="preserve">
     <value>Розміри матриць (n) мають
 бути додатніми числами</value>
@@ -287,6 +322,9 @@ a та b не обраний</value>
   <data name="MatrixesCLabel" xml:space="preserve">
     <value>Матриці вартостей (С):</value>
   </data>
+  <data name="Matrixs" xml:space="preserve">
+    <value>Mатриць</value>
+  </data>
   <data name="Normal" xml:space="preserve">
     <value>Нормальний</value>
   </data>
@@ -326,8 +364,14 @@ a та b не обраний</value>
   <data name="QuantityOfMatrixesLabel" xml:space="preserve">
     <value>Кількість матриць (R):</value>
   </data>
+  <data name="RangeChangingQuantityMatrixLabel" xml:space="preserve">
+    <value>Діапазон зміни кількості матриць (R):</value>
+  </data>
   <data name="RangeChangingSizeMatrixLabel" xml:space="preserve">
     <value>Діапазон зміни розміру матриць:</value>
+  </data>
+  <data name="RangeR" xml:space="preserve">
+    <value>Діапазон для R:</value>
   </data>
   <data name="RunButton" xml:space="preserve">
     <value>Виконати</value>
@@ -364,6 +408,9 @@ a та b не обраний</value>
   </data>
   <data name="StepChangingSizeMatrixLabel" xml:space="preserve">
     <value>Крок зміни розміру матриць:</value>
+  </data>
+  <data name="StepR" xml:space="preserve">
+    <value>Крок зміни R:</value>
   </data>
   <data name="SuccesfulPersistenceTestTextBlock" xml:space="preserve">
     <value>Відсоток зміни вхідних даних є прийнятним для вхідних параметрів. Компромісний розв'язок є досить стійким</value>

@@ -124,11 +124,47 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic.
+        /// </summary>
+        public static string CBasic {
+            get {
+                return ResourceManager.GetString("CBasic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string CDefault {
+            get {
+                return ResourceManager.GetString("CDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change C values:.
+        /// </summary>
+        public static string ChangeC {
+            get {
+                return ResourceManager.GetString("ChangeC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose accuracy (e):.
         /// </summary>
         public static string ChooseAccuracyLabel {
             get {
                 return ResourceManager.GetString("ChooseAccuracyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nonbasic.
+        /// </summary>
+        public static string CNonbasic {
+            get {
+                return ResourceManager.GetString("CNonbasic", resourceCulture);
             }
         }
         
@@ -156,6 +192,15 @@ namespace Wpf.Properties {
         public static string DistributionLabel {
             get {
                 return ResourceManager.GetString("DistributionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The C values change parameter must be selected.
+        /// </summary>
+        public static string ExceptionCheckboxesC {
+            get {
+                return ResourceManager.GetString("ExceptionCheckboxesC", resourceCulture);
             }
         }
         
@@ -335,7 +380,7 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The range must consist of numbers.
+        ///   Looks up a localized string similar to The range C must consist of numbers.
         /// </summary>
         public static string ExceptionLabelRangeNumbers {
             get {
@@ -344,7 +389,7 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The range must be positive.
+        ///   Looks up a localized string similar to The range C must be positive.
         /// </summary>
         public static string ExceptionLabelRangePositive {
             get {
@@ -353,11 +398,56 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The range must be in positive numbers.
+        ///   Looks up a localized string similar to The range C must be in positive numbers.
         /// </summary>
         public static string ExceptionLabelRangeStartsInPositive {
             get {
                 return ResourceManager.GetString("ExceptionLabelRangeStartsInPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid range of quantities.
+        /// </summary>
+        public static string ExceptionLabelRInvalidQuatitySizing {
+            get {
+                return ResourceManager.GetString("ExceptionLabelRInvalidQuatitySizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The range R must consist of numbers.
+        /// </summary>
+        public static string ExceptionLabelRRangeIntegers {
+            get {
+                return ResourceManager.GetString("ExceptionLabelRRangeIntegers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The range R must be positive.
+        /// </summary>
+        public static string ExceptionLabelRRangePositive {
+            get {
+                return ResourceManager.GetString("ExceptionLabelRRangePositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The step R must be integer.
+        /// </summary>
+        public static string ExceptionLabelRStepInteger {
+            get {
+                return ResourceManager.GetString("ExceptionLabelRStepInteger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The step R must be positive.
+        /// </summary>
+        public static string ExceptionLabelRStepPositive {
+            get {
+                return ResourceManager.GetString("ExceptionLabelRStepPositive", resourceCulture);
             }
         }
         
@@ -371,7 +461,7 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The step must be integer.
+        ///   Looks up a localized string similar to The step C must be integer.
         /// </summary>
         public static string ExceptionLabelStepInteger {
             get {
@@ -380,7 +470,7 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The step must be positive.
+        ///   Looks up a localized string similar to The step C must be positive.
         /// </summary>
         public static string ExceptionLabelStepPositive {
             get {
@@ -507,6 +597,15 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Matrixes.
+        /// </summary>
+        public static string Matrixs {
+            get {
+                return ResourceManager.GetString("Matrixs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
         public static string Normal {
@@ -624,11 +723,29 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Range of changing quantity of matrix C:.
+        /// </summary>
+        public static string RangeChangingQuantityMatrixLabel {
+            get {
+                return ResourceManager.GetString("RangeChangingQuantityMatrixLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Range of changing size of matrix C:.
         /// </summary>
         public static string RangeChangingSizeMatrixLabel {
             get {
                 return ResourceManager.GetString("RangeChangingSizeMatrixLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R range:.
+        /// </summary>
+        public static string RangeR {
+            get {
+                return ResourceManager.GetString("RangeR", resourceCulture);
             }
         }
         
@@ -737,6 +854,15 @@ namespace Wpf.Properties {
         public static string StepChangingSizeMatrixLabel {
             get {
                 return ResourceManager.GetString("StepChangingSizeMatrixLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step for R change:.
+        /// </summary>
+        public static string StepR {
+            get {
+                return ResourceManager.GetString("StepR", resourceCulture);
             }
         }
         
