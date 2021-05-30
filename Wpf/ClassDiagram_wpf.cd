@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Wpf.Properties.Resources" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hyLxkQRjmECiLOoYgQABOD0RQcCMAXEAAIRAEgKQitA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf.Analysis.AnalysisInputWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAICRABAFAAAICoADDAIgICIEAMAQAMAAEIAADAAM=</HashCode>
+      <FileName>Analysis\AnalysisInputWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.Analysis.ExperimentResultWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAACAAIAAAAAAAAAAAAAAUIAAABACIAA=</HashCode>
+      <FileName>Analysis\ExperimentResultWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.PersistenceTest.InputWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAgAQCKAAAAAgIAAAAgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>PersistenceTest\InputWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.PersistenceTest.Result" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PersistenceTest\Result.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.Solver.SolutionWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAABAAAIAAAAAgCAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Solver\SolutionWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.Solver.SolverInputWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACCQABAAAAAQCIAAAAQgIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Solver\SolverInputWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.Solver.SolverRandomInputWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQCAAAAAAACIAAAAAgIAIAAIAAAAAAAAAACAAA=</HashCode>
+      <FileName>Solver\SolverRandomInputWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf.App" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACACAAIAAAACIAAAABAIQgAAAIAEAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

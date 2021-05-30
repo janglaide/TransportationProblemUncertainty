@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataAccess.Entities.ChangeParameter" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\ChangeParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Entities.Distribution" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAQAAAAAAQABAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Distribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Entities.DistributionParameters" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAYQAAAgAAAAhAAAAAIAAAEAAAAYAAAAACA=</HashCode>
+      <FileName>Entities\DistributionParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Entities.Experiment" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAQAAAIIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Experiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Entities.Percentage" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAAAAAAAAQAAAAAAAAAAAAQAACAAAgABAAAQA=</HashCode>
+      <FileName>Entities\Percentage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Migrations.ApplicationContextModelSnapshot">
+    <Position X="3.5" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Repositories.DistributionParametersRepository" Collapsed="true">
+    <Position X="6.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\DistributionParametersRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Repositories.DistributionRepository" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\DistributionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Repositories.ExperimentRepository" Collapsed="true">
+    <Position X="2" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\ExperimentRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Repositories.PercentageRepository" Collapsed="true">
+    <Position X="4.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\PercentageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.Repositories.Repository&lt;T&gt;" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.ApplicationContext" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQYAAACAAAAAAAAAGAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.UnitOfWork" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAABAAAAAABgAAAAAAAAKAAAAAQAoAAAAA=</HashCode>
+      <FileName>UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

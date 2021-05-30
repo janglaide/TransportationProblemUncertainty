@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClassLibrary.ForWPF.SolutionBundles.FullSolution" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAIAUAAAA=</HashCode>
+      <FileName>ForWPF\SolutionBundles\FullSolution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.ForWPF.SolutionBundles.Solution" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAAAAECAAAAAAAAAAAAAAAAYIAAEBBAAAAIABAAAAA=</HashCode>
+      <FileName>ForWPF\SolutionBundles\Solution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.ForWPF.FileProcessing" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAiCAQAEA=</HashCode>
+      <FileName>ForWPF\FileProcessing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.ForWPF.OutputTransform" Collapsed="true">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAABAAAgAAAAQACAAAAAAAQAAAAAA=</HashCode>
+      <FileName>ForWPF\OutputTransform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.ForWPF.Problem" Collapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAIAAAAAkBAAAAAAIBUAAQI=</HashCode>
+      <FileName>ForWPF\Problem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Generators.GeneratorTaskCondition" Collapsed="true">
+    <Position X="1.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAABSAAAQECACgAAAAEAAAAAAAAABAAAAIAEAIAAA=</HashCode>
+      <FileName>Generators\GeneratorTaskCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Generators.GeneratorValues" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAABAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Generators\GeneratorValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.Services.DistributionParametersService" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Logic\Services\DistributionParametersService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.Services.ExperimentService" Collapsed="true">
+    <Position X="8" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Services\ExperimentService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.Services.PercentageService" Collapsed="true">
+    <Position X="6.75" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIBAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Logic\Services\PercentageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.Experiment" Collapsed="true">
+    <Position X="6.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABABAAAAAIAAAIIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Experiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.PercentFinder" Collapsed="true">
+    <Position X="6.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACCAAAAIAACEAAAAEAAAAAAAAAAgBAAAABCAA=</HashCode>
+      <FileName>Logic\PercentFinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Logic.Solver" Collapsed="true">
+    <Position X="4.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>E0AAAsAAIIghQCAAAACDAAIACAAAAEYAAAAAAAAEkQE=</HashCode>
+      <FileName>Logic\Solver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.MethodParameters.ParametersForDefined" Collapsed="true">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAACAACAAAAAAAAAAAAAEBAAAAAAIAUAAAA=</HashCode>
+      <FileName>MethodParameters\ParametersForDefined.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.MethodParameters.ParametersForRandom" Collapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>MethodParameters\ParametersForRandom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.MethodParameters.SearchParameters" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MethodParameters\SearchParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Models.ChangeParameterModel" Collapsed="true">
+    <Position X="3.75" Y="9.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ChangeParameterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Models.DistributionParametersModel" Collapsed="true">
+    <Position X="6.75" Y="9.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAQAAAAAAAAhAAAAAIAAAAAAAAYAAAAACA=</HashCode>
+      <FileName>Models\DistributionParametersModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Models.ExperimentModel" Collapsed="true">
+    <Position X="3.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ExperimentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.Models.PercentageModel" Collapsed="true">
+    <Position X="10" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAgABAAAQA=</HashCode>
+      <FileName>Models\PercentageModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ClassLibrary.Enums.CChangeParameters" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Enums\CChangeParameters.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
