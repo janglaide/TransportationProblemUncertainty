@@ -273,12 +273,6 @@ namespace Wpf.Analysis
             }
             else
             {
-                //if (radioButtonForCBasic.IsChecked == true)
-                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Basic);
-                //else if (radioButtonForCDefault.IsChecked == true)
-                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.Default);
-                //else
-                //    _experiment.SetChangeParameters(ClassLibrary.Enums.CChangeParameters.NonBasic);
                 _experiment.SetChangeParameters(_parametersForChecked);
                 _results = _experiment.RunExperiment(_startsize, _finalsize, _step, _startR, _finalR, _stepR, _accuracy, worker, Properties.Resources.ProcessingSize, ", R = ");
                 for (int r = _startR; r <= _finalR; r += _stepR)

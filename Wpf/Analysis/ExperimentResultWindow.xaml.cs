@@ -78,7 +78,7 @@ namespace Wpf.Analysis
 
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    FileProcessing.WriteExperimentDataIntoFile(_list, saveFileDialog.FileName);
+                    FileProcessing.WriteExperimentDataIntoFile(_list, _messages, saveFileDialog.FileName, Properties.Resources.SizeOfMatrixFile);
                 }
             }
             catch (Exception ex)

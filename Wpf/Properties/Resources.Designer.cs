@@ -786,6 +786,15 @@ namespace Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size of matrix.
+        /// </summary>
+        public static string SizeOfMatrixFile {
+            get {
+                return ResourceManager.GetString("SizeOfMatrixFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of matrix (n):.
         /// </summary>
         public static string SizeOfMatrixLabel {

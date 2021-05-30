@@ -187,11 +187,26 @@ namespace ClassLibrary.ForWPF
             list.ForEach(x => text += (x.Item1.ToString() + "\t\t" + x.Item2.ToString() + '\n'));
             File.WriteAllText(filename, text);
         }
-        public static void WriteExperimentDataIntoFile(List<List<(int, double)>> list, string filename)
+        public static void WriteExperimentDataIntoFile(List<List<(int, double)>> list, List<string> messages, string filename, string sizeOfMatrix)
         {
-            /*var text = "Size of matrix\tPercentage of change by changing optimum\n\n";
-            list.ForEach(x => text += (x.Item1.ToString() + "\t\t" + x.Item2.ToString() + '\n'));
-            File.WriteAllText(filename, text);*/
+            var text = $"{sizeOfMatrix}\t";
+            for(var i = 0; i < messages.Count; i++)
+            {
+                text += $"{messages[i]}\t\t";
+            }
+            text += "\n\n";
+            for(var i = 0; i < list[0].Count; i++)
+            {
+                text += list[0][i].Item1.ToString() + "\t\t";
+                for(var j = 0; j < list.Count; j++)
+                {
+                    text += string.Format("{0:0.00000000}", list[j][i].Item2) + "\t";
+                }
+                text += "\n";
+            }
+            
+            //list.ForEach(x => text += (x.Item1.ToString() + "\t\t" + x.Item2.ToString() + '\n'));
+            File.WriteAllText(filename, text);
         }
         public static ParametersForDefined ReadSolutionForPersistenceTest(string filename)
         {

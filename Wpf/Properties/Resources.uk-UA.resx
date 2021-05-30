@@ -385,6 +385,9 @@ a та b не обраний</value>
   <data name="SaveResultButton" xml:space="preserve">
     <value>Зберегти розв'язок</value>
   </data>
+  <data name="SizeOfMatrixFile" xml:space="preserve">
+    <value>Розмір матриць</value>
+  </data>
   <data name="SizeOfMatrixLabel" xml:space="preserve">
     <value>Розмір матриць (n):</value>
   </data>

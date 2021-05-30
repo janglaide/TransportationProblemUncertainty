@@ -362,6 +362,9 @@ under uncertainty</value>
   <data name="SaveResultButton" xml:space="preserve">
     <value>Save result</value>
   </data>
+  <data name="SizeOfMatrixFile" xml:space="preserve">
+    <value>Size of matrix</value>
+  </data>
   <data name="SizeOfMatrixLabel" xml:space="preserve">
     <value>Size of matrix (n):</value>
   </data>
