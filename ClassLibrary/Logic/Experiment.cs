@@ -76,9 +76,9 @@ namespace ClassLibrary.Logic
             var interval = (int)(100 / (quantity));
 
             if (additionalMessage != ", R = ")
-                worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}", processingMessage, startSize, additionalMessage));
+                worker.ReportProgress(0, string.Format("{0}N = {1}{2}", processingMessage, startSize, additionalMessage));
             else
-                worker.ReportProgress(progress * interval, string.Format("{0}N = {1}{2}{3}", processingMessage, startSize, additionalMessage, matrixQuantity));
+                worker.ReportProgress(0, string.Format("{0}N = {1}{2}{3}", processingMessage, startSize, additionalMessage, matrixQuantity));
 
             for (int i = startSize; i <= finalSize; i += step)
             {

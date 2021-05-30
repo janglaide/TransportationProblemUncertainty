@@ -59,6 +59,7 @@ namespace Wpf.PersistenceTest
                 DistributionParametersService distributionParameters = new DistributionParametersService();
                 var distributionParametersIds = distributionParameters.GetAppropriateIds(
                     cParameters, abParameters, lParameters);
+
                 if (distributionParametersIds.Count < 5)
                     throw new Exception(Properties.Resources.ExceptionLabelNOTEnoughData);
 
