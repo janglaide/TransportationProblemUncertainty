@@ -21,17 +21,13 @@ namespace ClassLibrary.Logic
             {
                 double diff = runNumber != 0 ? average / runNumber : 0;
                 average += SearchPercent(parameters, solver, rand);
+                parameters.Clear();
                 runNumber++;
                 diff = Math.Abs(average / runNumber - diff);
                 accuracyAmount = (diff < averChange) ? accuracyAmount + 1 : 0;
             } while (accuracyAmount < 10);
             runFinish = runNumber * 10;
-            /*
-            for (; runNumber <= runFinish; runNumber++) //simple
-            {
-                average += SearchPercent(parameters, solver, rand);
-            }
-            */
+
             var iterations = runFinish - runNumber;
             var quantity = Environment.ProcessorCount;
             var step = (int)Math.Ceiling((double)iterations / quantity);
@@ -46,6 +42,7 @@ namespace ClassLibrary.Logic
                     for (var j = 0; j < step; j++)
                     {
                         sumLocal += SearchPercent(parameters, solverLocal, randLocal);
+                        parameters.Clear();
                     }
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
@@ -66,34 +63,38 @@ namespace ClassLibrary.Logic
             bool change = false;
             int cNumber = param.Cs.Length;
             double[] newX = new double[param.OldX.Length];
-            double[] roundedOldX = solver.RoundVector(param.OldX);
+            double[] result = new double[param.OldX.Length];
+            double[] oldX = param.OldX;
             double[] selectedValues = null;
             double[] solutions;
             double[][] changedCs = new double[cNumber][];
             param.OldX.CopyTo(newX, 0);
+            param.OldX.CopyTo(result, 0);
 
             switch (parameters.CChangeParameters)
             {
                 case CChangeParameters.Default:
-                    selectedValues = GetAll(roundedOldX);
+                    selectedValues = GetAll(oldX);
                     break;
                 case CChangeParameters.Basic:
-                    selectedValues = GetBasic(roundedOldX);
+                    selectedValues = GetBasic(oldX);
                     break;
                 case CChangeParameters.NonBasic:
-                    selectedValues = GetNonBasic(roundedOldX);
+                    selectedValues = GetNonBasic(oldX);
                     break;
             }
 
             while (!change)
             {
-                if (solver.DivideX(solver.RoundVector(newX), cNumber).SequenceEqual(solver.DivideX(roundedOldX, cNumber)))
+                if (newX.SequenceEqual(oldX))
                 {
                     CopyMultidimensional(param.Cs, ref changedCs);
                     percent++;
                     ChangeMatrixs(ref changedCs, percent, selectedValues, rand);
                     (_, solutions) = solver.GetSolutions(changedCs, param.A, param.B);
                     (newX, _) = solver.SolveSeveral(changedCs, param.A, param.B, param.L, param.Alpha, solutions);
+                    result = newX;
+                    newX = solver.DivideX(solver.RoundVector(newX), cNumber);
                 }
                 else
                 {
@@ -101,7 +102,7 @@ namespace ClassLibrary.Logic
                     changedCs.CopyTo(param.Cs, 0);
                 }
             }
-            param.DefineXs(newX);
+            param.DefineXs(result);
             return percent;
         }
         public static void CopyMultidimensional(double[][] from, ref double[][] to)

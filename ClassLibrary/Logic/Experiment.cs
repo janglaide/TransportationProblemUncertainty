@@ -56,7 +56,8 @@ namespace ClassLibrary.Logic
                 }
                 (_, solutions) = solver.GetSolutions(cs, a, b);
                 (x, _) = solver.SolveSeveral(cs, a, b, l, alpha, solutions);
-                if (!solver.CheckABConstraints(solver.DivideX(solver.RoundVector(x), param.MatrixQuantity), a, b))
+                x = solver.DivideX(solver.RoundVector(x), param.MatrixQuantity);
+                if (!solver.CheckABConstraints(x, a, b))
                 {
                     continue;
                 }

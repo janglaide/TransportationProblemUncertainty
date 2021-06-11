@@ -11,5 +11,9 @@ namespace ClassLibrary.MethodParameters
             Size = size;
             MatrixQuantity = matrixQuantity;
         }
+        public override void Clear()
+        {
+            return;
+        }
     }
 }

@@ -6,7 +6,6 @@ using ClassLibrary.ForWPF;
 using ClassLibrary.ForWPF.SolutionBundles;
 using ClassLibrary.Logic;
 using ClassLibrary.Logic.Services;
-using ClassLibrary.MethodParameters;
 using Microsoft.Win32;
 using Wpf.PersistenceTest;
 
@@ -471,7 +470,6 @@ namespace Wpf.Solver
                 var random = new Random();
                 var solver = new ClassLibrary.Logic.Solver();
                 //var parametersForDefined = FileProcessing.ReadSolutionForPersistenceTest(_filename);
-                
 
                 (double, double) cParameters = PercentFinder.GetCsRange(_data.ParametersForDefined);
                 (double, double) abParameters = PercentFinder.GetABRange(_data.ParametersForDefined);
@@ -492,6 +490,7 @@ namespace Wpf.Solver
                 var valueFromDB = percentages.Average();
 
                 //var percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
+                _data.ParametersForDefined.Clear();
                 var percent = PercentFinder.SearchMeanPercent(PercentFinder.FindPercentOfChange, _data.ParametersForDefined, accuracy, solver, random);
 
                 var window = new Result(valueFromDB, percent, percentages);

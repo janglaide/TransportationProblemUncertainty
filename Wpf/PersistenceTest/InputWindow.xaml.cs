@@ -72,6 +72,7 @@ namespace Wpf.PersistenceTest
                 var valueFromDB = percentages.Average();
 
                 //var percent = PercentFinder.FindPercentOfChange(parametersForDefined, solver, random);
+                parametersForDefined.Clear();
                 var percent = PercentFinder.SearchMeanPercent(PercentFinder.FindPercentOfChange, parametersForDefined, accuracy, solver, random);
 
                 ExceptionLabel.Content = "";
