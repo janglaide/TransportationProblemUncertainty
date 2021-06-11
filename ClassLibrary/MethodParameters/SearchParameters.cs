@@ -10,5 +10,6 @@ namespace ClassLibrary.MethodParameters
             CChangeParameters = parameters;
         }
         public abstract void Clear();
+        public abstract SearchParameters Copy();
     }
 }

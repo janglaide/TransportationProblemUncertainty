@@ -15,5 +15,9 @@ namespace ClassLibrary.MethodParameters
         {
             return;
         }
+        public override SearchParameters Copy()
+        {
+            return this;
+        }
     }
 }

@@ -34,5 +34,12 @@ namespace ClassLibrary.MethodParameters
         {
             PercentFinder.CopyMultidimensional(_csBase, ref _cs);
         }
+        public override SearchParameters Copy()
+        {
+            var newCs = new double[_csBase.Length][];
+            PercentFinder.CopyMultidimensional(_csBase, ref newCs);
+            var newParams = new ParametersForDefined(OldX, newCs, A, B, L, Alpha, CChangeParameters);
+            return newParams;
+        }
     }
 }

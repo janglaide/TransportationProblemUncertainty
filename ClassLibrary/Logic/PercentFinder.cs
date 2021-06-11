@@ -39,10 +39,11 @@ namespace ClassLibrary.Logic
                     int sumLocal = 0;
                     var solverLocal = new Solver();
                     var randLocal = new Random();
+                    var paramsLocal = parameters.Copy();
                     for (var j = 0; j < step; j++)
                     {
-                        sumLocal += SearchPercent(parameters, solverLocal, randLocal);
-                        parameters.Clear();
+                        sumLocal += SearchPercent(paramsLocal, solverLocal, randLocal);
+                        paramsLocal.Clear();
                     }
                     Interlocked.Add(ref threadsSum, sumLocal);
                 }
